@@ -23,13 +23,15 @@ export function Footer() {
               AI Engineer and HPC Innovator passionate about building 
               technology solutions that make a meaningful impact.
             </p>
-            <Button 
-              variant="outline" 
-              className="border-accent text-accent hover:bg-accent hover:text-primary transition-smooth"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Download Resume
-            </Button>
+            <a href="/resume.pdf" download>
+              <Button 
+                variant="outline" 
+                className="border-accent text-accent hover:bg-accent hover:text-primary transition-smooth"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download Resume
+              </Button>
+            </a>
           </div>
 
           {/* Quick Links */}
@@ -58,7 +60,7 @@ export function Footer() {
               </a>
               <div className="flex space-x-4 pt-2">
                 <a 
-                  href="https://github.com/vedantsingh" 
+                  href="https://github.com/vineetvedant" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-2 border border-gray-600 rounded-lg hover:border-accent hover:text-accent transition-smooth"
@@ -66,7 +68,7 @@ export function Footer() {
                   <Github className="h-5 w-5" />
                 </a>
                 <a 
-                  href="https://linkedin.com/in/vedantsingh" 
+                  href="https://www.linkedin.com/in/vedant-singh-2550b2202/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-2 border border-gray-600 rounded-lg hover:border-accent hover:text-accent transition-smooth"

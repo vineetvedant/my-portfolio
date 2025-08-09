@@ -65,14 +65,14 @@ export function ContactSection() {
     {
       icon: Github,
       title: "GitHub",
-      value: "github.com/vedantsingh",
-      href: "https://github.com/vedantsingh"
+      value: "github.com/vineetvedant",
+      href: "https://github.com/vineetvedant"
     },
     {
       icon: Linkedin,
       title: "LinkedIn",
-      value: "linkedin.com/in/vedantsingh",
-      href: "https://linkedin.com/in/vedantsingh"
+      value: "www.linkedin.com/in/vedant-singh-2550b2202",
+      href: "https://www.linkedin.com/in/vedant-singh-2550b2202/"
     }
   ]
 

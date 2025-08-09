@@ -15,7 +15,7 @@ export function AboutSection() {
           <div className="flex justify-center lg:justify-start">
             <div className="relative w-80 h-80">
               <img 
-                src="src\assets\images\profile.jpg" 
+                src="/profile.jpg" 
                 alt="Vedant Singh"
                 className="w-full h-full object-cover rounded-2xl shadow-2xl"
               />

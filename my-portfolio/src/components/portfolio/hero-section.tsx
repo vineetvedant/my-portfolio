@@ -10,7 +10,7 @@ export function HeroSection() {
   const downloadResume = () => {
     // Create a temporary link element to trigger download
     const link = document.createElement('a')
-    link.href = '/resume.pdf' // You can replace this with your actual resume file path
+    link.href = '/resume.pdf'
     link.download = 'Vedant_Singh_Resume.pdf'
     document.body.appendChild(link)
     link.click()
@@ -84,16 +84,16 @@ export function HeroSection() {
           {/* Social Links */}
           <div className="flex justify-center space-x-6">
             <a 
-              href="https://github.com/vedantsingh" 
+              href="https://github.com/vineetvedant" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-accent transition-smooth"
             >
               <Github className="h-6 w-6" />
             </a>
-            <a 
-              href="https://linkedin.com/in/vedantsingh" 
-              target="_blank" 
+                <a
+              href="https://www.linkedin.com/in/vedant-singh-2550b2202/"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-accent transition-smooth"
             >
