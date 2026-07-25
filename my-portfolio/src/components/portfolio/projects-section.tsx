@@ -71,25 +71,25 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-xl transition-all duration-300 border-accent/10 hover:border-accent/30 hover:-translate-y-2"
+              className="group bg-card/60 backdrop-blur-sm glow-card border border-accent/10 transition-all duration-300 hover:-translate-y-1.5"
             >
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-smooth">
-                    <project.icon className="h-6 w-6 text-accent" />
+                    <project.icon className="h-5 w-5 text-accent animate-pulse-glow" />
                   </div>
                   <Badge 
                     variant={project.status === "Completed" ? "default" : "secondary"}
-                    className={project.status === "Completed" ? "bg-accent text-primary" : "bg-muted"}
+                    className={project.status === "Completed" ? "bg-accent/20 text-accent border border-accent/20 font-mono text-[10px]" : "bg-muted font-mono text-[10px]"}
                   >
                     {project.status}
                   </Badge>
                 </div>
                 
-                <CardTitle className="text-xl text-primary group-hover:text-accent transition-smooth">
+                <CardTitle className="text-lg font-bold text-primary group-hover:text-accent transition-smooth font-mono">
                   {project.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">
+                <CardDescription className="text-muted-foreground leading-relaxed text-xs sm:text-sm font-sans mt-2">
                   {project.description}
                 </CardDescription>
               </CardHeader>
@@ -97,13 +97,13 @@ export function ProjectsSection() {
               <CardContent className="space-y-4">
                 {/* Technologies */}
                 <div>
-                  <h4 className="text-sm font-semibold text-primary mb-2">Technologies</h4>
-                  <div className="flex flex-wrap gap-1">
+                  <h4 className="text-xs font-semibold text-accent/80 font-mono mb-2 uppercase tracking-wider">Built With</h4>
+                  <div className="flex flex-wrap gap-1.5">
                     {project.technologies.map((tech, techIndex) => (
                       <Badge 
                         key={techIndex} 
                         variant="outline" 
-                        className="text-xs border-accent/20 text-muted-foreground"
+                        className="text-[10px] font-mono border-accent/10 text-muted-foreground bg-muted/20"
                       >
                         {tech}
                       </Badge>
@@ -113,11 +113,11 @@ export function ProjectsSection() {
 
                 {/* Key Features */}
                 <div>
-                  <h4 className="text-sm font-semibold text-primary mb-2">Key Features</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <h4 className="text-xs font-semibold text-accent/80 font-mono mb-2 uppercase tracking-wider">Features</h4>
+                  <ul className="text-xs text-muted-foreground space-y-1.5 font-sans">
                     {project.features.slice(0, 3).map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
-                        <Zap className="h-3 w-3 text-accent mr-2 flex-shrink-0" />
+                        <Zap className="h-3.5 w-3.5 text-accent mr-2 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -125,16 +125,16 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2 pt-4">
+                <div className="flex gap-2 pt-4 font-mono text-xs">
                   <Button 
                     asChild
                     variant="outline" 
                     size="sm" 
-                    className="w-full border-accent/30 text-accent hover:bg-accent hover:text-accent-foreground"
+                    className="w-full border-accent/20 text-accent bg-accent/5 hover:bg-accent hover:text-primary transition-smooth"
                   >
                     <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
-                      View Code
+                      <Github className="h-3.5 w-3.5 mr-2" />
+                      View Repository
                     </a>
                   </Button>
                 </div>

@@ -86,24 +86,24 @@ export function SkillsSection() {
         {/* Skill Categories */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="p-6 hover:shadow-lg transition-smooth border-accent/10">
+            <Card key={index} className="p-6 bg-card/60 backdrop-blur-sm glow-card border-accent/10 transition-smooth">
               <div className="flex items-center mb-6">
                 <div className="p-3 bg-accent/10 rounded-lg mr-4">
                   <category.icon className="h-6 w-6 text-accent" />
                 </div>
-                <h3 className="text-xl font-semibold text-primary">{category.title}</h3>
+                <h3 className="text-xl font-bold text-primary">{category.title}</h3>
               </div>
               
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex}>
+                  <div key={skillIndex} className="font-mono">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                      <span className="text-xs font-semibold text-foreground">{skill.name}</span>
+                      <span className="text-xs text-accent font-bold">{skill.level}%</span>
                     </div>
                     <Progress 
                       value={skill.level} 
-                      className="h-2 bg-muted" 
+                      className="h-1.5 bg-muted text-accent" 
                     />
                   </div>
                 ))}
@@ -113,16 +113,16 @@ export function SkillsSection() {
         </div>
 
         {/* Additional Skills */}
-        <Card className="p-8 bg-primary/5 border-accent/20">
-          <h3 className="text-xl font-semibold text-primary mb-6 text-center">
+        <Card className="p-8 bg-primary/5 border border-accent/10 backdrop-blur-sm glow-card">
+          <h3 className="text-xl font-bold text-primary mb-6 text-center">
             Additional Technologies & Concepts
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {additionalSkills.map((skill, index) => (
               <Badge 
                 key={index} 
-                variant="secondary" 
-                className="bg-accent/10 text-accent hover:bg-accent hover:text-primary transition-smooth px-4 py-2"
+                variant="secondary"
+                className="bg-accent/10 text-accent font-mono hover:bg-accent hover:text-primary transition-smooth px-4 py-2 text-xs rounded-lg"
               >
                 {skill}
               </Badge>

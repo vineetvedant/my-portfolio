@@ -12,20 +12,21 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
       {/* Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
         style={{ backgroundImage: `url(${heroBackground})` }}
       />
-      <div className="absolute inset-0 hero-gradient opacity-90" />
+      <div className="absolute inset-0 hero-gradient opacity-95" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_85%)] pointer-events-none" />
       
       {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-accent rounded-full animate-float animate-pulse-glow"
+            className="absolute w-2.5 h-2.5 bg-accent rounded-full animate-float animate-pulse-glow"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -38,39 +39,47 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white">
-            <span className="block">Vedant</span>
-            <span className="block text-gradient">Singh</span>
+          {/* Terminal Command Subtitle */}
+          <div className="mb-6">
+            <span className="font-mono text-accent text-xs sm:text-sm border border-accent/20 bg-accent/5 px-3 py-1.5 rounded-full inline-flex items-center">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse mr-2" />
+              vedant@portfolio:~$ run ai-cloud-pipeline
+            </span>
+          </div>
+
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 text-white tracking-tight">
+            <span>Vedant </span>
+            <span className="text-gradient glow-text">Singh</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl lg:text-3xl text-accent font-medium mb-4">
-            AI Engineer | HPC Innovator | Problem Solver
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-semibold mb-6 max-w-2xl mx-auto leading-relaxed">
+            AI Engineer & Cloud Infrastructure Developer
           </p>
           
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Computer Science Engineer with hands-on experience in Python, SQL, and cloud infrastructure (AWS, OCI), building
+          <p className="text-sm sm:text-base text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed font-sans">
+            Computer Science Engineer specializing in Python, SQL, and cloud infrastructure (AWS, OCI), building
             automated data validation, extraction, and processing workflows across enterprise systems.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 font-mono">
             <Button 
               onClick={scrollToProjects}
               size="lg"
-              className="bg-accent text-primary hover:bg-accent/90 transition-bounce px-8 py-3 text-lg font-semibold"
+              className="bg-accent text-primary hover:bg-accent/90 transition-bounce px-8 py-3 text-sm font-semibold rounded-lg"
             >
               View My Work
-              <ArrowDown className="ml-2 h-5 w-5" />
+              <ArrowDown className="ml-2 h-4 w-4" />
             </Button>
             
             <Button 
               onClick={downloadResume}
               variant="outline" 
               size="lg"
-              className="border-accent text-accent hover:bg-accent hover:text-primary transition-bounce px-8 py-3 text-lg font-semibold"
+              className="border-accent/40 text-accent hover:bg-accent hover:text-primary transition-bounce px-8 py-3 text-sm font-semibold rounded-lg"
             >
-              Download Resume
-              <Download className="ml-2 h-5 w-5" />
+              Get Resume
+              <Download className="ml-2 h-4 w-4" />
             </Button>
           </div>
 

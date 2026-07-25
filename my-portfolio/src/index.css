@@ -8,113 +8,95 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Calm Modern Portfolio Color Palette */
+    /* Sleek Tech Light Theme (GitHub/Vercel style) */
     --background: 210 20% 98%;
-    --foreground: 216 12% 20%;
+    --foreground: 222 47% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 216 12% 20%;
+    --card-foreground: 222 47% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 216 12% 20%;
+    --popover-foreground: 222 47% 12%;
 
-    /* Soft Blue Primary */
-    --primary: 216 12% 20%;
+    /* Deep Blue Primary */
+    --primary: 222 47% 12%;
     --primary-foreground: 210 20% 98%;
 
-    /* Calm Sage Green Accent */
-    --accent: 150 30% 60%;
+    /* Tech Blue Accent */
+    --accent: 221 83% 53%;
     --accent-foreground: 0 0% 100%;
 
-    /* Warm Gray Secondary */
-    --secondary: 210 10% 50%;
+    /* Slate Gray Secondary */
+    --secondary: 215 15% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 92%;
-    --muted-foreground: 210 14% 58%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 16% 47%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 174 100% 70%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 221 83% 53%;
 
     --radius: 0.75rem;
 
-    /* Portfolio-specific design tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(216 12% 15%), hsl(216 12% 25%));
-    --hero-accent: 150 30% 60%;
-    --hero-particles: 150 30% 60%;
+    /* Design tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(222 47% 12%), hsl(222 47% 18%));
     
     --section-bg: 210 25% 98%;
     --section-alt: 210 20% 95%;
     
-    /* Skill progress colors */
     --skill-bg: 210 15% 92%;
-    --skill-fill: 150 30% 60%;
+    --skill-fill: 221 83% 53%;
     
-    /* Card hover effects */
-    --card-hover: 0 20px 40px hsl(216 12% 20% / 0.08);
-    --card-border-hover: 150 30% 60%;
+    --card-hover: 0 15px 30px rgba(0, 0, 0, 0.05);
     
-    /* Animation timing */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark mode - Calm Theme */
-    --background: 216 12% 12%;
-    --foreground: 210 20% 90%;
+    /* Sleek Tech Dark Theme (VS Code / Vercel style) */
+    --background: 224 71% 4%;     /* Sleek Deep Space Slate #020617 */
+    --foreground: 213 31% 91%;    /* Slate-100 */
 
-    --card: 216 12% 15%;
-    --card-foreground: 210 20% 90%;
+    --card: 222 47% 6%;           /* Glassmorphism Dark Card */
+    --card-foreground: 213 31% 91%;
 
-    --popover: 216 12% 15%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 213 31% 91%;
 
-    --primary: 210 20% 90%;
-    --primary-foreground: 216 12% 12%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 224 71% 4%;
 
-    --accent: 150 30% 65%;
-    --accent-foreground: 216 12% 12%;
+    --accent: 180 100% 50%;       /* Glowing Neon Cyan #00f2fe */
+    --accent-foreground: 224 71% 4%;
 
-    --secondary: 210 10% 35%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 50% 12%;
-    --muted-foreground: 210 14% 70%;
+    --muted: 217.2 32.6% 10%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 174 100% 94%;
-
-    --border: 210 50% 16%;
-    --input: 210 50% 16%;
-    --ring: 174 100% 70%;
+    --border: 217.2 32.6% 14%;
+    --input: 217.2 32.6% 14%;
+    --ring: 180 100% 50%;
 
     /* Dark mode specific tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(216 12% 8%), hsl(216 12% 15%));
-    --section-bg: 216 12% 12%;
-    --section-alt: 216 12% 15%;
-    --skill-bg: 216 12% 18%;
-    --card-hover: 0 20px 40px hsl(0 0% 0% / 0.2);
+    --hero-gradient: linear-gradient(135deg, hsl(224 71% 2%), hsl(222 47% 6%));
+    --section-bg: 224 71% 4%;
+    --section-alt: 222 47% 6%;
+    --skill-bg: 222 47% 10%;
+    --card-hover: 0 20px 40px rgba(0, 242, 254, 0.08);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -132,12 +114,15 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: 'JetBrains Mono', 'Poppins', monospace;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -160,10 +145,29 @@ All colors MUST be HSL.
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
+    background: linear-gradient(135deg, hsl(var(--accent)), #3b82f6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .grid-bg {
+    background-image: radial-gradient(rgba(0, 242, 254, 0.07) 1.5px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .glow-card {
+    transition: all 0.3s ease;
+  }
+
+  .glow-card:hover {
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
   }
 }
 

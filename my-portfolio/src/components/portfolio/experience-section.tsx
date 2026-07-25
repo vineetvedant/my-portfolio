@@ -74,43 +74,43 @@ export function ExperienceSection() {
         </div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-accent/30"></div>
+          {/* Timeline line - Git Branch Style */}
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/60 via-blue-500/40 to-accent/20"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div key={index} className={`relative flex items-center ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}>
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 bg-accent rounded-full border-4 border-background z-10"></div>
+                {/* Timeline Git Commit Node */}
+                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-background border-2 border-accent rounded-full z-10 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
+                </div>
 
                 {/* Content */}
                 <div className={`ml-12 md:ml-0 ${
                   index % 2 === 0 ? 'md:mr-8 md:text-left' : 'md:ml-8'
                 } md:w-1/2`}>
-                  <Card className={`p-6 hover:shadow-lg transition-smooth ${
-                    exp.isUpcoming ? 'border-accent/50 bg-accent/5' : 'border-accent/20'
-                  }`}>
+                  <Card className="p-6 bg-card/60 backdrop-blur-sm glow-card border border-accent/10 transition-smooth">
                     {exp.isUpcoming && (
                       <Badge className="mb-4 bg-accent text-primary">Upcoming</Badge>
                     )}
                     
-                    <div className="flex items-center mb-3 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4 mr-2" />
+                    <div className="flex items-center mb-3 text-xs text-accent font-mono">
+                      <Calendar className="h-3.5 w-3.5 mr-2" />
                       <span>{exp.period}</span>
                     </div>
 
-                    <h3 className="text-xl font-semibold text-primary mb-2">{exp.position}</h3>
+                    <h3 className="text-xl font-bold text-primary mb-2">{exp.position}</h3>
                     
-                    <div className="flex items-center mb-4 text-muted-foreground flex-wrap gap-y-2">
-                      <Building className="h-4 w-4 mr-2" />
-                      <span className="font-medium">{exp.company}</span>
-                      <MapPin className="h-4 w-4 ml-4 mr-1" />
+                    <div className="flex items-center mb-4 text-muted-foreground flex-wrap gap-y-2 text-xs font-mono">
+                      <Building className="h-3.5 w-3.5 mr-2 text-accent/70" />
+                      <span className="font-semibold text-primary/80">{exp.company}</span>
+                      <MapPin className="h-3.5 w-3.5 ml-4 mr-1 text-accent/70" />
                       <span>{exp.location}</span>
                     </div>
 
-                    <ul className="list-disc list-outside ml-4 text-muted-foreground mb-6 leading-relaxed text-sm space-y-2 text-left">
+                    <ul className="list-disc list-outside ml-4 text-muted-foreground mb-6 leading-relaxed text-sm space-y-2 text-left font-sans">
                       {exp.description.map((bullet, bulletIdx) => (
                         <li key={bulletIdx}>
                           {bullet}
@@ -118,12 +118,12 @@ export function ExperienceSection() {
                       ))}
                     </ul>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {exp.skills.map((skill, skillIndex) => (
                         <Badge 
                           key={skillIndex} 
                           variant="secondary"
-                          className="bg-accent/10 text-accent text-xs"
+                          className="bg-accent/5 text-accent border border-accent/10 font-mono text-[10px] rounded"
                         >
                           {skill}
                         </Badge>
