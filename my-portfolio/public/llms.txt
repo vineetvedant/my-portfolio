@@ -1,0 +1,83 @@
+# Vedant Singh - Portfolio & Professional Summary
+
+AI Engineer, High Performance Computing (HPC) Innovator, and Automation Specialist.
+
+## Contact Information
+- **Email**: singhvineetvedant@gmail.com
+- **Phone**: +91-8873001000
+- **Location**: Delhi, India
+- **LinkedIn**: https://www.linkedin.com/in/vedant-singh-2550b2202/
+- **GitHub**: https://github.com/vineetvedant
+- **Resume Google Drive Folder**: https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV?usp=sharing
+- **Live Portfolio**: https://vineetvedant.github.io/my-portfolio/
+
+---
+
+## Professional Summary
+Computer Science Engineer with hands-on experience in Python, SQL, and cloud infrastructure (AWS, OCI), building automated data validation, extraction, and processing workflows across enterprise systems. Experienced in writing and optimizing SQL queries, provisioning cloud environments with Terraform, and integrating automated pipelines into Jenkins CI/CD. Strong foundation in data analysis (Pandas, EDA) and large-scale automation, with a consistent track record of measurable efficiency and reliability gains.
+
+---
+
+## Technical Skills
+- **Languages**: Python, C++, SQL
+- **Data & Analytics**: SQL Query Optimization, Data Validation & Mapping, Data Extraction, Pandas, NumPy, Matplotlib, Seaborn, EDA, SQLite
+- **Cloud & DevOps**: AWS (EC2), Oracle Cloud (OCI), Terraform, Jenkins, CI/CD, Linux, Git
+- **Automation & Testing**: Selenium WebDriver, Automation Anywhere (RPA), API Testing
+- **AI / ML**: TensorFlow, YOLO, CNN, RAG, Computer Vision
+- **Other Concepts**: High Performance Computing (HPC), Distributed Systems, RTSP, NCC 'C' Leadership and Discipline.
+
+---
+
+## Professional Experience
+
+### Wipro Limited — Associate Analyst
+*Jan 2026 - Present | Noida, India*
+- Validated backend data integrity and complex data mappings by writing and optimizing advanced SQL queries across relational datasets, ensuring accurate transaction processing.
+- Architected a scalable end-to-end UI and API automation framework in Python (Selenium WebDriver), automating 500+ test cases and reducing regression cycles by 60% across 5 core microservices.
+- Designed and deployed Robotic Process Automation (RPA) workflows using Automation Anywhere to streamline repetitive data extraction and UI validation tasks.
+- Built a Generative AI workflow to automate validation of website data against Jama requirements, streamlining system documentation.
+- Integrated automated API and UI test suites into Jenkins CI/CD pipelines, enabling nightly batch executions and accelerating deployment feedback loops.
+- Provisioned parallel, cross-platform environments on AWS EC2 (Linux), reducing overall testing cycle duration by 30%.
+
+### Altair Engineering X Siemens Energy — Intern, High Performance Computing (HPC)
+*Apr 2025 - Jun 2025 | Bangalore, India*
+- Streamlined cloud infrastructure rollouts on AWS & OCI using Terraform (Infrastructure as Code), cutting deployment cycles from 5 days to 3 days.
+- Improved HPC cluster efficiency by 37% by integrating 5+ key applications and automating compute resource allocation for large-scale workloads.
+- Shortened incident response times by 60% via end-to-end Linux monitoring and a real-time alerting system.
+
+### Proeffico Solutions Pvt. Ltd. — Software Engineer Intern (Computer Vision & AI Surveillance)
+*Oct 2024 - Jan 2025 | Noida, India*
+- Reduced hallucination rate in document Q&A by 30% through a custom RAG data pipeline, enabling accurate responses for 10,000+ queries.
+- Designed and shipped a YOLOv8-based AI solution to monitor 200+ employees’ activity with over 95% detection accuracy.
+- Built and maintained C++/Python tools on 30+ Raspberry Pis, achieving 99% uptime for edge health monitoring and data tracking.
+- Deployed a real-time safety system for tracking activity in restricted areas, reducing unauthorized incidents by 80%.
+
+### TATA Motors — Software Engineer Intern
+*Feb 2024 - May 2024 | Jamshedpur, India*
+- Implemented Python & YOLO modules for object detection, improving production-line safety checks by 28%.
+- Investigated CNN approaches for ADAS research, supporting a project that led to 12% fewer false positives in safety alerts.
+- Drafted deep learning proposals, influencing adoption of two new automotive user-interaction features.
+
+---
+
+## Research Publications
+- **Smart Drone System Using Deep Learning Techniques** (*ICAIN 2025, Springer LNNS (Scopus Indexed)*)
+  - Launched a YOLOv10 server for drone video feeds, enabling real-time detection and response in defense scenarios.
+  - Innovated a 3D-modeled, silent propeller, reducing drone acoustic footprint by 15% in field tests.
+
+---
+
+## Projects
+1. **Data Visualization Toolkit (Python, Pandas, Matplotlib, Seaborn)**: Built and published an open-source suite for EDA and visualization, streamlining analysis of 5000+ dataset rows per run.
+2. **UTS/PRS Ticketing System for the Visually Impaired (Python, Tkinter, SQLite)**: Led development of an accessible app with SQLite storage and Braille symbol translation, enabling 100+ visually impaired users to book tickets.
+3. **Multi-modal Object Tracking & Targeting (Raspberry Pi, YOLOv8, RTSP)**: Delivered real-time object tracking for 100+ classes, integrated with RTSP cameras and a robust API/CLI—reduced tracking error rates by 18%.
+4. **Text-to-Audio Converter (Audiobook Tool) (Python, gTTS)**: Created a utility and GUI to convert PDF books to audio, improving accessibility for 50+ visually impaired students.
+
+---
+
+## Certifications & Education
+- **B.Tech in Computer Science & Engineering** | SRM Institute of Science and Technology (CGPA: 8.21/10)
+- **Cloud Computing & Distributed Systems** (NPTEL)
+- **Introduction to Data Analytics** (IBM Coursera)
+- **Introduction to Cybersecurity** (Cisco)
+- **NCC 'C' Certificate** (Leadership & Discipline)
