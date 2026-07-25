@@ -27,17 +27,11 @@ export function AboutSection() {
             <Card className="p-8 border-l-4 border-l-accent shadow-lg hover:shadow-xl transition-smooth">
               <h3 className="text-2xl font-semibold text-primary mb-4">Innovation & Adaptability</h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                As a Computer Science graduate with a passion for cutting-edge technology, 
-                I specialize in artificial intelligence, high-performance computing, and 
-                industrial automation. My journey spans from developing accessible solutions 
-                for vision-impaired users to optimizing parallel computing systems.
+                I am a Computer Science Engineer with hands-on experience in Python, SQL, and cloud infrastructure (AWS, OCI), building automated data validation, extraction, and processing workflows across enterprise systems. I specialize in writing and optimizing SQL queries, provisioning cloud environments with Terraform, and integrating automated pipelines into Jenkins CI/CD.
               </p>
               
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Through internships at industry leaders like TATA Motors, Altair Engineering, 
-                and CRIS, I've honed my collaborative skills while tackling complex technical 
-                challenges. I believe in the power of technology to solve real-world problems 
-                and create meaningful impact.
+                With professional experience at Wipro Limited as an Associate Analyst, and software engineering internships at Siemens Energy, Altair Engineering, Proeffico Solutions, and TATA Motors, I have a proven track record of designing scalable automation frameworks, deploying real-time AI surveillance models, and optimizing high-performance computing clusters.
               </p>
 
               <div className="flex flex-wrap gap-2">
@@ -51,12 +45,12 @@ export function AboutSection() {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 text-center border-accent/20 hover:border-accent transition-smooth">
-                <div className="text-3xl font-bold text-accent mb-2">4+</div>
-                <div className="text-sm text-muted-foreground">Internships</div>
+                <div className="text-3xl font-bold text-accent mb-2">5</div>
+                <div className="text-sm text-muted-foreground">Professional Roles</div>
               </Card>
               <Card className="p-6 text-center border-accent/20 hover:border-accent transition-smooth">
                 <div className="text-3xl font-bold text-accent mb-2">10+</div>
-                <div className="text-sm text-muted-foreground">Projects</div>
+                <div className="text-sm text-muted-foreground">Projects & Publications</div>
               </Card>
             </div>
           </div>

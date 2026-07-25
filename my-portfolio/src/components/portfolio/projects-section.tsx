@@ -1,15 +1,27 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Eye, Zap, Volume2, Target, Cpu, Brain } from "lucide-react"
+import { ExternalLink, Github, Eye, Zap, Volume2, Target, Cpu, Brain, BarChart3 } from "lucide-react"
 
 const projects = [
   {
-    title: "Accessible Ticketing System for Vision Impairment",
-    description: "Innovative ticketing solution designed specifically for visually impaired users, featuring voice navigation, audio feedback, and accessible interface design.",
+    title: "Data Visualization Toolkit",
+    description: "An open-source suite for exploratory data analysis (EDA) and automated visualization, streamlining data analysis of 5000+ dataset rows per run.",
+    icon: BarChart3,
+    technologies: ["Python", "Pandas", "Matplotlib", "Seaborn", "EDA"],
+    features: ["Automated Data Analysis", "Exploratory Data Plots", "Support for 5000+ Row Datasets", "Open Source Toolkit"],
+    status: "Completed",
+    links: {
+      github: "https://github.com/vineetvedant",
+      demo: "#"
+    }
+  },
+  {
+    title: "UTS/PRS Ticketing System for the Visually Impaired",
+    description: "An accessible ticketing application featuring SQLite database storage and Braille symbol translation, allowing visually impaired users to book tickets independently.",
     icon: Eye,
-    technologies: ["Python", "Audio Processing", "Accessibility APIs", "UI/UX"],
-    features: ["Voice Navigation", "Audio Feedback", "Screen Reader Compatible", "Intuitive Design"],
+    technologies: ["Python", "Tkinter", "SQLite", "Accessibility", "Braille Translation"],
+    features: ["Braille Symbol Translation", "Accessible GUI Design", "SQLite Database Storage", "Empowering 100+ Impaired Users"],
     status: "Completed",
     links: {
       github: "https://github.com/vineetvedant/Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-.git",
@@ -17,23 +29,11 @@ const projects = [
     }
   },
   {
-    title: "Text-to-Audio Converter",
-    description: "Advanced text-to-speech application with natural voice synthesis, multiple language support, and customizable audio output settings.",
-    icon: Volume2,
-    technologies: ["Python", "TensorFlow", "Audio ML", "Natural Language Processing"],
-    features: ["Natural Voice Synthesis", "Multi-language Support", "Custom Audio Settings", "Batch Processing"],
-    status: "Completed",
-    links: {
-      github: "https://github.com/vineetvedant/VoiceBook.git",
-      demo: "#"
-    }
-  },
-  {
-    title: "Object Tracking System",
-    description: "Real-time object detection and tracking system using Arduino and C++, implementing computer vision algorithms for autonomous monitoring.",
+    title: "Multi-modal Object Tracking & Targeting",
+    description: "A real-time object tracking system for 100+ classes, integrated with RTSP video feeds and a robust API/CLI wrapper.",
     icon: Target,
-    technologies: ["Arduino", "C++", "OpenCV", "Computer Vision", "Hardware Integration"],
-    features: ["Real-time Tracking", "Multiple Object Detection", "Hardware Integration", "Autonomous Operation"],
+    technologies: ["Raspberry Pi", "YOLOv8", "RTSP Streaming", "Python", "API/CLI"],
+    features: ["Real-time Multi-class Tracking", "18% Error Rate Reduction", "RTSP Camera Feeds Integration", "Robust CLI/API Controls"],
     status: "Completed",
     links: {
       github: "https://github.com/vineetvedant/object-detection-thermal---grayscale---RGB-.git",
@@ -41,26 +41,14 @@ const projects = [
     }
   },
   {
-    title: "Parallel Programming with OpenMP",
-    description: "High-performance computing project demonstrating advanced parallel programming techniques and optimization strategies for computational efficiency.",
-    icon: Cpu,
-    technologies: ["C++", "OpenMP", "HPC", "Performance Optimization", "Parallel Algorithms"],
-    features: ["Parallel Processing", "Performance Optimization", "Scalable Architecture", "Benchmark Testing"],
+    title: "Text-to-Audio Converter (Audiobook Tool)",
+    description: "An accessibility audiobook utility and GUI that converts PDF text files to audiobooks, helping visually impaired students access materials.",
+    icon: Volume2,
+    technologies: ["Python", "gTTS", "PDF Processing", "Tkinter GUI"],
+    features: ["PDF Text Extraction", "Natural Voice Conversion (gTTS)", "User-friendly GUI", "Used by 50+ Visually Impaired Students"],
     status: "Completed",
     links: {
-      github: "https://github.com/vineetvedant/My.Prompt.git",
-      demo: "#"
-    }
-  },
-  {
-    title: "My.Prompt – AI Prompt Engineering Toolkit",
-    description: "Comprehensive toolkit for AI prompt engineering, featuring templates, optimization algorithms, and performance analytics for better AI interactions.",
-    icon: Brain,
-    technologies: ["Python", "AI/ML", "Prompt Engineering", "Analytics", "Web Framework"],
-    features: ["Prompt Templates", "Optimization Algorithms", "Performance Analytics", "User-friendly Interface"],
-    status: "In Development",
-    links: {
-      github: "https://github.com/vineetvedant/My.Prompt.git",
+      github: "https://github.com/vineetvedant/VoiceBook.git",
       demo: "#"
     }
   }

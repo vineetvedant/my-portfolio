@@ -42,7 +42,7 @@ export function Navigation() {
             onClick={scrollToTop}
             className="text-2xl font-bold text-primary hover:text-accent transition-smooth"
           >
-            
+            Vedant Singh
           </button>
 
           {/* Desktop Navigation */}

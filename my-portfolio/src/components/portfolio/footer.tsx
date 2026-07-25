@@ -23,7 +23,7 @@ export function Footer() {
               AI Engineer and HPC Innovator passionate about building 
               technology solutions that make a meaningful impact.
             </p>
-            <a href="/resume.pdf" download>
+            <a href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV?usp=sharing" target="_blank" rel="noopener noreferrer">
               <Button 
                 variant="outline" 
                 className="border-accent text-accent hover:bg-accent hover:text-primary transition-smooth"

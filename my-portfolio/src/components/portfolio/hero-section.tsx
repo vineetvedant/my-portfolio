@@ -8,13 +8,7 @@ export function HeroSection() {
   }
 
   const downloadResume = () => {
-    // Create a temporary link element to trigger download
-    const link = document.createElement('a')
-    link.href = '/resume.pdf'
-    link.download = 'Vedant_Singh_Resume.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    window.open('https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV?usp=sharing', '_blank')
   }
 
   return (
@@ -54,9 +48,8 @@ export function HeroSection() {
           </p>
           
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Computer Science graduate specializing in artificial intelligence, 
-            high-performance computing, and industrial automation. Building the future 
-            through innovative technology solutions.
+            Computer Science Engineer with hands-on experience in Python, SQL, and cloud infrastructure (AWS, OCI), building
+            automated data validation, extraction, and processing workflows across enterprise systems.
           </p>
 
           {/* CTA Buttons */}

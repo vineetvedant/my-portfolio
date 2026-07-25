@@ -14,13 +14,12 @@ import {
 
 const skillCategories = [
   {
-    title: "Languages & Core",
+    title: "Languages",
     icon: Code,
     skills: [
       { name: "Python", level: 95 },
       { name: "C++", level: 85 },
-      { name: "SQL", level: 80 },
-      { name: "Java", level: 70 },
+      { name: "SQL", level: 90 },
       { name: "Git", level: 90 },
     ]
   },
@@ -28,38 +27,47 @@ const skillCategories = [
     title: "AI & Machine Learning",
     icon: Brain,
     skills: [
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 85 },
-      { name: "OpenCV", level: 80 },
-      { name: "YOLO", level: 75 },
-      { name: "Pandas/NumPy", level: 95 },
+      { name: "TensorFlow / CNN", level: 90 },
+      { name: "YOLO (Object Detection)", level: 90 },
+      { name: "RAG & LLMs", level: 85 },
+      { name: "Computer Vision", level: 88 },
     ]
   },
   {
-    title: "Cloud & Infrastructure",
+    title: "Data & Analytics",
+    icon: Database,
+    skills: [
+      { name: "Pandas & NumPy", level: 95 },
+      { name: "SQL Query Optimization", level: 90 },
+      { name: "Data Validation & Mapping", level: 90 },
+      { name: "EDA & Visualization (Matplotlib/Seaborn)", level: 88 },
+    ]
+  },
+  {
+    title: "Cloud & DevOps",
     icon: Cloud,
     skills: [
-      { name: "AWS", level: 80 },
-      { name: "Cloud Deployment", level: 75 },
-      { name: "HPC Systems", level: 85 },
-      { name: "OpenMP", level: 80 },
+      { name: "AWS (EC2)", level: 85 },
+      { name: "Oracle Cloud (OCI)", level: 80 },
+      { name: "Terraform (IaC)", level: 85 },
+      { name: "Jenkins CI/CD", level: 80 },
     ]
   },
   {
-    title: "Leadership & Soft Skills",
-    icon: Users,
+    title: "Automation & Testing",
+    icon: Zap,
     skills: [
-      { name: "Team Management", level: 90 },
-      { name: "Project Leadership", level: 85 },
-      { name: "Problem Solving", level: 95 },
-      { name: "Communication", level: 88 },
+      { name: "Selenium WebDriver", level: 90 },
+      { name: "Automation Anywhere (RPA)", level: 85 },
+      { name: "API Testing", level: 85 },
+      { name: "Linux Systems", level: 88 },
     ]
   }
 ]
 
 const additionalSkills = [
-  "OOPS", "Prompt Engineering", "Data Analytics", "Cybersecurity", 
-  "Distributed Systems", "Arduino", "Industrial Automation", "Computer Vision"
+  "High Performance Computing (HPC)", "Raspberry Pi", "Distributed Systems", "SQLite", 
+  "gTTS", "Tkinter", "RTSP Streaming", "Leadership & Discipline (NCC 'C')"
 ]
 
 export function SkillsSection() {
