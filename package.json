@@ -4,14 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://vineetvedant.github.io/my-portfolio",
+  "allowScripts": {
+    "esbuild": true,
+    "@swc/core": true
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "lint": "eslint .",
-    "preview": "vite preview",
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "build:dev": "npx vite build --mode development",
+    "lint": "npx eslint .",
+    "preview": "npx vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npx gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
