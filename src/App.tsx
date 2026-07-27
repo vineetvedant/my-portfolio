@@ -17,7 +17,7 @@ const App = () => (
         <LoadingScreen />
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/my-portfolio">
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
