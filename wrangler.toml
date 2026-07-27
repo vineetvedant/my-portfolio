@@ -1,0 +1,6 @@
+name = "my-portfolio"
+compatibility_date = "2026-07-28"
+
+[build]
+command = "npm run build"
+publish = "dist"
