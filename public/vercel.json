@@ -1,4 +1,16 @@
 {
-  "buildCommand": null,
-  "outputDirectory": "."
+  "rewrites": [
+    {
+      "source": "/word2HTML",
+      "destination": "https://wordtohtml1.singhvineetvedant.workers.dev"
+    },
+    {
+      "source": "/word2HTML/:path*",
+      "destination": "https://wordtohtml1.singhvineetvedant.workers.dev/:path*"
+    },
+    {
+      "source": "/((?!word2HTML).*|/)",
+      "destination": "/index.html"
+    }
+  ]
 }
