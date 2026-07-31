@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import GlassSurface from "@/components/ui/GlassSurface"
 import { Award, ExternalLink, Cloud, Shield, BarChart3, Brain, BookOpen } from "lucide-react"
 
 const certifications = [
@@ -45,13 +46,15 @@ export function CertificationsSection() {
   return (
     <section id="certifications" className="py-20 bg-section-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.12} className="theme-glass-header mb-16">
+        <div className="text-center px-6 py-7">
           <h2 className="text-4xl font-bold text-primary mb-4">Certifications & Research</h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Continuous learning through industry-recognized certifications and academic publications in leading science venues.
           </p>
         </div>
+        </GlassSurface>
 
         <div className="grid md:grid-cols-2 gap-8">
           {certifications.map((cert, index) => (

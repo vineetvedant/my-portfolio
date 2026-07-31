@@ -1,19 +1,31 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import GlassSurface from "@/components/ui/GlassSurface"
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
+>(({ className, children, style, ...props }, ref) => (
+  <GlassSurface
+    width="100%"
+    height="100%"
+    borderRadius={16}
+    brightness={22}
+    opacity={0.84}
+    backgroundOpacity={0.08}
+    saturation={1.35}
+    distortionScale={-120}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "theme-glass-card ui-glass-card rounded-lg border text-card-foreground",
       className
     )}
-    {...props}
-  />
+    style={style}
+  >
+    <div ref={ref} className="h-full w-full" {...props}>
+      {children}
+    </div>
+  </GlassSurface>
 ))
 Card.displayName = "Card"
 

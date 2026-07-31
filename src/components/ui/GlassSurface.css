@@ -1,0 +1,97 @@
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgb(0 242 254 / 0.14);
+  transition: border-color 260ms ease, box-shadow 260ms ease;
+}
+
+.glass-surface__filter {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.glass-surface__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.glass-surface--svg {
+  background: rgb(2 6 23 / var(--glass-frost, 0.55));
+  backdrop-filter: var(--filter-id) saturate(var(--glass-saturation, 1.35));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 12px 36px rgb(0 0 0 / 0.18);
+}
+
+.glass-surface--fallback {
+  background: rgb(2 6 23 / 0.72);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 12px 36px rgb(0 0 0 / 0.2);
+}
+
+.glass-surface:hover {
+  border-color: rgb(0 242 254 / 0.25);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1), 0 12px 40px rgb(0 242 254 / 0.07);
+}
+
+.theme-glass-header {
+  max-width: 48rem;
+  margin-inline: auto;
+  border-color: rgb(34 211 238 / 0.34);
+  background:
+    linear-gradient(135deg, rgb(8 145 178 / 0.18), rgb(15 23 42 / 0.72) 48%, rgb(37 99 235 / 0.1));
+  -webkit-backdrop-filter: blur(22px) saturate(1.55);
+  backdrop-filter: blur(22px) saturate(1.55);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 -1px 0 rgb(34 211 238 / 0.08),
+    0 18px 55px rgb(0 0 0 / 0.2),
+    0 0 28px rgb(6 182 212 / 0.09);
+}
+
+.theme-glass-header:hover {
+  border-color: rgb(34 211 238 / 0.7);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 0 36px rgb(6 182 212 / 0.2);
+}
+
+.theme-glass-header .glass-surface__content { z-index: 2; }
+
+.theme-glass-card {
+  min-height: 100%;
+  border-color: rgb(34 211 238 / 0.3);
+  background:
+    linear-gradient(145deg, rgb(8 145 178 / 0.16), rgb(3 16 35 / 0.92) 42%, rgb(30 64 175 / 0.12));
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    inset 0 -1px 0 rgb(34 211 238 / 0.06),
+    0 16px 42px rgb(0 0 0 / 0.28),
+    0 0 18px rgb(6 182 212 / 0.055);
+}
+
+.theme-glass-card:hover {
+  border-color: rgb(34 211 238 / 0.5);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    0 18px 48px rgb(0 0 0 / 0.2),
+    0 0 26px rgb(6 182 212 / 0.14);
+}
+
+.theme-glass-card > .glass-surface__content {
+  align-items: stretch;
+  padding: 0;
+}

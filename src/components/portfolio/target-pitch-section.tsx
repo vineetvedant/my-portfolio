@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
+import GlassSurface from "@/components/ui/GlassSurface"
 import { 
   Briefcase, 
   Cpu, 
@@ -41,7 +42,8 @@ export function TargetPitchSection() {
       <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
+        <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.12} className="theme-glass-header mb-12">
+        <div className="text-center px-6 py-7">
           <Badge className="mb-4 bg-accent/10 text-accent border-accent/20 hover:bg-accent/20">
             Tailored Fit
           </Badge>
@@ -50,6 +52,7 @@ export function TargetPitchSection() {
             Choose who you are to see the metrics, achievements, and capabilities that matter most to you.
           </p>
         </div>
+        </GlassSurface>
 
         {/* Tab Selectors */}
         <div className="flex justify-center mb-12">

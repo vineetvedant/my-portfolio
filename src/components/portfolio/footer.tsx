@@ -1,17 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { Download, Github, Linkedin, Mail, Heart } from "lucide-react"
-import heroBackground from "@/assets/7T9364v.gif"
+import DotGrid from "@/components/ui/DotGrid"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative text-white">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90" />
+    <footer className="relative overflow-hidden border-t border-accent/15 bg-slate-950 text-white">
+      <div className="absolute inset-0 opacity-60">
+        <DotGrid dotSize={2} gap={28} baseColor="#164e63" activeColor="#00f2fe" proximity={120} />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-slate-950/85 to-black/95 pointer-events-none" />
       <div className="relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}

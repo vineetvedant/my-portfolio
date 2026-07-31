@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Download, ArrowDown, Github, Linkedin, Mail } from "lucide-react"
-import heroBackground from "@/assets/7T9364v.gif"
+import DotGrid from "@/components/ui/DotGrid"
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -12,29 +12,23 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grid-bg">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
-      <div className="absolute inset-0 hero-gradient opacity-95" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_85%)] pointer-events-none" />
-      
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2.5 h-2.5 bg-accent rounded-full animate-float animate-pulse-glow"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.5}s`,
-            }}
-          />
-        ))}
+      <div className="absolute inset-0">
+        <DotGrid
+          dotSize={3}
+          gap={25}
+          baseColor="#164e63"
+          activeColor="#00f2fe"
+          proximity={150}
+          shockRadius={240}
+          shockStrength={4}
+          resistance={750}
+          returnDuration={1.5}
+        />
       </div>
+      <div className="absolute inset-0 hero-gradient opacity-75 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background))_85%)] pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

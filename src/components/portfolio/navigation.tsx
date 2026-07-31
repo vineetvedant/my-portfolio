@@ -1,67 +1,74 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Download, Github, Menu, X } from "lucide-react"
+import { Github, Menu, X } from "lucide-react"
+import GlassSurface from "@/components/ui/GlassSurface"
+import GooeyNav from "@/components/ui/GooeyNav"
+
+const navLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#certifications", label: "Certifications" },
+  { href: "#contact", label: "Contact" },
+]
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState(0)
 
   useEffect(() => {
+    let frame = 0
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const marker = window.scrollY + Math.min(240, window.innerHeight * 0.32)
+        let currentIndex = 0
+        navLinks.forEach((link, index) => {
+          const section = document.querySelector<HTMLElement>(link.href)
+          if (section && section.offsetTop <= marker) currentIndex = index
+        })
+        setActiveSection(currentIndex)
+      })
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      cancelAnimationFrame(frame)
+    }
   }, [])
 
-  const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#certifications", label: "Certifications" },
-    { href: "#contact", label: "Contact" },
-  ]
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav aria-label="Primary navigation" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-background/95 backdrop-blur-sm border-b border-border shadow-sm' 
+        ? 'bg-background/80 backdrop-blur-xl border-b border-accent/10 shadow-[0_12px_40px_rgba(0,0,0,0.18)]'
         : 'bg-transparent'
     }`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <button 
-            onClick={scrollToTop}
-            className="text-2xl font-bold text-primary hover:text-accent transition-smooth"
-          >
-            Vedant Singh
-          </button>
-
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
+        <GlassSurface width="100%" height={56} borderRadius={18} backgroundOpacity={0.5} saturation={1.4} distortionScale={-80} className="mt-2 px-4">
+        <div className="flex justify-between items-center h-full w-full">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-muted-foreground hover:text-accent transition-smooth font-medium relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
+          <div className="hidden lg:flex items-center">
+            <GooeyNav
+              items={navLinks}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={900}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+              activeIndex={activeSection}
+            />
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            <ThemeToggle />
+          <div className="hidden lg:flex items-center space-x-3">
             <Button 
               asChild
               variant="outline"
@@ -75,8 +82,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
+          <div className="lg:hidden flex items-center space-x-2">
             <Button
               variant="ghost"
               size="icon"
@@ -86,17 +92,18 @@ export function Navigation() {
             </Button>
           </div>
         </div>
+        </GlassSurface>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-sm border-b border-border">
+          <div className="lg:hidden bg-background/95 backdrop-blur-sm border-b border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-2 text-muted-foreground hover:text-accent transition-smooth"
+                  className={`block rounded-lg px-3 py-2 transition-smooth ${activeSection === navLinks.indexOf(link) ? "bg-accent/10 text-accent" : "text-muted-foreground hover:text-accent"}`}
                 >
                   {link.label}
                 </a>

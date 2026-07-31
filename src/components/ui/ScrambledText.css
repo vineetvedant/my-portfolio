@@ -1,0 +1,25 @@
+.text-block {
+  max-width: 52rem;
+  font-family: "JetBrains Mono", monospace;
+  color: #fff;
+}
+
+.text-block p {
+  margin: 0;
+}
+
+.char {
+  display: inline-block;
+  will-change: contents;
+}
+
+.scrambled-loader-text {
+  cursor: crosshair;
+  font-size: clamp(2.15rem, 8vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow: 0 0 32px rgb(0 242 254 / 0.25);
+}

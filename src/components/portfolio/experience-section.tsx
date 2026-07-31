@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Building, MapPin, Calendar } from "lucide-react"
+import GlassSurface from "@/components/ui/GlassSurface"
 
 const experiences = [
   {
@@ -65,13 +66,15 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="py-20 bg-section-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.05} className="theme-glass-header mb-16">
+        <div className="text-center px-6 py-7">
           <h2 className="text-4xl font-bold text-primary mb-4">Professional Experience</h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A track record of engineering scalable automation, AI computer vision, high-performance cloud clusters, and high-efficiency enterprise software.
           </p>
         </div>
+        </GlassSurface>
 
         <div className="relative">
           {/* Timeline line - Git Branch Style */}

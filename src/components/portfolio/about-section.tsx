@@ -1,14 +1,17 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import GlassSurface from "@/components/ui/GlassSurface"
 
 export function AboutSection() {
   return (
     <section id="about" className="py-20 bg-section-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">About Me</h2>
-          <div className="w-24 h-1 bg-accent mx-auto"></div>
-        </div>
+        <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.05} className="theme-glass-header mb-16">
+          <div className="text-center px-6 py-7">
+            <h2 className="text-4xl font-bold text-primary mb-4">About Me</h2>
+            <div className="w-24 h-1 bg-accent mx-auto"></div>
+          </div>
+        </GlassSurface>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Profile Image Placeholder */}

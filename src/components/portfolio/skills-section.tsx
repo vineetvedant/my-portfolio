@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
+import GlassSurface from "@/components/ui/GlassSurface"
 import { 
   Code, 
   Brain, 
@@ -74,7 +75,8 @@ export function SkillsSection() {
   return (
     <section id="skills" className="py-20 bg-section-alt">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.12} className="theme-glass-header mb-16">
+        <div className="text-center px-6 py-7">
           <h2 className="text-4xl font-bold text-primary mb-4">Technical Skills</h2>
           <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -82,6 +84,7 @@ export function SkillsSection() {
             high-performance computing, and team leadership across multiple industries.
           </p>
         </div>
+        </GlassSurface>
 
         {/* Skill Categories */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
