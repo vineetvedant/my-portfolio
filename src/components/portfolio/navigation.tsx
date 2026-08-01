@@ -38,26 +38,46 @@ export function Navigation() {
   }
 
   useEffect(() => {
-    let frame = 0
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
-      cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(() => {
-        const marker = window.scrollY + Math.min(240, window.innerHeight * 0.32)
-        let currentIndex = 0
-        navLinks.forEach((link, index) => {
-          const section = document.querySelector<HTMLElement>(link.href)
-          if (section && section.offsetTop <= marker) currentIndex = index
-        })
-        setActiveSection(currentIndex)
-      })
     }
 
-    window.addEventListener('scroll', handleScroll)
     handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    if (!sections.length) {
+      return () => window.removeEventListener("scroll", handleScroll)
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+        if (visibleEntry) {
+          const index = navLinks.findIndex((link) => link.href === `#${visibleEntry.target.id}`)
+          if (index >= 0) {
+            setActiveSection(index)
+          }
+        }
+      },
+      {
+        root: null,
+        threshold: [0.25, 0.5, 0.75],
+        rootMargin: "-20% 0px -35% 0px",
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      cancelAnimationFrame(frame)
+      observer.disconnect()
+      window.removeEventListener("scroll", handleScroll)
     }
   }, [])
 
