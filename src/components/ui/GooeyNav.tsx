@@ -12,11 +12,12 @@ interface GooeyNavProps {
   colors?: number[]
   initialActiveIndex?: number
   activeIndex?: number
+  onSelect?: (index: number, href: string) => void
 }
 
 export default function GooeyNav({
   items, animationTime = 600, particleCount = 12, particleDistances = [55, 8],
-  particleR = 80, timeVariance = 250, colors = [1, 2, 3, 1, 2, 3, 4], initialActiveIndex = 0, activeIndex: controlledActiveIndex,
+  particleR = 80, timeVariance = 250, colors = [1, 2, 3, 1, 2, 3, 4], initialActiveIndex = 0, activeIndex: controlledActiveIndex, onSelect,
 }: GooeyNavProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLUListElement>(null)
@@ -97,14 +98,29 @@ export default function GooeyNav({
 
   useEffect(() => () => timersRef.current.forEach(clearTimeout), [])
 
+  const handleSelect = (event: MouseEvent<HTMLAnchorElement> | KeyboardEvent<HTMLAnchorElement>, index: number, href: string) => {
+    event.preventDefault()
+    const element = event.currentTarget.parentElement
+    if (element) activate(element, index)
+    onSelect?.(index, href)
+  }
+
   return (
     <div className="gooey-nav-container" ref={containerRef}>
       <nav aria-label="Portfolio sections"><ul ref={navRef}>
         {items.map((item, index) => (
           <li key={item.href} className={activeIndex === index ? "active" : ""}>
-            <a href={item.href} onClick={(event: MouseEvent<HTMLAnchorElement>) => activate(event.currentTarget.parentElement!, index)} onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) => {
-              if (event.key === "Enter" || event.key === " ") activate(event.currentTarget.parentElement!, index)
-            }}>{item.label}</a>
+            <a
+              href={item.href}
+              onClick={(event) => handleSelect(event, index, item.href)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  handleSelect(event, index, item.href)
+                }
+              }}
+            >
+              {item.label}
+            </a>
           </li>
         ))}
       </ul></nav>

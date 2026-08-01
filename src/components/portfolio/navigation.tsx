@@ -19,6 +19,24 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState(0)
 
+  const handleNavSelect = (index: number, href: string) => {
+    setActiveSection(index)
+    setIsMobileMenuOpen(false)
+
+    if (!href.startsWith("#")) return
+
+    const sectionId = href.slice(1)
+    const target = sectionId === "home" ? document.getElementById("home") : document.getElementById(sectionId)
+
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+    } else if (sectionId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    window.history.pushState(null, "", href)
+  }
+
   useEffect(() => {
     let frame = 0
     const handleScroll = () => {
@@ -64,6 +82,7 @@ export function Navigation() {
               timeVariance={900}
               colors={[1, 2, 3, 1, 2, 3, 1, 4]}
               activeIndex={activeSection}
+              onSelect={handleNavSelect}
             />
           </div>
 
@@ -98,12 +117,15 @@ export function Navigation() {
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-background/95 backdrop-blur-sm border-b border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block rounded-lg px-3 py-2 transition-smooth ${activeSection === navLinks.indexOf(link) ? "bg-accent/10 text-accent" : "text-muted-foreground hover:text-accent"}`}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    handleNavSelect(index, link.href)
+                  }}
+                  className={`block rounded-lg px-3 py-2 transition-smooth ${activeSection === index ? "bg-accent/10 text-accent" : "text-muted-foreground hover:text-accent"}`}
                 >
                   {link.label}
                 </a>
