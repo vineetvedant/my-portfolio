@@ -9,12 +9,10 @@ import { CertificationsSection } from "@/components/portfolio/certifications-sec
 import { ContactSection } from "@/components/portfolio/contact-section"
 import { Footer } from "@/components/portfolio/footer"
 import DotGrid from "@/components/ui/DotGrid"
-import CyberCursor from "@/components/ui/CyberCursor"
 
 const Index = () => {
   return (
     <div className="portfolio-shell min-h-screen">
-      <CyberCursor />
       <div className="portfolio-interactive-grid" aria-hidden="true">
         <DotGrid
           dotSize={2}
