@@ -114,7 +114,8 @@ export function DonationDrawer() {
     githubSponsors: "https://github.com/sponsors/vineetvedant",
     paypal: "https://paypal.me/vineetvedant",
     upiId: "singhv1000@upi",
-    recipientName: "Vedant Singh"
+    recipientName: "Vedant Singh",
+    paymentApiKey: import.meta.env.VITE_PAYMENT_API_KEY || "sk_AJTaIjeObUOjPelxaqYVmBBthiEuQ"
   }
 
   // Dynamic Transaction Note for UPI
