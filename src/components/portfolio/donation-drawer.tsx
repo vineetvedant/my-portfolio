@@ -28,7 +28,11 @@ import {
   Gift,
   QrCode,
   Clock,
-  X
+  Eye,
+  EyeOff,
+  Smartphone,
+  Copy,
+  Download
 } from "lucide-react"
 
 interface DonationTier {
@@ -76,6 +80,7 @@ export function DonationDrawer() {
   const [supporterName, setSupporterName] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [copiedUpi, setCopiedUpi] = useState(false)
+  const [showQrCode, setShowQrCode] = useState(false)
   const [autoDismissSecondsLeft, setAutoDismissSecondsLeft] = useState<number | null>(null)
   const [isUserInteracting, setIsUserInteracting] = useState(false)
   const { toast } = useToast()
@@ -87,24 +92,30 @@ export function DonationDrawer() {
   const currentTier = donationTiers.find(t => t.id === selectedTier)
   const activeAmount = customAmount ? parseFloat(customAmount) || 0 : (currentTier?.amount || 10)
 
-  // Configure your direct donation/sponsor URLs here
+  // Direct donation/sponsor URLs & UPI Info
   const donationLinks = {
     buyMeACoffee: "https://buymeacoffee.com/vineetvedant",
     githubSponsors: "https://github.com/sponsors/vineetvedant",
     paypal: "https://paypal.me/vineetvedant",
-    upiId: "singhvineetvedant@okhdfcbank"
+    upiId: "singhvineetvedant@okhdfcbank",
+    recipientName: "Vedant Singh"
   }
+
+  // Generate standard UPI Payment URI
+  const upiUri = `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
+  
+  // Scannable High-Res QR code image endpoint
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(upiUri)}&margin=6`
 
   // 1. Auto popup after 90 seconds (1.5 min of viewing)
   useEffect(() => {
-    // Check if auto-popup was already triggered in this browser session
     const hasAutoPopped = sessionStorage.getItem("donation_auto_popped")
     if (!hasAutoPopped) {
       popupTimerRef.current = setTimeout(() => {
         setOpen(true)
         sessionStorage.setItem("donation_auto_popped", "true")
         setAutoDismissSecondsLeft(30)
-      }, 90000) // 90 seconds (1.5 minutes)
+      }, 90000) // 90 seconds
     }
 
     return () => {
@@ -112,7 +123,7 @@ export function DonationDrawer() {
     }
   }, [])
 
-  // 2. Auto dismiss after 30 seconds unless user is actively typing / interacting
+  // 2. Auto dismiss after 30 seconds unless user is actively interacting
   useEffect(() => {
     if (open && autoDismissSecondsLeft !== null) {
       dismissIntervalRef.current = setInterval(() => {
@@ -149,6 +160,11 @@ export function DonationDrawer() {
     setTimeout(() => setCopiedUpi(false), 2000)
   }
 
+  const handleToggleQr = () => {
+    setIsUserInteracting(true)
+    setShowQrCode(prev => !prev)
+  }
+
   const handleProceedDonation = (platform: "bmc" | "github" | "paypal" | "custom") => {
     setIsUserInteracting(true)
     let targetUrl = donationLinks.buyMeACoffee
@@ -165,7 +181,7 @@ export function DonationDrawer() {
 
   const handleManualOpen = () => {
     setOpen(true)
-    setIsUserInteracting(true) // If manually opened, don't auto-close unexpectedly
+    setIsUserInteracting(true)
     setAutoDismissSecondsLeft(null)
   }
 
@@ -208,7 +224,7 @@ export function DonationDrawer() {
           className="w-full sm:max-w-xl md:max-w-lg bg-slate-950/95 border-l border-accent/20 text-white backdrop-blur-xl p-0 flex flex-col z-50 overflow-hidden"
           onPointerDown={() => setIsUserInteracting(true)}
         >
-          {/* Auto-Dismiss Countdown Notification (If auto-popped) */}
+          {/* Auto-Dismiss Countdown Notification */}
           {autoDismissSecondsLeft !== null && autoDismissSecondsLeft > 0 && !isUserInteracting && (
             <div className="bg-pink-500/15 border-b border-pink-500/30 px-4 py-1.5 flex items-center justify-between text-[11px] text-pink-300 font-mono">
               <span className="flex items-center gap-1.5">
@@ -325,6 +341,92 @@ export function DonationDrawer() {
                 </p>
               </Card>
 
+              {/* UPI Card with Direct QR Code View */}
+              <div className="p-4 bg-slate-900/90 rounded-xl border border-accent/25 shadow-lg space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-accent/15 text-accent">
+                      <QrCode className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] font-mono text-gray-400">Direct UPI ID:</div>
+                      <div className="text-sm font-bold text-white font-mono">{donationLinks.upiId}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleCopyUpi}
+                      className="text-xs h-8 border-accent/30 text-accent hover:bg-accent hover:text-primary font-mono px-2.5"
+                    >
+                      {copiedUpi ? <Check className="h-3.5 w-3.5 mr-1" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
+                      {copiedUpi ? "Copied" : "Copy"}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={showQrCode ? "default" : "outline"}
+                      onClick={handleToggleQr}
+                      className={`text-xs h-8 font-mono px-2.5 ${showQrCode ? "bg-accent text-primary font-semibold" : "border-slate-700 text-gray-300 hover:text-white"}`}
+                    >
+                      {showQrCode ? <EyeOff className="h-3.5 w-3.5 mr-1" /> : <Eye className="h-3.5 w-3.5 mr-1" />}
+                      {showQrCode ? "Hide QR" : "View QR"}
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Expandable QR Code Box */}
+                {showQrCode && (
+                  <div className="pt-3 border-t border-slate-800 animate-in fade-in-50 zoom-in-95 duration-200">
+                    <div className="bg-slate-950 p-4 rounded-xl border border-accent/20 flex flex-col items-center text-center">
+                      <div className="p-3 bg-white rounded-2xl shadow-xl mb-3 ring-4 ring-accent/20">
+                        <img
+                          src={qrImageUrl}
+                          alt={`UPI QR Code for ${donationLinks.upiId}`}
+                          className="w-48 h-48 sm:w-52 sm:h-52 object-contain rounded-lg"
+                          loading="eager"
+                        />
+                      </div>
+
+                      <div className="space-y-1 mb-3">
+                        <div className="text-xs font-bold text-white font-mono flex items-center justify-center gap-1">
+                          <Smartphone className="h-3.5 w-3.5 text-accent" /> Scan with Any UPI App
+                        </div>
+                        <p className="text-[11px] text-gray-400">
+                          Google Pay, PhonePe, Paytm, BHIM, Cred, Amazon Pay
+                        </p>
+                      </div>
+
+                      {/* Direct UPI App Trigger Link for Mobile Viewers */}
+                      <div className="flex flex-wrap gap-2 w-full justify-center">
+                        <Button
+                          asChild
+                          size="sm"
+                          className="bg-accent text-primary hover:bg-accent/90 text-xs font-mono font-semibold h-8"
+                        >
+                          <a href={upiUri}>
+                            <Smartphone className="h-3.5 w-3.5 mr-1.5" />
+                            Open in UPI App
+                          </a>
+                        </Button>
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="border-slate-700 text-gray-300 hover:text-white text-xs font-mono h-8"
+                        >
+                          <a href={qrImageUrl} target="_blank" rel="noopener noreferrer" download="vedant-upi-qr.png">
+                            <Download className="h-3.5 w-3.5 mr-1.5" />
+                            Download QR
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Supporter Message (Optional) */}
               <div className="space-y-3 bg-slate-900/60 p-4 rounded-xl border border-slate-800">
                 <label className="text-xs font-bold text-gray-200 font-mono uppercase tracking-wider block">
@@ -383,26 +485,6 @@ export function DonationDrawer() {
                     PayPal
                   </Button>
                 </div>
-              </div>
-
-              {/* UPI Quick Copy (For India) */}
-              <div className="p-3 bg-slate-900/90 rounded-xl border border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <QrCode className="h-4 w-4 text-accent" />
-                  <div>
-                    <div className="text-[11px] font-mono text-gray-400">Direct UPI ID:</div>
-                    <div className="text-xs font-bold text-white font-mono">{donationLinks.upiId}</div>
-                  </div>
-                </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleCopyUpi}
-                  className="text-xs h-7 border-accent/30 text-accent hover:bg-accent hover:text-primary font-mono"
-                >
-                  {copiedUpi ? <Check className="h-3 w-3 mr-1" /> : null}
-                  {copiedUpi ? "Copied" : "Copy UPI"}
-                </Button>
               </div>
             </div>
           </ScrollArea>
