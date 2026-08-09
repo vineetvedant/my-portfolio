@@ -32,7 +32,8 @@ import {
   EyeOff,
   Smartphone,
   Copy,
-  Download
+  Download,
+  X
 } from "lucide-react"
 
 interface DonationTier {
@@ -75,6 +76,7 @@ const donationTiers: DonationTier[] = [
 
 export function DonationDrawer() {
   const [open, setOpen] = useState(false)
+  const [isPillDismissed, setIsPillDismissed] = useState(false)
   const [selectedTier, setSelectedTier] = useState<string>("gpu")
   const [customAmount, setCustomAmount] = useState<string>("")
   const [supporterName, setSupporterName] = useState<string>("")
@@ -106,6 +108,14 @@ export function DonationDrawer() {
   
   // Custom UPI QR code provided by user
   const qrImageUrl = "/upi-qr.png"
+
+  // Check if visitor previously dismissed the floating pill
+  useEffect(() => {
+    const isDismissed = sessionStorage.getItem("sponsor_pill_dismissed")
+    if (isDismissed === "true") {
+      setIsPillDismissed(true)
+    }
+  }, [])
 
   // 1. Auto popup after 90 seconds (1.5 min of viewing)
   useEffect(() => {
@@ -149,6 +159,16 @@ export function DonationDrawer() {
     }
   }, [open, isUserInteracting, autoDismissSecondsLeft])
 
+  const handleDismissPill = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setIsPillDismissed(true)
+    sessionStorage.setItem("sponsor_pill_dismissed", "true")
+    toast({
+      title: "Badge Hidden",
+      description: "You can still access support links in the page footer."
+    })
+  }
+
   const handleCopyUpi = () => {
     setIsUserInteracting(true)
     navigator.clipboard.writeText(donationLinks.upiId)
@@ -191,32 +211,58 @@ export function DonationDrawer() {
         setOpen(val)
         if (!val) setAutoDismissSecondsLeft(null)
       }}>
-        {/* Floating Side Support Button (Docked on Right Screen Edge) */}
-        <SheetTrigger asChild>
-          <button
-            onClick={handleManualOpen}
-            aria-label="Support & Donate"
-            className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group flex items-center bg-slate-900/95 hover:bg-slate-800 text-white pl-3.5 pr-2.5 py-3 rounded-l-2xl border-y border-l border-accent/40 shadow-[0_8px_30px_rgb(0,242,254,0.18)] hover:shadow-[0_8px_35px_rgb(0,242,254,0.35)] transition-all duration-300 backdrop-blur-md cursor-pointer"
-          >
-            <div className="flex flex-col items-center gap-1.5 mr-1.5">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
-              </span>
-              <div className="p-1.5 rounded-lg bg-pink-500/15 text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-smooth">
-                <Heart className="h-4 w-4 fill-current" />
+        {/* Floating Bottom-Right Pill (Mobile & Desktop Responsive) */}
+        {!isPillDismissed && (
+          <div className="fixed bottom-5 right-4 sm:bottom-7 sm:right-6 z-40 animate-in fade-in-50 slide-in-from-bottom-5 duration-300">
+            <SheetTrigger asChild>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleManualOpen}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    handleManualOpen()
+                  }
+                }}
+                aria-label="Support & Sponsor Vedant Singh"
+                className="group relative flex items-center gap-2.5 sm:gap-3 bg-slate-950/90 hover:bg-slate-900 border border-pink-500/30 hover:border-pink-400 pl-3 pr-2.5 py-2 sm:pl-3.5 sm:pr-3 sm:py-2.5 rounded-full shadow-[0_8px_30px_rgba(236,72,153,0.25)] hover:shadow-[0_12px_35px_rgba(236,72,153,0.45)] backdrop-blur-xl transition-all duration-300 hover:scale-105 cursor-pointer ring-1 ring-white/10 select-none"
+              >
+                {/* Pulsing indicator & Heart Icon */}
+                <div className="relative flex items-center justify-center">
+                  <span className="relative flex h-2.5 w-2.5 absolute -top-0.5 -right-0.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+                  </span>
+                  <div className="p-1.5 rounded-full bg-pink-500/20 text-pink-400 group-hover:bg-pink-500 group-hover:text-white transition-smooth">
+                    <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-current" />
+                  </div>
+                </div>
+
+                {/* Text Labels */}
+                <div className="flex flex-col text-left font-mono pr-1">
+                  <span className="text-[9px] sm:text-[10px] font-bold text-pink-400 uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="h-2.5 w-2.5 inline" /> Sponsor
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-white group-hover:text-pink-300 transition-smooth leading-tight">
+                    Support My Work
+                  </span>
+                </div>
+
+                {/* Close 'X' Button to permanently hide floating pill */}
+                <button
+                  type="button"
+                  onClick={handleDismissPill}
+                  title="Hide sponsor button"
+                  aria-label="Hide sponsor button"
+                  className="p-1 rounded-full text-gray-400 hover:text-white hover:bg-slate-800 transition-smooth ml-0.5"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
               </div>
-            </div>
-            <div className="hidden sm:flex flex-col text-left font-mono">
-              <span className="text-[10px] font-bold text-pink-400 uppercase tracking-wider flex items-center gap-1">
-                <Sparkles className="h-3 w-3 inline" /> Sponsor
-              </span>
-              <span className="text-xs font-semibold text-white group-hover:text-pink-300 transition-smooth">
-                Support My Work
-              </span>
-            </div>
-          </button>
-        </SheetTrigger>
+            </SheetTrigger>
+          </div>
+        )}
 
         {/* Side Popup / Drawer Sheet */}
         <SheetContent
