@@ -344,36 +344,53 @@ export function DonationDrawer() {
               {/* UPI Card with Direct QR Code View */}
               <div className="p-4 bg-slate-900/90 rounded-xl border border-accent/25 shadow-lg space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2">
                     <div className="p-2 rounded-lg bg-accent/15 text-accent">
-                      <QrCode className="h-5 w-5" />
+                      <QrCode className="h-4 w-4" />
                     </div>
-                    <div>
-                      <div className="text-[11px] font-mono text-gray-400">Direct UPI ID:</div>
-                      <div className="text-sm font-bold text-white font-mono">{donationLinks.upiId}</div>
-                    </div>
+                    <span className="text-xs font-bold text-white font-mono uppercase tracking-wider">
+                      Direct UPI Transfer
+                    </span>
                   </div>
+                  <Badge variant="outline" className="text-[10px] font-mono border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
+                    Instant (0% Fee)
+                  </Badge>
+                </div>
 
-                  <div className="flex items-center gap-1.5">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={handleCopyUpi}
-                      className="text-xs h-8 border-accent/30 text-accent hover:bg-accent hover:text-primary font-mono px-2.5"
-                    >
-                      {copiedUpi ? <Check className="h-3.5 w-3.5 mr-1" /> : <Copy className="h-3.5 w-3.5 mr-1" />}
-                      {copiedUpi ? "Copied" : "Copy"}
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant={showQrCode ? "default" : "outline"}
-                      onClick={handleToggleQr}
-                      className={`text-xs h-8 font-mono px-2.5 ${showQrCode ? "bg-accent text-primary font-semibold" : "border-slate-700 text-gray-300 hover:text-white"}`}
-                    >
-                      {showQrCode ? <EyeOff className="h-3.5 w-3.5 mr-1" /> : <Eye className="h-3.5 w-3.5 mr-1" />}
-                      {showQrCode ? "Hide QR" : "View QR"}
-                    </Button>
+                {/* UPI ID Address Display */}
+                <div className="bg-slate-950 p-3 rounded-lg border border-slate-800 flex items-center justify-between gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] font-mono text-gray-400">UPI VPA:</div>
+                    <div className="text-xs sm:text-sm font-bold text-accent font-mono truncate select-all">
+                      {donationLinks.upiId}
+                    </div>
                   </div>
+                </div>
+
+                {/* Action Buttons Row */}
+                <div className="grid grid-cols-2 gap-2 pt-0.5">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleCopyUpi}
+                    className="w-full text-xs h-9 border-accent/30 text-accent hover:bg-accent hover:text-primary font-mono"
+                  >
+                    {copiedUpi ? <Check className="h-3.5 w-3.5 mr-1.5" /> : <Copy className="h-3.5 w-3.5 mr-1.5" />}
+                    {copiedUpi ? "Copied!" : "Copy UPI ID"}
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={showQrCode ? "default" : "outline"}
+                    onClick={handleToggleQr}
+                    className={`w-full text-xs h-9 font-mono transition-smooth ${
+                      showQrCode 
+                        ? "bg-accent text-primary font-semibold" 
+                        : "border-slate-700 bg-slate-950 text-gray-200 hover:border-accent hover:text-white"
+                    }`}
+                  >
+                    {showQrCode ? <EyeOff className="h-3.5 w-3.5 mr-1.5" /> : <Eye className="h-3.5 w-3.5 mr-1.5" />}
+                    {showQrCode ? "Hide QR" : "View QR Code"}
+                  </Button>
                 </div>
 
                 {/* Expandable QR Code Box */}
@@ -384,7 +401,7 @@ export function DonationDrawer() {
                         <img
                           src={qrImageUrl}
                           alt={`UPI QR Code for ${donationLinks.upiId}`}
-                          className="w-48 h-48 sm:w-52 sm:h-52 object-contain rounded-lg"
+                          className="w-44 h-44 sm:w-48 sm:h-48 object-contain rounded-lg"
                           loading="eager"
                         />
                       </div>
@@ -394,12 +411,12 @@ export function DonationDrawer() {
                           <Smartphone className="h-3.5 w-3.5 text-accent" /> Scan with Any UPI App
                         </div>
                         <p className="text-[11px] text-gray-400">
-                          Google Pay, PhonePe, Paytm, BHIM, Cred, Amazon Pay
+                          Google Pay • PhonePe • Paytm • BHIM • Cred
                         </p>
                       </div>
 
                       {/* Direct UPI App Trigger Link for Mobile Viewers */}
-                      <div className="flex flex-wrap gap-2 w-full justify-center">
+                      <div className="grid grid-cols-2 gap-2 w-full">
                         <Button
                           asChild
                           size="sm"
@@ -407,7 +424,7 @@ export function DonationDrawer() {
                         >
                           <a href={upiUri}>
                             <Smartphone className="h-3.5 w-3.5 mr-1.5" />
-                            Open in UPI App
+                            Open App
                           </a>
                         </Button>
                         <Button
@@ -418,7 +435,7 @@ export function DonationDrawer() {
                         >
                           <a href={qrImageUrl} target="_blank" rel="noopener noreferrer" download="vedant-upi-qr.png">
                             <Download className="h-3.5 w-3.5 mr-1.5" />
-                            Download QR
+                            Save QR
                           </a>
                         </Button>
                       </div>
