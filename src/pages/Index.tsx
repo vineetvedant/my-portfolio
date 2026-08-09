@@ -8,7 +8,7 @@ import { ProjectsSection } from "@/components/portfolio/projects-section"
 import { CertificationsSection } from "@/components/portfolio/certifications-section"
 import { ContactSection } from "@/components/portfolio/contact-section"
 import { Footer } from "@/components/portfolio/footer"
-import { RevenueCatProductsDrawer } from "@/components/portfolio/revenuecat-drawer"
+import { DonationDrawer } from "@/components/portfolio/donation-drawer"
 import DotGrid from "@/components/ui/DotGrid"
 
 const Index = () => {
@@ -38,7 +38,7 @@ const Index = () => {
       <CertificationsSection />
       <ContactSection />
       <Footer />
-      <RevenueCatProductsDrawer />
+      <DonationDrawer />
     </div>
   );
 };
