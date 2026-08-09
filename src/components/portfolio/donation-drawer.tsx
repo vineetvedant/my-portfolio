@@ -33,13 +33,15 @@ import {
   Smartphone,
   Copy,
   Download,
-  X
+  X,
+  RefreshCw
 } from "lucide-react"
 
 interface DonationTier {
   id: string
   name: string
   amount: number
+  inrAmount: number
   currencySymbol: string
   icon: React.ElementType
   popular?: boolean
@@ -51,6 +53,7 @@ const donationTiers: DonationTier[] = [
     id: "coffee",
     name: "Buy a Coffee",
     amount: 3,
+    inrAmount: 250,
     currencySymbol: "$",
     icon: Coffee,
     description: "A small boost to keep the code flowing & models training."
@@ -59,6 +62,7 @@ const donationTiers: DonationTier[] = [
     id: "gpu",
     name: "GPU & Server Fuel",
     amount: 10,
+    inrAmount: 850,
     currencySymbol: "$",
     icon: Zap,
     popular: true,
@@ -68,6 +72,7 @@ const donationTiers: DonationTier[] = [
     id: "sponsor",
     name: "Research Sponsor",
     amount: 25,
+    inrAmount: 2000,
     currencySymbol: "$",
     icon: Sparkles,
     description: "Directly funds open-source AI projects, papers & accessibility tools."
@@ -79,6 +84,7 @@ export function DonationDrawer() {
   const [isPillDismissed, setIsPillDismissed] = useState(false)
   const [selectedTier, setSelectedTier] = useState<string>("gpu")
   const [customAmount, setCustomAmount] = useState<string>("")
+  const [currency, setCurrency] = useState<"USD" | "INR">("USD")
   const [supporterName, setSupporterName] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [copiedUpi, setCopiedUpi] = useState(false)
@@ -92,7 +98,15 @@ export function DonationDrawer() {
   const dismissTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   const currentTier = donationTiers.find(t => t.id === selectedTier)
-  const activeAmount = customAmount ? parseFloat(customAmount) || 0 : (currentTier?.amount || 10)
+  
+  // Calculate active amounts in USD and INR
+  const activeAmountUSD = customAmount
+    ? (currency === "USD" ? parseFloat(customAmount) || 0 : (parseFloat(customAmount) || 0) / 85)
+    : (currentTier?.amount || 10)
+
+  const activeAmountINR = customAmount
+    ? (currency === "INR" ? Math.round(parseFloat(customAmount) || 0) : Math.round((parseFloat(customAmount) || 0) * 85))
+    : (currentTier?.inrAmount || 850)
 
   // Direct donation/sponsor URLs & UPI Info
   const donationLinks = {
@@ -103,11 +117,18 @@ export function DonationDrawer() {
     recipientName: "Vedant Singh"
   }
 
-  // Generate standard UPI Payment URI
-  const upiUri = `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
+  // Dynamic Transaction Note for UPI
+  const upiNote = supporterName ? `Sponsor by ${supporterName}` : "Portfolio Sponsor"
+
+  // Generate dynamic custom UPI Payment URI with prefilled amount
+  const dynamicUpiUri = activeAmountINR > 0
+    ? `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&am=${activeAmountINR}&cu=INR&tn=${encodeURIComponent(upiNote)}`
+    : `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
   
-  // Custom UPI QR code provided by user
-  const qrImageUrl = "/upi-qr.png"
+  // Dynamic scannable QR Code image generated in real-time
+  const dynamicQrImageUrl = activeAmountINR > 0
+    ? `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(dynamicUpiUri)}&margin=6`
+    : "/upi-qr.png"
 
   // Check if visitor previously dismissed the floating pill
   useEffect(() => {
@@ -193,7 +214,7 @@ export function DonationDrawer() {
 
     toast({
       title: "Thank you for your support! ❤️",
-      description: `Redirecting to support with $${activeAmount}...`
+      description: `Redirecting to support with $${activeAmountUSD.toFixed(0)} (₹${activeAmountINR})...`
     })
 
     window.open(targetUrl, "_blank", "noopener,noreferrer")
@@ -345,6 +366,7 @@ export function DonationDrawer() {
                         )}
                         <TierIcon className={`h-5 w-5 mx-auto mb-1.5 ${isSelected ? "text-pink-400" : "text-gray-400"}`} />
                         <div className="text-lg font-black text-white font-mono">{tier.currencySymbol}{tier.amount}</div>
+                        <div className="text-[10px] text-pink-400 font-mono font-semibold">₹{tier.inrAmount}</div>
                         <div className="text-[11px] font-semibold text-gray-300 mt-0.5 line-clamp-1">{tier.name}</div>
                       </div>
                     )
@@ -352,17 +374,38 @@ export function DonationDrawer() {
                 </div>
               </div>
 
-              {/* Custom Amount Input */}
-              <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-800">
-                <label className="text-xs font-semibold text-gray-300 font-mono block mb-1.5">
-                  Or Enter Custom Amount ($ USD):
-                </label>
+              {/* Custom Amount Input with Currency Switcher */}
+              <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-semibold text-gray-300 font-mono">
+                    Custom Amount (Generates Real-time QR):
+                  </label>
+                  <div className="flex bg-slate-950 p-0.5 rounded-lg border border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => setCurrency("USD")}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded ${currency === "USD" ? "bg-accent text-primary font-bold" : "text-gray-400 hover:text-white"}`}
+                    >
+                      $ USD
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCurrency("INR")}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded ${currency === "INR" ? "bg-accent text-primary font-bold" : "text-gray-400 hover:text-white"}`}
+                    >
+                      ₹ INR
+                    </button>
+                  </div>
+                </div>
+
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-mono text-sm">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-mono text-sm">
+                    {currency === "USD" ? "$" : "₹"}
+                  </span>
                   <Input
                     type="number"
                     min="1"
-                    placeholder="Enter custom amount (e.g. 50)"
+                    placeholder={`Enter amount in ${currency} (e.g. ${currency === "USD" ? "20" : "1500"})`}
                     value={customAmount}
                     onFocus={() => setIsUserInteracting(true)}
                     onChange={(e) => {
@@ -372,6 +415,17 @@ export function DonationDrawer() {
                     className="pl-7 bg-slate-950 border-slate-800 focus:border-pink-500 text-white font-mono text-sm"
                   />
                 </div>
+
+                {customAmount && (
+                  <div className="text-[11px] text-accent font-mono pt-0.5 flex items-center justify-between">
+                    <span>
+                      Equivalent: {currency === "USD" ? `₹${activeAmountINR} INR` : `$${activeAmountUSD.toFixed(1)} USD`}
+                    </span>
+                    <span className="text-emerald-400 flex items-center gap-1">
+                      <Zap className="h-3 w-3" /> Live QR Updated
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Tier Details Card */}
@@ -382,12 +436,12 @@ export function DonationDrawer() {
                 </div>
                 <p className="text-xs text-gray-300 leading-relaxed mt-1">
                   {customAmount
-                    ? `Your custom contribution of $${customAmount || "..."} helps maintain backend compute nodes, publish open datasets, and build free accessibility software.`
+                    ? `Your contribution of ${currency === "USD" ? `$${customAmount}` : `₹${customAmount}`} (₹${activeAmountINR}) directly supports open AI research, compute cluster costs, and accessibility tools.`
                     : currentTier?.description}
                 </p>
               </Card>
 
-              {/* UPI Card with Direct QR Code View */}
+              {/* UPI Card with Dynamic Amount QR Code */}
               <div className="p-4 bg-slate-900/90 rounded-xl border border-accent/25 shadow-lg space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -399,7 +453,7 @@ export function DonationDrawer() {
                     </span>
                   </div>
                   <Badge variant="outline" className="text-[10px] font-mono border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
-                    Instant (0% Fee)
+                    Auto-Prefills ₹{activeAmountINR}
                   </Badge>
                 </div>
 
@@ -409,6 +463,12 @@ export function DonationDrawer() {
                     <div className="text-[10px] font-mono text-gray-400">UPI VPA:</div>
                     <div className="text-xs sm:text-sm font-bold text-accent font-mono truncate select-all">
                       {donationLinks.upiId}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-mono text-gray-400">Target Amount:</div>
+                    <div className="text-xs sm:text-sm font-bold text-pink-400 font-mono">
+                      ₹{activeAmountINR}
                     </div>
                   </div>
                 </div>
@@ -435,19 +495,27 @@ export function DonationDrawer() {
                     }`}
                   >
                     {showQrCode ? <EyeOff className="h-3.5 w-3.5 mr-1.5" /> : <Eye className="h-3.5 w-3.5 mr-1.5" />}
-                    {showQrCode ? "Hide QR" : "View QR Code"}
+                    {showQrCode ? "Hide QR" : `View QR (₹${activeAmountINR})`}
                   </Button>
                 </div>
 
-                {/* Expandable QR Code Box */}
+                {/* Expandable Real-Time QR Code Box */}
                 {showQrCode && (
                   <div className="pt-3 border-t border-slate-800 animate-in fade-in-50 zoom-in-95 duration-200">
                     <div className="bg-slate-950 p-4 rounded-xl border border-accent/20 flex flex-col items-center text-center">
-                      <div className="p-3 bg-white rounded-2xl shadow-xl mb-3 ring-4 ring-accent/20">
+                      
+                      {/* Dynamic Amount Banner */}
+                      <div className="mb-3 px-3 py-1 bg-pink-500/15 border border-pink-500/30 rounded-full text-xs font-mono text-pink-300 flex items-center gap-1.5">
+                        <Sparkles className="h-3.5 w-3.5 text-pink-400" />
+                        <span>Pre-configured Amount: <strong>₹{activeAmountINR}</strong></span>
+                      </div>
+
+                      {/* Scannable Real-time QR */}
+                      <div className="p-3 bg-white rounded-2xl shadow-xl mb-3 ring-4 ring-accent/20 relative group">
                         <img
-                          src={qrImageUrl}
-                          alt={`UPI QR Code for ${donationLinks.upiId}`}
-                          className="w-44 h-44 sm:w-48 sm:h-48 object-contain rounded-lg"
+                          src={dynamicQrImageUrl}
+                          alt={`Custom UPI QR Code for ₹${activeAmountINR} to ${donationLinks.upiId}`}
+                          className="w-48 h-48 sm:w-52 sm:h-52 object-contain rounded-lg transition-all duration-300"
                           loading="eager"
                         />
                       </div>
@@ -457,7 +525,7 @@ export function DonationDrawer() {
                           <Smartphone className="h-3.5 w-3.5 text-accent" /> Scan with Any UPI App
                         </div>
                         <p className="text-[11px] text-gray-400">
-                          Google Pay • PhonePe • Paytm • BHIM • Cred
+                          Automatically opens GPay / PhonePe / Paytm with <strong>₹{activeAmountINR}</strong> pre-filled!
                         </p>
                       </div>
 
@@ -468,9 +536,9 @@ export function DonationDrawer() {
                           size="sm"
                           className="bg-accent text-primary hover:bg-accent/90 text-xs font-mono font-semibold h-8"
                         >
-                          <a href={upiUri}>
+                          <a href={dynamicUpiUri}>
                             <Smartphone className="h-3.5 w-3.5 mr-1.5" />
-                            Open App
+                            Pay ₹{activeAmountINR}
                           </a>
                         </Button>
                         <Button
@@ -479,7 +547,7 @@ export function DonationDrawer() {
                           size="sm"
                           className="border-slate-700 text-gray-300 hover:text-white text-xs font-mono h-8"
                         >
-                          <a href={qrImageUrl} target="_blank" rel="noopener noreferrer" download="vedant-upi-qr.png">
+                          <a href={dynamicQrImageUrl} target="_blank" rel="noopener noreferrer" download={`upi-qr-${activeAmountINR}.png`}>
                             <Download className="h-3.5 w-3.5 mr-1.5" />
                             Save QR
                           </a>
@@ -525,7 +593,7 @@ export function DonationDrawer() {
                   className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold py-5 text-sm font-mono shadow-md"
                 >
                   <Coffee className="mr-2 h-4 w-4" />
-                  Support via Buy Me a Coffee (${activeAmount})
+                  Support via Buy Me a Coffee (${activeAmountUSD.toFixed(0)})
                   <ExternalLink className="ml-2 h-3.5 w-3.5" />
                 </Button>
 
