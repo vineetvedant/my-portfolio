@@ -97,15 +97,15 @@ export function DonationDrawer() {
     buyMeACoffee: "https://buymeacoffee.com/vineetvedant",
     githubSponsors: "https://github.com/sponsors/vineetvedant",
     paypal: "https://paypal.me/vineetvedant",
-    upiId: "singhvineetvedant@okhdfcbank",
+    upiId: "singhv1000@upi",
     recipientName: "Vedant Singh"
   }
 
   // Generate standard UPI Payment URI
   const upiUri = `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
   
-  // Scannable High-Res QR code image endpoint
-  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(upiUri)}&margin=6`
+  // Custom UPI QR code provided by user
+  const qrImageUrl = "/upi-qr.png"
 
   // 1. Auto popup after 90 seconds (1.5 min of viewing)
   useEffect(() => {
