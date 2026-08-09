@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   Sheet,
   SheetContent,
@@ -22,12 +22,13 @@ import {
   Zap,
   Github,
   CreditCard,
-  Send,
   Check,
   ExternalLink,
   ShieldCheck,
   Gift,
-  QrCode
+  QrCode,
+  Clock,
+  X
 } from "lucide-react"
 
 interface DonationTier {
@@ -75,7 +76,13 @@ export function DonationDrawer() {
   const [supporterName, setSupporterName] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [copiedUpi, setCopiedUpi] = useState(false)
+  const [autoDismissSecondsLeft, setAutoDismissSecondsLeft] = useState<number | null>(null)
+  const [isUserInteracting, setIsUserInteracting] = useState(false)
   const { toast } = useToast()
+
+  const popupTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const dismissIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const dismissTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   const currentTier = donationTiers.find(t => t.id === selectedTier)
   const activeAmount = customAmount ? parseFloat(customAmount) || 0 : (currentTier?.amount || 10)
@@ -88,7 +95,51 @@ export function DonationDrawer() {
     upiId: "singhvineetvedant@okhdfcbank"
   }
 
+  // 1. Auto popup after 90 seconds (1.5 min of viewing)
+  useEffect(() => {
+    // Check if auto-popup was already triggered in this browser session
+    const hasAutoPopped = sessionStorage.getItem("donation_auto_popped")
+    if (!hasAutoPopped) {
+      popupTimerRef.current = setTimeout(() => {
+        setOpen(true)
+        sessionStorage.setItem("donation_auto_popped", "true")
+        setAutoDismissSecondsLeft(30)
+      }, 90000) // 90 seconds (1.5 minutes)
+    }
+
+    return () => {
+      if (popupTimerRef.current) clearTimeout(popupTimerRef.current)
+    }
+  }, [])
+
+  // 2. Auto dismiss after 30 seconds unless user is actively typing / interacting
+  useEffect(() => {
+    if (open && autoDismissSecondsLeft !== null) {
+      dismissIntervalRef.current = setInterval(() => {
+        setAutoDismissSecondsLeft((prev) => {
+          if (prev === null || isUserInteracting) return prev
+          if (prev <= 1) {
+            setOpen(false)
+            return null
+          }
+          return prev - 1
+        })
+      }, 1000)
+    } else {
+      if (dismissIntervalRef.current) clearInterval(dismissIntervalRef.current)
+      if (!open) {
+        setAutoDismissSecondsLeft(null)
+      }
+    }
+
+    return () => {
+      if (dismissIntervalRef.current) clearInterval(dismissIntervalRef.current)
+      if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current)
+    }
+  }, [open, isUserInteracting, autoDismissSecondsLeft])
+
   const handleCopyUpi = () => {
+    setIsUserInteracting(true)
     navigator.clipboard.writeText(donationLinks.upiId)
     setCopiedUpi(true)
     toast({
@@ -99,6 +150,7 @@ export function DonationDrawer() {
   }
 
   const handleProceedDonation = (platform: "bmc" | "github" | "paypal" | "custom") => {
+    setIsUserInteracting(true)
     let targetUrl = donationLinks.buyMeACoffee
     if (platform === "github") targetUrl = donationLinks.githubSponsors
     if (platform === "paypal") targetUrl = donationLinks.paypal
@@ -111,12 +163,22 @@ export function DonationDrawer() {
     window.open(targetUrl, "_blank", "noopener,noreferrer")
   }
 
+  const handleManualOpen = () => {
+    setOpen(true)
+    setIsUserInteracting(true) // If manually opened, don't auto-close unexpectedly
+    setAutoDismissSecondsLeft(null)
+  }
+
   return (
     <>
-      <Sheet open={open} onOpenChange={setOpen}>
+      <Sheet open={open} onOpenChange={(val) => {
+        setOpen(val)
+        if (!val) setAutoDismissSecondsLeft(null)
+      }}>
         {/* Floating Side Support Button (Docked on Right Screen Edge) */}
         <SheetTrigger asChild>
           <button
+            onClick={handleManualOpen}
             aria-label="Support & Donate"
             className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group flex items-center bg-slate-900/95 hover:bg-slate-800 text-white pl-3.5 pr-2.5 py-3 rounded-l-2xl border-y border-l border-accent/40 shadow-[0_8px_30px_rgb(0,242,254,0.18)] hover:shadow-[0_8px_35px_rgb(0,242,254,0.35)] transition-all duration-300 backdrop-blur-md cursor-pointer"
           >
@@ -144,7 +206,24 @@ export function DonationDrawer() {
         <SheetContent
           side="right"
           className="w-full sm:max-w-xl md:max-w-lg bg-slate-950/95 border-l border-accent/20 text-white backdrop-blur-xl p-0 flex flex-col z-50 overflow-hidden"
+          onPointerDown={() => setIsUserInteracting(true)}
         >
+          {/* Auto-Dismiss Countdown Notification (If auto-popped) */}
+          {autoDismissSecondsLeft !== null && autoDismissSecondsLeft > 0 && !isUserInteracting && (
+            <div className="bg-pink-500/15 border-b border-pink-500/30 px-4 py-1.5 flex items-center justify-between text-[11px] text-pink-300 font-mono">
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5 animate-pulse text-pink-400" />
+                Auto-dismissing in {autoDismissSecondsLeft}s
+              </span>
+              <button
+                onClick={() => setIsUserInteracting(true)}
+                className="text-[10px] underline hover:text-white transition-smooth"
+              >
+                Keep Open
+              </button>
+            </div>
+          )}
+
           {/* Drawer Header */}
           <div className="p-6 pb-4 border-b border-accent/15 bg-slate-900/70">
             <div className="flex items-center justify-between gap-3 mb-2 pr-8">
@@ -185,6 +264,7 @@ export function DonationDrawer() {
                       <div
                         key={tier.id}
                         onClick={() => {
+                          setIsUserInteracting(true)
                           setSelectedTier(tier.id)
                           setCustomAmount("")
                         }}
@@ -222,7 +302,11 @@ export function DonationDrawer() {
                     min="1"
                     placeholder="Enter custom amount (e.g. 50)"
                     value={customAmount}
-                    onChange={(e) => setCustomAmount(e.target.value)}
+                    onFocus={() => setIsUserInteracting(true)}
+                    onChange={(e) => {
+                      setIsUserInteracting(true)
+                      setCustomAmount(e.target.value)
+                    }}
                     className="pl-7 bg-slate-950 border-slate-800 focus:border-pink-500 text-white font-mono text-sm"
                   />
                 </div>
@@ -249,13 +333,21 @@ export function DonationDrawer() {
                 <Input
                   placeholder="Your Name or Handle (optional)"
                   value={supporterName}
-                  onChange={(e) => setSupporterName(e.target.value)}
+                  onFocus={() => setIsUserInteracting(true)}
+                  onChange={(e) => {
+                    setIsUserInteracting(true)
+                    setSupporterName(e.target.value)
+                  }}
                   className="bg-slate-950 border-slate-800 text-white text-xs"
                 />
                 <Textarea
                   placeholder="Say something nice or mention a project you like..."
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onFocus={() => setIsUserInteracting(true)}
+                  onChange={(e) => {
+                    setIsUserInteracting(true)
+                    setMessage(e.target.value)
+                  }}
                   rows={2}
                   className="bg-slate-950 border-slate-800 text-white text-xs resize-none"
                 />
