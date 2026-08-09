@@ -34,7 +34,7 @@ import {
   Copy,
   Download,
   X,
-  RefreshCw
+  Image as ImageIcon
 } from "lucide-react"
 
 interface DonationTier {
@@ -85,6 +85,7 @@ export function DonationDrawer() {
   const [selectedTier, setSelectedTier] = useState<string>("gpu")
   const [customAmount, setCustomAmount] = useState<string>("")
   const [currency, setCurrency] = useState<"USD" | "INR">("USD")
+  const [qrMode, setQrMode] = useState<"official" | "dynamic">("official")
   const [supporterName, setSupporterName] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [copiedUpi, setCopiedUpi] = useState(false)
@@ -122,15 +123,22 @@ export function DonationDrawer() {
   // Dynamic Transaction Note for UPI
   const upiNote = supporterName ? `Sponsor by ${supporterName}` : "Portfolio Sponsor"
 
-  // Generate dynamic custom UPI Payment URI with prefilled amount
+  // Standard NPCI Compliant UPI Payment URI
+  const standardUpiUri = `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
+  
+  // Dynamic UPI Payment URI with prefilled amount
   const dynamicUpiUri = activeAmountINR > 0
     ? `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&am=${activeAmountINR}&cu=INR&tn=${encodeURIComponent(upiNote)}`
-    : `upi://pay?pa=${donationLinks.upiId}&pn=${encodeURIComponent(donationLinks.recipientName)}&cu=INR`
+    : standardUpiUri
   
-  // Dynamic scannable QR Code image generated in real-time
-  const dynamicQrImageUrl = activeAmountINR > 0
-    ? `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(dynamicUpiUri)}&margin=6`
-    : "/upi-qr.png"
+  // Base QR code image (Cleaned official image with white quiet zone)
+  const officialQrImageUrl = `${import.meta.env.BASE_URL || "/"}upi-qr.png`.replace(/\/\//g, "/")
+  
+  // Dynamic Real-Time generated QR Code
+  const dynamicQrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(dynamicUpiUri)}&margin=8`
+
+  // Selected QR code URL to display
+  const activeQrImageUrl = qrMode === "official" ? officialQrImageUrl : dynamicQrImageUrl
 
   // Check if visitor previously dismissed the floating pill
   useEffect(() => {
@@ -380,7 +388,7 @@ export function DonationDrawer() {
               <div className="bg-slate-900/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-semibold text-gray-300 font-mono">
-                    Custom Amount (Generates Real-time QR):
+                    Custom Amount (Auto-Configures QR):
                   </label>
                   <div className="flex bg-slate-950 p-0.5 rounded-lg border border-slate-800">
                     <button
@@ -443,7 +451,7 @@ export function DonationDrawer() {
                 </p>
               </Card>
 
-              {/* UPI Card with Dynamic Amount QR Code */}
+              {/* UPI Card with Direct QR Code View */}
               <div className="p-4 bg-slate-900/90 rounded-xl border border-accent/25 shadow-lg space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -455,7 +463,7 @@ export function DonationDrawer() {
                     </span>
                   </div>
                   <Badge variant="outline" className="text-[10px] font-mono border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
-                    Auto-Prefills ₹{activeAmountINR}
+                    Instant (0% Fee)
                   </Badge>
                 </div>
 
@@ -497,27 +505,49 @@ export function DonationDrawer() {
                     }`}
                   >
                     {showQrCode ? <EyeOff className="h-3.5 w-3.5 mr-1.5" /> : <Eye className="h-3.5 w-3.5 mr-1.5" />}
-                    {showQrCode ? "Hide QR" : `View QR (₹${activeAmountINR})`}
+                    {showQrCode ? "Hide QR" : `View QR Code`}
                   </Button>
                 </div>
 
-                {/* Expandable Real-Time QR Code Box */}
+                {/* Expandable Scannable QR Code Box */}
                 {showQrCode && (
                   <div className="pt-3 border-t border-slate-800 animate-in fade-in-50 zoom-in-95 duration-200">
                     <div className="bg-slate-950 p-4 rounded-xl border border-accent/20 flex flex-col items-center text-center">
                       
-                      {/* Dynamic Amount Banner */}
-                      <div className="mb-3 px-3 py-1 bg-pink-500/15 border border-pink-500/30 rounded-full text-xs font-mono text-pink-300 flex items-center gap-1.5">
-                        <Sparkles className="h-3.5 w-3.5 text-pink-400" />
-                        <span>Pre-configured Amount: <strong>₹{activeAmountINR}</strong></span>
+                      {/* QR Version Selector (Official Bank QR vs Dynamic Amount QR) */}
+                      <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800 mb-3.5 w-full max-w-xs">
+                        <button
+                          type="button"
+                          onClick={() => setQrMode("official")}
+                          className={`flex-1 py-1.5 text-xs font-mono rounded-lg transition-smooth flex items-center justify-center gap-1.5 ${
+                            qrMode === "official"
+                              ? "bg-accent text-primary font-bold shadow"
+                              : "text-gray-400 hover:text-white"
+                          }`}
+                        >
+                          <ImageIcon className="h-3.5 w-3.5" />
+                          Official Bank QR
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setQrMode("dynamic")}
+                          className={`flex-1 py-1.5 text-xs font-mono rounded-lg transition-smooth flex items-center justify-center gap-1.5 ${
+                            qrMode === "dynamic"
+                              ? "bg-accent text-primary font-bold shadow"
+                              : "text-gray-400 hover:text-white"
+                          }`}
+                        >
+                          <Zap className="h-3.5 w-3.5" />
+                          Auto-Amount QR
+                        </button>
                       </div>
 
-                      {/* Scannable Real-time QR */}
-                      <div className="p-3 bg-white rounded-2xl shadow-xl mb-3 ring-4 ring-accent/20 relative group">
+                      {/* Scannable High-Res QR with Quiet Zone */}
+                      <div className="p-3 bg-white rounded-2xl shadow-2xl mb-3 ring-4 ring-accent/25 relative group">
                         <img
-                          src={dynamicQrImageUrl}
-                          alt={`Custom UPI QR Code for ₹${activeAmountINR} to ${donationLinks.upiId}`}
-                          className="w-48 h-48 sm:w-52 sm:h-52 object-contain rounded-lg transition-all duration-300"
+                          src={activeQrImageUrl}
+                          alt={`UPI QR Code for ${donationLinks.upiId}`}
+                          className="w-48 h-48 sm:w-56 sm:h-56 object-contain rounded-lg transition-all duration-300"
                           loading="eager"
                         />
                       </div>
@@ -527,7 +557,9 @@ export function DonationDrawer() {
                           <Smartphone className="h-3.5 w-3.5 text-accent" /> Scan with Any UPI App
                         </div>
                         <p className="text-[11px] text-gray-400">
-                          Automatically opens GPay / PhonePe / Paytm with <strong>₹{activeAmountINR}</strong> pre-filled!
+                          {qrMode === "dynamic"
+                            ? `Pre-configured with ₹${activeAmountINR} for Google Pay, PhonePe, Paytm, BHIM, Cred.`
+                            : `Official UPI QR for ${donationLinks.upiId} — enter any amount upon scanning.`}
                         </p>
                       </div>
 
@@ -538,9 +570,9 @@ export function DonationDrawer() {
                           size="sm"
                           className="bg-accent text-primary hover:bg-accent/90 text-xs font-mono font-semibold h-8"
                         >
-                          <a href={dynamicUpiUri}>
+                          <a href={qrMode === "dynamic" ? dynamicUpiUri : standardUpiUri}>
                             <Smartphone className="h-3.5 w-3.5 mr-1.5" />
-                            Pay ₹{activeAmountINR}
+                            {qrMode === "dynamic" ? `Pay ₹${activeAmountINR}` : "Open App"}
                           </a>
                         </Button>
                         <Button
@@ -549,7 +581,12 @@ export function DonationDrawer() {
                           size="sm"
                           className="border-slate-700 text-gray-300 hover:text-white text-xs font-mono h-8"
                         >
-                          <a href={dynamicQrImageUrl} target="_blank" rel="noopener noreferrer" download={`upi-qr-${activeAmountINR}.png`}>
+                          <a
+                            href={activeQrImageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download={`vedant-upi-qr-${qrMode}.png`}
+                          >
                             <Download className="h-3.5 w-3.5 mr-1.5" />
                             Save QR
                           </a>
