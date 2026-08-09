@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import GlassSurface from "@/components/ui/GlassSurface"
-import { Award, ExternalLink, Cloud, Shield, BarChart3, Brain, BookOpen } from "lucide-react"
+import { Award, ExternalLink, Cloud, Shield, BarChart3, BookOpen, FileText } from "lucide-react"
 
 const certifications = [
   {
@@ -47,13 +48,13 @@ export function CertificationsSection() {
     <section id="certifications" className="py-20 bg-section-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.12} className="theme-glass-header mb-16">
-        <div className="text-center px-6 py-7">
-          <h2 className="text-4xl font-bold text-primary mb-4">Certifications & Research</h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Continuous learning through industry-recognized certifications and academic publications in leading science venues.
-          </p>
-        </div>
+          <div className="text-center px-6 py-7">
+            <h2 className="text-4xl font-bold text-primary mb-4">Certifications & Research</h2>
+            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Continuous learning through industry-recognized certifications and academic publications in leading science venues.
+            </p>
+          </div>
         </GlassSurface>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -128,30 +129,77 @@ export function CertificationsSection() {
         {/* Research Publication */}
         <div className="mt-20">
           <h3 className="text-2xl font-bold text-primary text-center mb-8">Research Publications</h3>
-          <Card className="group hover:shadow-xl transition-all duration-300 border-accent/30 bg-accent/5 max-w-4xl mx-auto">
+          <Card className="group hover:shadow-xl transition-all duration-300 border-accent/30 bg-accent/5 max-w-4xl mx-auto overflow-hidden">
             <CardHeader className="pb-4">
               <div className="flex items-start justify-between">
-                <div className="flex items-center">
-                  <div className="p-3 bg-accent/10 rounded-lg mr-4 group-hover:bg-accent/20 transition-smooth">
+                <div className="flex items-start">
+                  <div className="p-3 bg-accent/10 rounded-lg mr-4 group-hover:bg-accent/20 transition-smooth mt-1">
                     <BookOpen className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl text-primary group-hover:text-accent transition-smooth">
-                      Smart Drone System Using Deep Learning Techniques
-                    </CardTitle>
-                    <div className="flex items-center mt-2 flex-wrap gap-2">
-                      <span className="text-muted-foreground font-medium">ICAIN 2025, Springer LNNS</span>
+                    <a
+                      href="https://link.springer.com/chapter/10.1007/978-3-032-24929-6_1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/title inline-flex items-center gap-2"
+                    >
+                      <CardTitle className="text-xl sm:text-2xl text-primary group-hover/title:text-accent transition-smooth">
+                        Smart Drone System Using Deep Learning Techniques
+                      </CardTitle>
+                      <ExternalLink className="h-4 w-4 text-accent opacity-70 group-hover/title:opacity-100 transition-smooth flex-shrink-0" />
+                    </a>
+                    <div className="flex items-center mt-2.5 flex-wrap gap-2">
+                      <Badge variant="secondary" className="text-xs bg-accent/15 text-accent font-semibold border border-accent/20">
+                        Springer Nature
+                      </Badge>
                       <Badge variant="secondary" className="text-xs bg-accent/10 text-accent font-semibold">
+                        ICAIN 2025
+                      </Badge>
+                      <Badge variant="secondary" className="text-xs bg-muted text-muted-foreground font-mono">
+                        LNNS Series
+                      </Badge>
+                      <Badge variant="secondary" className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                         Scopus Indexed
                       </Badge>
                     </div>
                   </div>
                 </div>
+
+                <a 
+                  href="https://link.springer.com/chapter/10.1007/978-3-032-24929-6_1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex text-accent hover:text-primary p-2 rounded-lg bg-accent/10 hover:bg-accent transition-smooth"
+                  title="View on SpringerLink"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                </a>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* Authors & Publication venue info */}
+              <div className="text-xs sm:text-sm text-muted-foreground bg-background/50 p-3 rounded-lg border border-accent/10 space-y-1">
+                <div>
+                  <span className="font-semibold text-primary">Authors:</span> Shivank Mishra, Vedant Singh, Atreo Pramanick, Aditya Tripathi, Naresh Sharma
+                </div>
+                <div>
+                  <span className="font-semibold text-primary">Venue:</span> Proceedings of International Conference on Artificial Intelligence and Networks (ICAIN), Springer, Cham
+                </div>
+                <div className="font-mono text-[11px] text-accent">
+                  <span className="font-semibold text-primary font-sans text-xs">DOI:</span>{" "}
+                  <a 
+                    href="https://doi.org/10.1007/978-3-032-24929-6_1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-primary transition-smooth"
+                  >
+                    10.1007/978-3-032-24929-6_1
+                  </a>
+                </div>
+              </div>
+
               <p className="text-muted-foreground leading-relaxed text-sm">
-                Co-authored research on leveraging deep learning algorithms in drone operations, focusing on real-time visual tracking and hardware acoustic footprint reduction.
+                Co-authored research on leveraging deep learning algorithms in autonomous drone operations, focusing on real-time visual tracking, aerial object detection, and hardware acoustic footprint reduction.
               </p>
               <ul className="list-disc list-outside ml-4 text-muted-foreground leading-relaxed text-sm space-y-2">
                 <li>
@@ -161,6 +209,38 @@ export function CertificationsSection() {
                   Innovated a 3D-modeled, silent propeller design, reducing the drone's acoustic footprint by 15% in field tests.
                 </li>
               </ul>
+
+              {/* Action Buttons */}
+              <div className="pt-3 flex flex-wrap gap-3">
+                <Button 
+                  asChild
+                  className="bg-accent text-primary hover:bg-accent/90 transition-bounce text-xs sm:text-sm font-semibold"
+                >
+                  <a 
+                    href="https://link.springer.com/chapter/10.1007/978-3-032-24929-6_1" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <BookOpen className="mr-2 h-4 w-4" />
+                    Read Chapter on SpringerLink
+                    <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                  </a>
+                </Button>
+                <Button 
+                  asChild
+                  variant="outline"
+                  className="border-accent/30 text-accent hover:bg-accent hover:text-primary transition-smooth text-xs sm:text-sm"
+                >
+                  <a 
+                    href="https://doi.org/10.1007/978-3-032-24929-6_1" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <FileText className="mr-2 h-4 w-4" />
+                    View DOI Citation
+                  </a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>

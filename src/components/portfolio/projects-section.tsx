@@ -1,10 +1,24 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Eye, Zap, Volume2, Target, Cpu, Brain, BarChart3 } from "lucide-react"
+import { ExternalLink, Github, Eye, Zap, Volume2, Target, BarChart3, BookOpen } from "lucide-react"
 import GlassSurface from "@/components/ui/GlassSurface"
 
-const projects = [
+interface Project {
+  title: string
+  description: string
+  icon: React.ElementType
+  technologies: string[]
+  features: string[]
+  status: string
+  links: {
+    github: string
+    paper?: string
+    demo?: string
+  }
+}
+
+const projects: Project[] = [
   {
     title: "Data Visualization Toolkit",
     description: "An open-source suite for exploratory data analysis (EDA) and automated visualization, streamlining data analysis of 5000+ dataset rows per run.",
@@ -31,13 +45,14 @@ const projects = [
   },
   {
     title: "Multi-modal Object Tracking & Targeting",
-    description: "A real-time object tracking system for 100+ classes, integrated with RTSP video feeds and a robust API/CLI wrapper.",
+    description: "A real-time object tracking system for 100+ classes, integrated with RTSP video feeds and a robust API/CLI wrapper. Published in Springer LNNS.",
     icon: Target,
     technologies: ["Raspberry Pi", "YOLOv8", "RTSP Streaming", "Python", "API/CLI"],
     features: ["Real-time Multi-class Tracking", "18% Error Rate Reduction", "RTSP Camera Feeds Integration", "Robust CLI/API Controls"],
-    status: "Completed",
+    status: "Published",
     links: {
       github: "https://github.com/vineetvedant/object-detection-thermal---grayscale---RGB-.git",
+      paper: "https://link.springer.com/chapter/10.1007/978-3-032-24929-6_1",
       demo: "#"
     }
   },
@@ -60,21 +75,21 @@ export function ProjectsSection() {
     <section id="projects" className="py-20 bg-section-alt">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <GlassSurface width="100%" height="auto" borderRadius={16} brightness={25} opacity={0.8} backgroundOpacity={0.05} className="theme-glass-header mb-16">
-        <div className="text-center px-6 py-7">
-          <h2 className="text-4xl font-bold text-primary mb-4">Featured Projects</h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A collection of innovative projects showcasing expertise in AI, automation, 
-            accessibility, and high-performance computing solutions.
-          </p>
-        </div>
+          <div className="text-center px-6 py-7">
+            <h2 className="text-4xl font-bold text-primary mb-4">Featured Projects</h2>
+            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A collection of innovative projects showcasing expertise in AI, automation, 
+              accessibility, and high-performance computing solutions.
+            </p>
+          </div>
         </GlassSurface>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="group bg-card/60 backdrop-blur-sm glow-card border border-accent/10 transition-all duration-300 hover:-translate-y-1.5"
+              className="group bg-card/60 backdrop-blur-sm glow-card border border-accent/10 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
             >
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between mb-4">
@@ -82,8 +97,8 @@ export function ProjectsSection() {
                     <project.icon className="h-5 w-5 text-accent animate-pulse-glow" />
                   </div>
                   <Badge 
-                    variant={project.status === "Completed" ? "default" : "secondary"}
-                    className={project.status === "Completed" ? "bg-accent/20 text-accent border border-accent/20 font-mono text-[10px]" : "bg-muted font-mono text-[10px]"}
+                    variant={project.status === "Completed" || project.status === "Published" ? "default" : "secondary"}
+                    className={project.status === "Published" ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-[10px]" : project.status === "Completed" ? "bg-accent/20 text-accent border border-accent/20 font-mono text-[10px]" : "bg-muted font-mono text-[10px]"}
                   >
                     {project.status}
                   </Badge>
@@ -128,18 +143,32 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2 pt-4 font-mono text-xs">
+                <div className="flex flex-wrap gap-2 pt-4 font-mono text-xs">
                   <Button 
                     asChild
                     variant="outline" 
                     size="sm" 
-                    className="w-full border-accent/20 text-accent bg-accent/5 hover:bg-accent hover:text-primary transition-smooth"
+                    className="flex-1 border-accent/20 text-accent bg-accent/5 hover:bg-accent hover:text-primary transition-smooth"
                   >
                     <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3.5 w-3.5 mr-2" />
-                      View Repository
+                      <Github className="h-3.5 w-3.5 mr-1.5" />
+                      Repository
                     </a>
                   </Button>
+                  {project.links.paper && (
+                    <Button 
+                      asChild
+                      variant="outline" 
+                      size="sm" 
+                      className="border-accent/40 text-accent bg-accent/15 hover:bg-accent hover:text-primary transition-smooth"
+                    >
+                      <a href={project.links.paper} target="_blank" rel="noopener noreferrer">
+                        <BookOpen className="h-3.5 w-3.5 mr-1.5" />
+                        Paper
+                        <ExternalLink className="h-3 w-3 ml-1" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
