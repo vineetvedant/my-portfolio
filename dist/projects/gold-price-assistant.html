@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f8f5" />
+  <meta name="description" content="Case Study: Gold Price Conversational AI Assistant — Dual-API architecture combining ChromaDB vector retrieval, Ollama DeepSeek R1 reasoning, and idempotent purchase settlement." />
+  <title>Gold Price AI Assistant — Case Study | Vedant Singh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="case-study-page">
+    <!-- Full-Screen Diagonal Blue Wipe Transition Overlay -->
+  <div class="page-wipe-overlay" aria-hidden="true">
+    <div class="page-wipe-layer"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating Pill Navigation (alejandroha.com aesthetic) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand-pill" href="../index.html" aria-label="Vedant Singh home">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Vedant Singh</span>
+        <span class="brand-tag">SE / AI</span>
+      </a>
+
+      <nav class="nav-links-pill" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav-link-item" href="../index.html#work">Work</a>
+        <a class="nav-link-item" href="../index.html#secondary-work">Repositories</a>
+        <a class="nav-link-item" href="../index.html#experience">Experience</a>
+        <a class="nav-link-item" href="../index.html#certifications">Certifications</a>
+        <a class="nav-link-item" href="../index.html#about">About</a>
+        <a class="nav-link-item" href="../index.html#contact">Contact</a>
+        <div class="mobile-drawer-actions">
+          <a class="pill-btn-outline mobile-drawer-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-blue mobile-drawer-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions-group">
+        <a class="pill-btn-outline header-resume-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a class="pill-btn-blue header-talk-btn" href="mailto:singhvineetvedant@gmail.com">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <article class="case-study-article">
+      <!-- Header -->
+      <section class="cs-hero section">
+        <div class="container">
+          <div class="cs-breadcrumbs">
+            <a href="../index.html#work">← Back to Selected Work</a>
+            <span class="cs-sep">/</span>
+            <span>CASE STUDY 01</span>
+          </div>
+          <div class="cs-header-grid">
+            <div>
+              <div class="eyebrow"><span class="status-dot"></span> AI BACKEND & RETRIEVAL SYSTEMS</div>
+              <h1 class="cs-title">Gold Price Conversational AI Assistant</h1>
+              <p class="cs-subtitle">Decoupling conversational retrieval from transaction execution: A dual-API architecture uniting ChromaDB vector similarity, Ollama DeepSeek R1 reasoning, and idempotent purchase logging.</p>
+              <div class="cs-actions">
+                <a class="pill-btn-blue" href="https://github.com/vineetvedant/Gold-Price-Conversational-AI-Assistant" target="_blank" rel="noopener">
+                  View on GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <span class="cs-badge cs-badge-verified">Verified against repository source</span>
+              </div>
+            </div>
+            <div class="cs-meta-card">
+              <div class="cs-meta-row"><span>Repository:</span><strong>Gold-Price-Conversational-AI-Assistant</strong></div>
+              <div class="cs-meta-row"><span>Primary Language:</span><strong>Python</strong></div>
+              <div class="cs-meta-row"><span>Model Integration:</span><strong>Ollama / deepseek-r1:1.5b</strong></div>
+              <div class="cs-meta-row"><span>Vector Store:</span><strong>ChromaDB (all-MiniLM-L6-v2)</strong></div>
+              <div class="cs-meta-row"><span>Backend Framework:</span><strong>FastAPI + Uvicorn</strong></div>
+              <div class="cs-meta-row"><span>Implementation Status:</span><strong>Local Research & API Prototype</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Visual / Screenshot -->
+      <section class="cs-media-section">
+        <div class="container">
+          <figure class="cs-figure">
+            <img src="../assets/projects/gold-assistant-1.png" alt="Gold Price Conversational Assistant Swagger API documentation showing query endpoints and data schemas" loading="lazy" />
+            <figcaption>Authentic screenshot from repository: FastAPI interactive documentation showing the decoupled <code>/query</code> conversational contract.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Problem & Context -->
+      <section class="section cs-content-section">
+        <div class="container cs-layout-grid">
+          <aside class="cs-sidebar">
+            <div class="cs-nav-sticky">
+              <span class="cs-side-heading">CONTENTS</span>
+              <ul class="cs-toc">
+                <li><a href="#the-problem">01. The Problem</a></li>
+                <li><a href="#architecture">02. Verified Architecture</a></li>
+                <li><a href="#retrieval-pipeline">03. RAG & Retrieval Pipeline</a></li>
+                <li><a href="#intent-classification">04. Intent Classification & Routing</a></li>
+                <li><a href="#transaction-api">05. Decoupled Purchase Engine</a></li>
+                <li><a href="#engineering-decisions">06. Engineering Decisions & Constraints</a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="cs-body">
+            <!-- Section 1 -->
+            <section id="the-problem" class="cs-block">
+              <h2>01. The Real Problem</h2>
+              <p>LLMs excel at linguistic synthesis, but when queried about financial commodities like gold, baseline generative models frequently hallucinate rates, extrapolate speculative trends, and conflate historical spot prices with live market data. Furthermore, coupling speculative conversational text generation with financial checkout workflows in a single endpoint creates catastrophic failure modes in state handling and security.</p>
+              <p>The goal of this project was to construct a disciplined, self-contained Python backend that:</p>
+              <ul>
+                <li>Grounds conversational answers in historical tabular price records through vector similarity search rather than LLM parametric memory.</li>
+                <li>Categorizes incoming intent (e.g., date-specific queries, 30-day rolling trend evaluations, or lowest price months) using deterministic logic before invoking the LLM.</li>
+                <li>Strictly isolates conversational exploration (API 1) from transaction recording and settlement (API 2).</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="architecture" class="cs-block">
+              <h2>02. Verified System Architecture</h2>
+              <p>Inspection of the repository's source code (specifically <code>app/main.py</code>, <code>app/model.py</code>, and <code>app/purchase.py</code>) confirms a dual-service architecture designed around separation of concerns:</p>
+              
+              <div class="cs-diagram-box">
+                <div class="cs-diagram-title">SYSTEM WORKFLOW & SERVICE BOUNDARIES</div>
+                <div class="cs-flow-diagram">
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">User Client</span>
+                    <h4>HTTP Request</h4>
+                    <p>JSON payload with <code>question: str</code></p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">API 1: Query Service</span>
+                    <h4>Intent Classifier</h4>
+                    <p>Regex matching &amp; Rolling Avg</p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">ChromaDB</span>
+                    <h4>Vector Retrieval</h4>
+                    <p>Top-5 chunks (dist &lt; 0.8)</p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">Local Ollama</span>
+                    <h4>DeepSeek R1</h4>
+                    <p>Strip &lt;think&gt; + Append Nudge</p>
+                  </div>
+                </div>
+                <div class="cs-diagram-subflow">
+                  <span class="cs-subflow-badge">ISOLATED SUBSYSTEM</span>
+                  <p><strong>API 2 (Purchase API):</strong> Runs independently on <code>app/purchase.py</code> with <code>Decimal</code> precision, UUID tokens, thread-safe file lock, and transaction recording in <code>transactions.csv</code>.</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="retrieval-pipeline" class="cs-block">
+              <h2>03. RAG &amp; Tabular Retrieval Pipeline</h2>
+              <p>In <code>app/model.py</code> and <code>app/utils.py</code>, historical market data from <code>Gold Price.csv</code> is cleaned and transformed into semantic text summaries to make tabular numerical records understandable to dense vector embeddings:</p>
+              
+              <div class="cs-code-wrapper">
+                <div class="cs-code-header"><span>app/model.py</span><span>Vector Embedding Formulation</span></div>
+                <pre><code>def default_sentence(row):
+    open_ = int(row['open']) if 'open' in row and pd.notna(row['open']) else None
+    high  = int(row['high']) if 'high' in row and pd.notna(row['high']) else None
+    low   = int(row['low'])  if 'low'  in row and pd.notna(row['low'])  else None
+    close = int(row['price']) if pd.notna(row['price']) else None
+
+    bits = [f"On {row['date'].strftime('%Y-%m-%d')}"]
+    if open_ is not None: bits.append(f"opened at ₹{open_}")
+    if high  is not None: bits.append(f"peaked at ₹{high}")
+    if low   is not None: bits.append(f"dropped to ₹{low}")
+    if close is not None: bits.append(f"closed at ₹{close}")
+    return ", ".join(bits) + "."</code></pre>
+              </div>
+
+              <p>Sentences are embedded into ChromaDB with <code>all-MiniLM-L6-v2</code>. When querying, the retrieval engine queries the nearest 5 neighbors and enforces a confidence distance threshold of <code>distances[0] &lt; 0.8</code> before feeding context to DeepSeek R1.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="intent-classification" class="cs-block">
+              <h2>04. Intent Classification &amp; Routing</h2>
+              <p>Instead of passing all queries unconditionally to the generative model, <code>classify_query()</code> parses the prompt into distinct routing categories:</p>
+              <div class="cs-feature-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Query Category</th>
+                      <th>Detection Logic</th>
+                      <th>Handling Strategy</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>specific_price</code></td>
+                      <td>Regex matching month name and 4-digit year</td>
+                      <td>Executes direct Pandas DataFrame filtering to extract exact monthly mean and range, bypassing LLM speculation.</td>
+                    </tr>
+                    <tr>
+                      <td><code>best_month</code></td>
+                      <td>Regex matching <em>best / cheapest / lowest</em></td>
+                      <td>Computes grouped monthly averages and returns the lowest historical month mathematically.</td>
+                    </tr>
+                    <tr>
+                      <td><code>trend_analysis</code></td>
+                      <td>Matches <em>trend, increase, rise, performance</em></td>
+                      <td>Computes an authentic 30-day rolling moving average delta (<code>start</code> vs <code>end</code>) in Pandas and passes the computed percentage to DeepSeek R1.</td>
+                    </tr>
+                    <tr>
+                      <td><code>generic_gold</code></td>
+                      <td>Matches gold commodity keywords</td>
+                      <td>Queries ChromaDB vector collection and grounds DeepSeek R1 with the retrieved top-k context.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>Furthermore, <code>is_purchase_intent()</code> scans for conversion intent (e.g. <em>buy, purchase, invest, ₹, grams</em>), prompting the assistant to deliver structured <code>next_action</code> payload directing the user to the transaction interface.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="transaction-api" class="cs-block">
+              <h2>05. Decoupled Purchase Engine (API 2)</h2>
+              <p>In <code>app/purchase.py</code>, a completely separate FastAPI application provides a dedicated financial processing endpoint:</p>
+              <ul>
+                <li><strong>Fixed-Point Decimal Arithmetic:</strong> Uses Python's standard <code>decimal.Decimal</code> and <code>ROUND_DOWN</code> to eliminate floating-point rounding errors common in currency conversions.</li>
+                <li><strong>Thread Safety:</strong> Uses <code>threading.Lock()</code> when appending to the local transaction CSV storage to prevent race conditions during concurrent write operations.</li>
+                <li><strong>UUID &amp; Idempotency:</strong> Generates unique transaction IDs (<code>uuid4</code>) and ISO 8601 UTC timestamps for every completed order.</li>
+              </ul>
+            </section>
+
+            <!-- Additional Screenshots -->
+            <section class="cs-block">
+              <h2>Authentic Interface Artifacts</h2>
+              <div class="cs-gallery-grid">
+                <figure class="cs-figure">
+                  <img src="../assets/projects/gold-assistant-2.png" alt="FastAPI Swagger Schema view" loading="lazy" />
+                  <figcaption>FastAPI interactive schema defining query and response structures.</figcaption>
+                </figure>
+                <figure class="cs-figure">
+                  <img src="../assets/projects/gold-assistant-3.png" alt="Interactive API query execution view" loading="lazy" />
+                  <figcaption>Swagger query execution interface showing structured response with call-to-action nudge.</figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="engineering-decisions" class="cs-block">
+              <h2>06. Engineering Decisions &amp; Honest Constraints</h2>
+              <div class="cs-card-callout">
+                <h4>Verified Status &amp; Limitations</h4>
+                <ul>
+                  <li><strong>Local Ollama Dependency:</strong> Requires a local Ollama daemon hosting <code>deepseek-r1:1.5b</code> on port 11434. In offline or unhosted environments, fallback messages are triggered via <code>try/except</code> blocks.</li>
+                  <li><strong>Reasoning Token Stripping:</strong> DeepSeek R1 outputs raw reasoning traces wrapped in <code>&lt;think&gt;...&lt;/think&gt;</code> tags. The model adapter strips these via <code>re.sub(r"&lt;think&gt;.*?&lt;/think&gt;", "", answer, flags=re.DOTALL)</code> to maintain a clean conversational UI.</li>
+                  <li><strong>Storage Architecture:</strong> For this research prototype, data is stored in CSV format rather than a PostgreSQL cluster. The code includes thread locking, but scaling to enterprise traffic would require an ACID SQL database with a transactional queue.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Footer navigation -->
+            <div class="cs-bottom-nav">
+              <a href="../index.html#work" class="pill-btn-outline">← Back to Overview</a>
+              <a href="smart-email-automation.html" class="pill-btn-blue">Next Case Study: Smart Email Automation →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+    <!-- High-Impact Dark Full-Screen Footer (alejandroha.com aesthetic) -->
+  <footer class="site-footer-brutalist section">
+    <div class="footer-ghost-typo" aria-hidden="true">
+      PYTHON · APPLIED AI · BACKEND SYSTEMS
+    </div>
+    <div class="container footer-inner-content">
+      <div class="footer-hero-cta">
+        <div class="footer-pretitle">[ EXPLORE FURTHER ]</div>
+        <h2 class="footer-massive-headline">
+          Building software<br />
+          that <em>does the work.</em>
+        </h2>
+        <div class="footer-action-row">
+          <a class="footer-giant-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk ↗
+          </a>
+          <a class="pill-btn-outline" href="../index.html#work" style="color:#ffffff; border-color:#ffffff; background:transparent;">
+            ← Back to All Projects
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span>© <span id="year">2026</span> Vedant Singh · Small details, big impact.</span>
+        <a class="footer-back-to-top-btn" href="#main">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

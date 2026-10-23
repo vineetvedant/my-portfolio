@@ -1,0 +1,160 @@
+{
+  "updated_at": "2026-10-20T12:30:00Z",
+  "profile": {
+    "username": "vineetvedant",
+    "url": "https://github.com/vineetvedant",
+    "name": "Vedant Singh"
+  },
+  "featured": [
+    {
+      "id": "gold-price-assistant",
+      "repo_name": "Gold-Price-Conversational-AI-Assistant",
+      "title": "Gold Price Conversational AI Assistant",
+      "description": "Dual-API conversational intelligence system combining ChromaDB vector retrieval, Ollama DeepSeek R1 reasoning, and idempotent purchase transaction settlement.",
+      "language": "Python",
+      "confirmed_tech": [
+        "FastAPI",
+        "ChromaDB",
+        "Ollama (DeepSeek R1)",
+        "Pandas",
+        "ONNX Runtime",
+        "RAG"
+      ],
+      "html_url": "https://github.com/vineetvedant/Gold-Price-Conversational-AI-Assistant",
+      "case_study_url": "projects/gold-price-assistant.html",
+      "stars": 0,
+      "updated_at": "2025-08-28",
+      "screenshot": "assets/projects/gold-assistant-1.png"
+    },
+    {
+      "id": "smart-email-automation",
+      "repo_name": "smart_emai_cold_mail",
+      "title": "Smart Email Automation with Mistral-7B",
+      "description": "Automated outreach pipeline integrating Tesseract OCR document parsing, Mistral-7B AI text refinement via OpenRouter, and rate-limited Windows COM Outlook dispatching.",
+      "language": "Python",
+      "confirmed_tech": [
+        "Python",
+        "OpenAI/OpenRouter API",
+        "Mistral-7B",
+        "PyWin32 (Outlook)",
+        "PyTesseract OCR",
+        "Pandas"
+      ],
+      "html_url": "https://github.com/vineetvedant/smart_emai_cold_mail",
+      "case_study_url": "projects/smart-email-automation.html",
+      "stars": 1,
+      "updated_at": "2025-07-13",
+      "screenshot": "assets/projects/smart-email-ocr-1.png"
+    },
+    {
+      "id": "railway-accessibility",
+      "repo_name": "Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-",
+      "title": "Accessible Railway Ticketing System",
+      "description": "Inclusive ticketing interface prototype developed at CRIS converting ticket IDs and routes into Grade-1 Braille Unicode representations for visually impaired passengers.",
+      "language": "Python",
+      "confirmed_tech": [
+        "Python",
+        "Tkinter GUI",
+        "Braille Translation Engine",
+        "Accessibility Design",
+        "CRIS Project"
+      ],
+      "html_url": "https://github.com/vineetvedant/Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-",
+      "case_study_url": "projects/railway-accessibility.html",
+      "stars": 2,
+      "updated_at": "2024-12-01",
+      "screenshot": "assets/projects/railway-braille.svg"
+    },
+    {
+      "id": "predictive-analytics",
+      "repo_name": "Data_Visualisation",
+      "title": "Data Visualisation & Predictive Analytics Dashboard",
+      "description": "Interactive Streamlit socio-economic intelligence dashboard featuring 6 multi-dimensional Plotly visualizations and a live Random Forest Regressor predicting event likelihood.",
+      "language": "Python",
+      "confirmed_tech": [
+        "Streamlit",
+        "Plotly Express",
+        "Scikit-learn",
+        "Random Forest",
+        "Pandas",
+        "NumPy"
+      ],
+      "html_url": "https://github.com/vineetvedant/Data_Visualisation",
+      "case_study_url": "projects/predictive-analytics.html",
+      "stars": 1,
+      "updated_at": "2025-08-21",
+      "screenshot": "assets/projects/data-vis-dashboard.png"
+    }
+  ],
+  "secondary": [
+    {
+      "id": "tumortrace",
+      "repo_name": "TumorTrace",
+      "title": "TumorTrace \u2014 YOLO Brain Tumor Detection",
+      "description": "Deep learning computer vision pipeline utilizing a custom YOLO model trained on Roboflow MRI scans to detect and segment 5 brain tumor categories.",
+      "language": "Jupyter Notebook / Python",
+      "confirmed_tech": [
+        "YOLOv8",
+        "Computer Vision",
+        "Roboflow",
+        "PyTorch",
+        "OpenCV"
+      ],
+      "html_url": "https://github.com/vineetvedant/TumorTrace",
+      "stars": 1,
+      "updated_at": "2024-12-01",
+      "status": "Research Prototype"
+    },
+    {
+      "id": "eyeswidecode",
+      "repo_name": "EyesWideCode",
+      "title": "EyesWideCode \u2014 Emotion Insights & Focus Clock",
+      "description": "Real-time webcam application combining OpenCV Haar Cascade face detection with DeepFace convolutional analysis to track emotional states and screen attention time.",
+      "language": "Python",
+      "confirmed_tech": [
+        "OpenCV",
+        "DeepFace",
+        "Haar Cascades",
+        "Screen Tracking"
+      ],
+      "html_url": "https://github.com/vineetvedant/EyesWideCode",
+      "stars": 1,
+      "updated_at": "2024-12-31",
+      "status": "Active Prototype"
+    },
+    {
+      "id": "voicebook",
+      "repo_name": "VoiceBook",
+      "title": "VoiceBook \u2014 PDF to Audiobook Converter",
+      "description": "Offline desktop accessibility tool built with Tkinter and pyttsx3, parsing multi-page PDF documents and generating natural speech with voice gender and pace adjustments.",
+      "language": "Python",
+      "confirmed_tech": [
+        "Python",
+        "Tkinter",
+        "PyPDF4",
+        "pyttsx3 (TTS)"
+      ],
+      "html_url": "https://github.com/vineetvedant/VoiceBook",
+      "stars": 1,
+      "updated_at": "2024-12-01",
+      "status": "Utility"
+    },
+    {
+      "id": "word-to-html",
+      "repo_name": "Word-to-HTML",
+      "title": "Word to HTML Converter & Sanitizer",
+      "description": "Fast, zero-dependency client-side HTML cleaner and document converter with live dual-pane preview, tag filtering, and automated Cloudflare Pages deployment.",
+      "language": "JavaScript",
+      "confirmed_tech": [
+        "JavaScript (Vanilla)",
+        "HTML5",
+        "CSS3",
+        "Cloudflare Pages"
+      ],
+      "html_url": "https://github.com/vineetvedant/Word-to-HTML",
+      "stars": 0,
+      "updated_at": "2026-07-27",
+      "status": "Web App"
+    }
+  ]
+}

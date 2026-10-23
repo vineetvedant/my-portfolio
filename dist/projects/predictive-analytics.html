@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f8f5" />
+  <meta name="description" content="Case Study: Data Visualisation and Predictive Analytics Dashboard — An interactive Streamlit and Plotly application with a live Random Forest Regressor predicting event likelihood." />
+  <title>Predictive Analytics Dashboard — Case Study | Vedant Singh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="case-study-page">
+    <!-- Full-Screen Diagonal Blue Wipe Transition Overlay -->
+  <div class="page-wipe-overlay" aria-hidden="true">
+    <div class="page-wipe-layer"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating Pill Navigation (alejandroha.com aesthetic) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand-pill" href="../index.html" aria-label="Vedant Singh home">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Vedant Singh</span>
+        <span class="brand-tag">SE / AI</span>
+      </a>
+
+      <nav class="nav-links-pill" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav-link-item" href="../index.html#work">Work</a>
+        <a class="nav-link-item" href="../index.html#secondary-work">Repositories</a>
+        <a class="nav-link-item" href="../index.html#experience">Experience</a>
+        <a class="nav-link-item" href="../index.html#certifications">Certifications</a>
+        <a class="nav-link-item" href="../index.html#about">About</a>
+        <a class="nav-link-item" href="../index.html#contact">Contact</a>
+        <div class="mobile-drawer-actions">
+          <a class="pill-btn-outline mobile-drawer-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-blue mobile-drawer-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions-group">
+        <a class="pill-btn-outline header-resume-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a class="pill-btn-blue header-talk-btn" href="mailto:singhvineetvedant@gmail.com">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <article class="case-study-article">
+      <!-- Hero Header -->
+      <section class="cs-hero section">
+        <div class="container">
+          <div class="cs-breadcrumbs">
+            <a href="../index.html#work">← Back to Selected Work</a>
+            <span class="cs-sep">/</span>
+            <span>CASE STUDY 04</span>
+          </div>
+          <div class="cs-header-grid">
+            <div>
+              <div class="eyebrow"><span class="status-dot"></span> DATA APPLICATIONS & APPLIED ML</div>
+              <h1 class="cs-title">Data Visualisation &amp; Predictive Analytics Dashboard</h1>
+              <p class="cs-subtitle">Unifying exploratory data analysis and real-time regression: An interactive Streamlit dashboard featuring 6 multidimensional Plotly charts and an embedded Random Forest Regressor predicting socio-economic event likelihood.</p>
+              <div class="cs-actions">
+                <a class="pill-btn-blue" href="https://github.com/vineetvedant/Data_Visualisation" target="_blank" rel="noopener">
+                  View on GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <span class="cs-badge cs-badge-verified">Verified against repository source</span>
+              </div>
+            </div>
+            <div class="cs-meta-card">
+              <div class="cs-meta-row"><span>Repository:</span><strong>Data_Visualisation</strong></div>
+              <div class="cs-meta-row"><span>Primary Language:</span><strong>Python</strong></div>
+              <div class="cs-meta-row"><span>Web Framework:</span><strong>Streamlit</strong></div>
+              <div class="cs-meta-row"><span>Visualizations:</span><strong>Plotly Express &amp; Graph Objects</strong></div>
+              <div class="cs-meta-row"><span>ML Model:</span><strong>Scikit-Learn Random Forest Regressor</strong></div>
+              <div class="cs-meta-row"><span>Implementation Status:</span><strong>Complete Functional Dashboard</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Visual / Screenshot -->
+      <section class="cs-media-section">
+        <div class="container">
+          <figure class="cs-figure">
+            <img src="../assets/projects/data-vis-dashboard.png" alt="Streamlit Data Visualization Dashboard showing interactive charts, filters, and predictions" loading="lazy" />
+            <figcaption>Authentic project screenshot from repository: Streamlit dashboard displaying correlation metrics, multi-faceted filtering, and predictive ML output.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Content Sections -->
+      <section class="section cs-content-section">
+        <div class="container cs-layout-grid">
+          <aside class="cs-sidebar">
+            <div class="cs-nav-sticky">
+              <span class="cs-side-heading">CONTENTS</span>
+              <ul class="cs-toc">
+                <li><a href="#the-problem">01. The Problem</a></li>
+                <li><a href="#architecture">02. Data Processing Pipeline</a></li>
+                <li><a href="#visualizations">03. 6 Interactive Visualizations</a></li>
+                <li><a href="#predictive-ml">04. Random Forest Predictive Engine</a></li>
+                <li><a href="#engineering-notes">05. Engineering Decisions &amp; Performance</a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="cs-body">
+            <!-- Section 1 -->
+            <section id="the-problem" class="cs-block">
+              <h2>01. The Real Problem</h2>
+              <p>Analyzing global socio-economic, environmental, and PESTLE (Political, Economic, Social, Technological, Legal, Environmental) event streams typically requires juggling separate tools for data munging, static reporting, and statistical modeling. When decision-makers explore complex indicators like intensity, relevance, and likelihood, static tables fail to convey correlations or allow speculative 'what-if' forecasting.</p>
+              <p>The goal of this project was to build a unified exploratory analytics workspace in Python that combines high-performance multi-variable filtering, dynamic charting, and real-time regression forecasting in a single accessible web interface.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="architecture" class="cs-block">
+              <h2>02. Data Processing &amp; Feature Pipeline</h2>
+              <p>In <code>tt.py</code>, raw data from <code>jsondata.json</code> is ingested and prepared with robust cleaning steps:</p>
+              
+              <div class="cs-code-wrapper">
+                <div class="cs-code-header"><span>tt.py</span><span>Feature Preparation &amp; Categorical Encoding</span></div>
+                <pre><code># Handle missing values and adjust data types
+df['end_year'] = pd.to_numeric(df['end_year'], errors='coerce').fillna(0).astype(int)
+df['intensity'] = pd.to_numeric(df['intensity'], errors='coerce').fillna(0)
+df['relevance'] = pd.to_numeric(df['relevance'], errors='coerce').fillna(0)
+df['likelihood'] = pd.to_numeric(df['likelihood'], errors='coerce').fillna(0)
+for col in ['topic', 'sector', 'region', 'pestle', 'source', 'country']:
+    df[col] = df[col].fillna('Unknown')
+
+# Encode categorical variables for the ML model
+label_encoders = {}
+for column in ['topic', 'sector', 'region', 'pestle', 'source', 'country']:
+    le = LabelEncoder()
+    df[column + '_encoded'] = le.fit_transform(df[column].astype(str))
+    label_encoders[column] = le</code></pre>
+              </div>
+
+              <p>Seven sidebar dropdowns allow visitors to slice the dataset dynamically across End Year, Topic, Sector, Region, PESTLE, Source, and Country, with instantaneous chart rerendering.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="visualizations" class="cs-block">
+              <h2>03. 6 Verified Interactive Visualizations</h2>
+              <p>The dashboard implements 6 distinct Plotly visualizations designed for deep analytical exploration:</p>
+              <div class="cs-feature-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Visualization</th>
+                      <th>Plotly Engine</th>
+                      <th>Analytical Objective</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Intensity vs. Likelihood</strong></td>
+                      <td><code>px.scatter</code></td>
+                      <td>Examines clustering and outliers between event severity and probability, color-coded by topic with tooltip title inspection.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Relevance Over Time</strong></td>
+                      <td><code>px.line</code></td>
+                      <td>Tracks temporal trajectory of strategic importance across distinct industry domains.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Region Distribution</strong></td>
+                      <td><code>px.pie</code></td>
+                      <td>Aggregates geographic density and event volume across continental markets.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Top 10 Topics</strong></td>
+                      <td><code>px.bar</code></td>
+                      <td>Identifies highest-frequency risk and opportunity categories via <code>nlargest(10)</code> aggregation.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PESTLE Analysis</strong></td>
+                      <td><code>px.bar</code></td>
+                      <td>Decomposes macro-environmental influences into structural categories.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Correlation Heatmap</strong></td>
+                      <td><code>go.Heatmap (Viridis)</code></td>
+                      <td>Visualizes statistical covariance between numeric indicators (intensity, relevance, likelihood).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="predictive-ml" class="cs-block">
+              <h2>04. Random Forest Predictive Engine</h2>
+              <p>Beyond retrospective charting, the application embeds a trained regression model to forecast the <code>likelihood</code> score of unseen events:</p>
+              <ul>
+                <li><strong>Model Architecture:</strong> <code>RandomForestRegressor(n_estimators=100, random_state=42)</code> trained on an 80/20 train/test split.</li>
+                <li><strong>Evaluation Metric:</strong> Mean Absolute Error (MAE) evaluated on the held-out test split and displayed transparently to the user.</li>
+                <li><strong>Interactive Forecasting Form:</strong> Visitors adjust numeric sliders (Intensity, Relevance, Target Year) and categorical dropdowns (Sector, Region, PESTLE, Topic, Source, Country). The inputs are mapped through the fitted <code>label_encoders</code> and submitted to <code>model.predict([encoded_values])</code>, outputting the forecasted likelihood instantly.</li>
+              </ul>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="engineering-notes" class="cs-block">
+              <h2>05. Engineering Decisions &amp; Optimization Scope</h2>
+              <div class="cs-card-callout">
+                <h4>Verified Findings &amp; Future Scope</h4>
+                <ul>
+                  <li><strong>In-Memory Training:</strong> The Random Forest model is trained on startup when Streamlit initializes. For rapid iteration on small datasets (~thousands of rows) this works seamlessly; for enterprise scaling, the model pipeline would be pre-serialized to a Joblib/ONNX artifact.</li>
+                  <li><strong>Streamlit Caching:</strong> Uses <code>@st.cache_data</code> to cache raw JSON ingestion, avoiding repetitive disk I/O on filter updates.</li>
+                  <li><strong>Defensive Parsing:</strong> Handles infinite and empty values via <code>replace([np.inf, -np.inf, ''], np.nan).dropna()</code> to safeguard matrix operations.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Footer navigation -->
+            <div class="cs-bottom-nav">
+              <a href="railway-accessibility.html" class="pill-btn-outline">← Previous: Railway Ticketing Accessibility</a>
+              <a href="../index.html#work" class="pill-btn-blue">Back to Selected Work Overview →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+    <!-- High-Impact Dark Full-Screen Footer (alejandroha.com aesthetic) -->
+  <footer class="site-footer-brutalist section">
+    <div class="footer-ghost-typo" aria-hidden="true">
+      PYTHON · APPLIED AI · BACKEND SYSTEMS
+    </div>
+    <div class="container footer-inner-content">
+      <div class="footer-hero-cta">
+        <div class="footer-pretitle">[ EXPLORE FURTHER ]</div>
+        <h2 class="footer-massive-headline">
+          Building software<br />
+          that <em>does the work.</em>
+        </h2>
+        <div class="footer-action-row">
+          <a class="footer-giant-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk ↗
+          </a>
+          <a class="pill-btn-outline" href="../index.html#work" style="color:#ffffff; border-color:#ffffff; background:transparent;">
+            ← Back to All Projects
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span>© <span id="year">2026</span> Vedant Singh · Small details, big impact.</span>
+        <a class="footer-back-to-top-btn" href="#main">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -13,8 +13,7 @@ scratch/
 __pycache__/
 *.pyc
 
-# Build outputs & dependencies
-dist/
+# Dependencies
 node_modules/
 .vercel/
 
