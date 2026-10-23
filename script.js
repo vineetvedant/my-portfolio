@@ -458,23 +458,69 @@ function initLiveToolToast() {
     return;
   }
 
+  let pendingSound = false;
+
+  // Robust sound player: tries AudioContext first, falls back to <audio> element
+  function playToastSound() {
+    if (!audio) return;
+    try {
+      // Resume or create AudioContext to bypass autoplay restrictions
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        fetch(audio.src)
+          .then(r => r.arrayBuffer())
+          .then(buf => ctx.decodeAudioData(buf))
+          .then(decoded => {
+            const src = ctx.createBufferSource();
+            src.buffer = decoded;
+            const gain = ctx.createGain();
+            gain.gain.value = 0.85;
+            src.connect(gain);
+            gain.connect(ctx.destination);
+            src.start(0);
+          })
+          .catch(() => {
+            // Fallback to plain <audio>
+            audio.currentTime = 0;
+            audio.volume = 0.85;
+            audio.play().catch(() => {});
+          });
+      } else {
+        audio.currentTime = 0;
+        audio.volume = 0.85;
+        audio.play().catch(() => {});
+      }
+    } catch (e) {
+      audio.currentTime = 0;
+      audio.volume = 0.85;
+      audio.play().catch(() => {});
+    }
+  }
+
+  // Play on first user interaction if autoplay was blocked
+  function playOnInteraction() {
+    if (!pendingSound) return;
+    pendingSound = false;
+    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt =>
+      document.removeEventListener(evt, playOnInteraction, { once: true })
+    );
+    playToastSound();
+  }
+
   const triggerToast = () => {
     // Prevent double execution
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     sessionStorage.setItem(STORAGE_KEY, 'true');
 
-    // Play notification sound
-    if (audio) {
-      audio.currentTime = 0;
-      audio.volume = 0.85;
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          // Handled gracefully if browser autoplay policy blocks unmuted audio before user interaction
-          console.log('Audio autoplay prevented by browser policy:', err);
-        });
-      }
-    }
+    // Try playing sound immediately; queue fallback if blocked
+    pendingSound = true;
+    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt =>
+      document.addEventListener(evt, playOnInteraction, { once: true, passive: true })
+    );
+    playToastSound();
+    // Mark sound as played after 2s regardless
+    setTimeout(() => { pendingSound = false; }, 2000);
 
     // Trigger smooth CSS transform slide-in
     toast.classList.add('is-visible');
