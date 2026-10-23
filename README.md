@@ -16,18 +16,31 @@ python -m http.server 8000
 ```
 Then visit `http://localhost:8000`.
 
-## Cloudflare Pages Deployment
-This project is pre-configured for direct deployment on **Cloudflare Pages**:
-1. Connect this repository (`https://github.com/vineetvedant/my-portfolio.git`).
+## Deployment
+
+### Vercel Deployment
+This repository is configured with `vercel.json` for one-click deployment on **Vercel**:
+1. Import repository `https://github.com/vineetvedant/my-portfolio.git` into Vercel.
+2. **Framework Preset**: `Other` (or auto-detected static).
+3. **Root Directory**: `.` (leave as default).
+4. `vercel.json` automatically configures:
+   - Output directory to root (`.`)
+   - Forwarding redirects (`/word2HTML` → `https://wordtohtml1.0.sshconnect.space`)
+   - Edge security headers and long-term asset caching
+
+### Cloudflare Pages Deployment
+This repository also contains `_headers` and `wrangler.toml` for **Cloudflare Pages**:
+1. Connect this repository in the Cloudflare Dashboard.
 2. Set **Framework preset**: `None`.
 3. Set **Build command**: Leave blank.
 4. Set **Build output directory**: `/` (root directory).
-5. Deploy! Cloudflare Pages will automatically serve `index.html`, handle custom headers from `_headers`, and route error pages to `404.html`.
 
 ## Project Structure
 - `index.html`: Semantic markup and section structure.
 - `styles.css`: Complete design system, Bento grid, and responsive rules.
 - `script.js`: Interactive carousel, floating nav scroll-spy, time-loop reel, and delayed toast notification.
 - `assets/`: Optimized images, background video loops, resume PDF, and audio assets.
+- `vercel.json`: Vercel configuration for static root serving, redirects, and headers.
 - `_headers`: Cloudflare Pages security headers and asset caching policies.
+- `wrangler.toml`: Cloudflare Pages configuration.
 - `404.html`: Custom brutalist 404 error page.

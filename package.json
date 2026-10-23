@@ -4,7 +4,7 @@
   "private": true,
   "description": "Vedant Singh — Software Engineer Portfolio & Live Production Deployments",
   "scripts": {
-    "build": "node -e \"console.log('Cloudflare Pages: Static site assets ready in root')\"",
+    "build": "node -e \"console.log('Static site assets ready in root for Vercel and Cloudflare Pages')\"",
     "start": "npx serve ."
   }
 }
