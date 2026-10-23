@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f8f5" />
+  <meta name="description" content="Case Study: Accessible Railway Ticketing System (CRIS) — An inclusive ticketing prototype converting alphanumeric booking data into Braille Unicode for visually impaired travelers." />
+  <title>Railway Ticketing Accessibility — Case Study | Vedant Singh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="case-study-page">
+    <!-- Full-Screen Diagonal Blue Wipe Transition Overlay -->
+  <div class="page-wipe-overlay" aria-hidden="true">
+    <div class="page-wipe-layer"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating Pill Navigation (alejandroha.com aesthetic) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand-pill" href="../index.html" aria-label="Vedant Singh home">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Vedant Singh</span>
+        <span class="brand-tag">SE / AI</span>
+      </a>
+
+      <nav class="nav-links-pill" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav-link-item" href="../index.html#work">Work</a>
+        <a class="nav-link-item" href="../index.html#secondary-work">Repositories</a>
+        <a class="nav-link-item" href="../index.html#experience">Experience</a>
+        <a class="nav-link-item" href="../index.html#certifications">Certifications</a>
+        <a class="nav-link-item" href="../index.html#about">About</a>
+        <a class="nav-link-item" href="../index.html#contact">Contact</a>
+        <div class="mobile-drawer-actions">
+          <a class="pill-btn-outline mobile-drawer-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-blue mobile-drawer-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions-group">
+        <a class="pill-btn-outline header-resume-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a class="pill-btn-blue header-talk-btn" href="mailto:singhvineetvedant@gmail.com">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <article class="case-study-article">
+      <!-- Hero Header -->
+      <section class="cs-hero section">
+        <div class="container">
+          <div class="cs-breadcrumbs">
+            <a href="../index.html#work">← Back to Selected Work</a>
+            <span class="cs-sep">/</span>
+            <span>CASE STUDY 03</span>
+          </div>
+          <div class="cs-header-grid">
+            <div>
+              <div class="eyebrow"><span class="status-dot"></span> ACCESSIBILITY & INCLUSIVE INTERFACES</div>
+              <h1 class="cs-title">Accessible Railway Ticketing System</h1>
+              <p class="cs-subtitle">Inclusive software design for public transit: A Python/Tkinter interface developed during an internship at CRIS (Centre for Railway Information Systems) converting UTS ticket identifiers into Grade-1 Braille representations.</p>
+              <div class="cs-actions">
+                <a class="pill-btn-blue" href="https://github.com/vineetvedant/Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-" target="_blank" rel="noopener">
+                  View on GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <span class="cs-badge cs-badge-verified">Verified against repository source</span>
+              </div>
+            </div>
+            <div class="cs-meta-card">
+              <div class="cs-meta-row"><span>Repository:</span><strong>Empowering-Accessibility-...</strong></div>
+              <div class="cs-meta-row"><span>Organization / Context:</span><strong>CRIS (Centre for Railway Information Systems)</strong></div>
+              <div class="cs-meta-row"><span>Primary Language:</span><strong>Python</strong></div>
+              <div class="cs-meta-row"><span>GUI Framework:</span><strong>Tkinter</strong></div>
+              <div class="cs-meta-row"><span>Core Logic:</span><strong>Custom Unicode Braille Mapping</strong></div>
+              <div class="cs-meta-row"><span>Audit Status:</span><strong>Proof of Concept GUI Prototype</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Visual / SVG Diagram -->
+      <section class="cs-media-section">
+        <div class="container">
+          <figure class="cs-figure">
+            <img src="../assets/projects/railway-braille.svg" alt="System diagram of CRIS UTS accessibility prototype converting station inputs into 6-dot Braille Unicode" loading="lazy" />
+            <figcaption>Authentic system diagram: UTS Ticket Reservation accessibility translation engine mapping Latin station codes to 6-dot Braille cells.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Content Sections -->
+      <section class="section cs-content-section">
+        <div class="container cs-layout-grid">
+          <aside class="cs-sidebar">
+            <div class="cs-nav-sticky">
+              <span class="cs-side-heading">CONTENTS</span>
+              <ul class="cs-toc">
+                <li><a href="#the-problem">01. The Problem</a></li>
+                <li><a href="#braille-engine">02. Braille Translation Engine</a></li>
+                <li><a href="#inclusive-workflow">03. Station Ticketing Workflow</a></li>
+                <li><a href="#repository-audit">04. Code Audit &amp; Reality Check</a></li>
+                <li><a href="#future-scope">05. Design Insights &amp; Next Steps</a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="cs-body">
+            <!-- Section 1 -->
+            <section id="the-problem" class="cs-block">
+              <h2>01. The Real Problem</h2>
+              <p>The Unreserved Ticketing System (UTS) across Indian Railways handles millions of daily passenger journeys. However, physical self-service kiosks and digital booking screens are overwhelmingly tailored for sighted individuals. Visually impaired passengers typically must depend on third parties at crowded ticket counters to verify unreserved ticket numbers, travel corridors, and destination confirmations.</p>
+              <p>During my summer project at CRIS (Centre for Railway Information Systems), the core question was: <em>How can automated ticketing workflows output standardized tactile Braille representations directly at the terminal level?</em></p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="braille-engine" class="cs-block">
+              <h2>02. Braille Translation Engine</h2>
+              <p>The code in <code>main_code.py</code> implements a deterministic symbol translation layer that maps Latin letters and numbers directly to standard 6-dot Braille Unicode glyphs (U+2800 to U+28FF):</p>
+
+              <div class="cs-code-wrapper">
+                <div class="cs-code-header"><span>main_code.py</span><span>Braille Glyph Translation Dictionary</span></div>
+                <pre><code>braille_dict = {
+    'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋',
+    'g': '⠛', 'h': '⠓', 'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇',
+    'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏', 'q': '⠟', 'r': '⠗',
+    's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
+    'y': '⠽', 'z': '⠵', ' ': ' ',
+    '0': '⠚', '1': '⠁', '2': '⠃', '3': '⠉', '4': '⠙',
+    '5': '⠑', '6': '⠋', '7': '⠛', '8': '⠓', '9': '⠊'
+}
+
+def text_to_braille(find):
+    braille_text = ''
+    for char in find.lower():
+        braille_char = braille_dict.get(char, '')
+        braille_text += braille_char
+    return braille_text</code></pre>
+              </div>
+
+              <p>This allows arbitrary UTS ticket numbers (e.g. <code>UTS NO</code> ➔ <code>⠥⠞⠎ ⠝⠕</code>) to be formatted immediately for tactile display refreshers or specialized embossers without external network latency.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="inclusive-workflow" class="cs-block">
+              <h2>03. Station Ticketing Workflow</h2>
+              <p>The desktop UI encapsulates key transit parameters:</p>
+              <ul>
+                <li><strong>Station Origin &amp; Destination:</strong> Dual entry inputs for departure and arrival stations (e.g., <code>From: NDLS</code>, <code>To: CNB</code>).</li>
+                <li><strong>UTS Ticket Identifier:</strong> Accepts numerical and alphanumeric ticket confirmation strings.</li>
+                <li><strong>Dynamic Conversion:</strong> An interactive trigger translates alphanumeric input into Unicode Braille patterns on the display label.</li>
+                <li><strong>Live Clock Sync:</strong> A recurring Tkinter event loop (<code>time_label.after(1000, update_time)</code>) maintains real-time synchronization with station system time.</li>
+              </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="repository-audit" class="cs-block">
+              <h2>04. Code Audit &amp; Reality Check</h2>
+              <div class="cs-card-callout">
+                <h4>Authentic Repository Findings &amp; Deficiencies</h4>
+                <ul>
+                  <li><strong>Database Verification:</strong> While older resume bullet points referenced SQLite database integration, the committed repository code (<code>main_code.py</code>) represents the GUI frontend proof-of-concept. The SQLite schema and data persistence layers are not present in this public repository.</li>
+                  <li><strong>Asset Paths:</strong> Background images and station logos were linked to local development paths (e.g., <code>D:\cris\back.png</code>). A production build would bundle assets into relative application packages or standard base64 resources.</li>
+                  <li><strong>Audio Modality:</strong> This repository focused on visual and Unicode Braille generation. Full accessibility would additionally integrate auditory screen-reading (pyttsx3/eSpeak) alongside the tactile output.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="future-scope" class="cs-block">
+              <h2>05. Design Insights &amp; Engineering Value</h2>
+              <p>Despite being an early internship prototype, this project highlights key principles in public infrastructure software:</p>
+              <ul>
+                <li><strong>Design for Extremes:</strong> Designing for travelers with visual impairments exposes usability bottlenecks that also benefit fatigued travelers, elderly citizens, and non-English speakers.</li>
+                <li><strong>Standardization:</strong> Utilizing standard Unicode Braille patterns ensures compatibility with modern refreshable Braille displays (via USB or Bluetooth HID).</li>
+                <li><strong>CRIS Context:</strong> The project provided firsthand exposure to the scale, reliability requirements, and operational complexity of Indian Railways IT systems.</li>
+              </ul>
+            </section>
+
+            <!-- Footer navigation -->
+            <div class="cs-bottom-nav">
+              <a href="smart-email-automation.html" class="pill-btn-outline">← Previous: Smart Email Automation</a>
+              <a href="predictive-analytics.html" class="pill-btn-blue">Next Case Study: Predictive Analytics →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+    <!-- High-Impact Dark Full-Screen Footer (alejandroha.com aesthetic) -->
+  <footer class="site-footer-brutalist section">
+    <div class="footer-ghost-typo" aria-hidden="true">
+      PYTHON · APPLIED AI · BACKEND SYSTEMS
+    </div>
+    <div class="container footer-inner-content">
+      <div class="footer-hero-cta">
+        <div class="footer-pretitle">[ EXPLORE FURTHER ]</div>
+        <h2 class="footer-massive-headline">
+          Building software<br />
+          that <em>does the work.</em>
+        </h2>
+        <div class="footer-action-row">
+          <a class="footer-giant-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk ↗
+          </a>
+          <a class="pill-btn-outline" href="../index.html#work" style="color:#ffffff; border-color:#ffffff; background:transparent;">
+            ← Back to All Projects
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span>© <span id="year">2026</span> Vedant Singh · Small details, big impact.</span>
+        <a class="footer-back-to-top-btn" href="#main">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

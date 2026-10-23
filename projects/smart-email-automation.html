@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f8f5" />
+  <meta name="description" content="Case Study: Smart Email Automation — Multi-stage pipeline combining OCR extraction, Mistral-7B LLM email enhancement, and rate-limited Windows COM Outlook dispatching." />
+  <title>Smart Email Automation — Case Study | Vedant Singh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body class="case-study-page">
+    <!-- Full-Screen Diagonal Blue Wipe Transition Overlay -->
+  <div class="page-wipe-overlay" aria-hidden="true">
+    <div class="page-wipe-layer"></div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating Pill Navigation (alejandroha.com aesthetic) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand-pill" href="../index.html" aria-label="Vedant Singh home">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Vedant Singh</span>
+        <span class="brand-tag">SE / AI</span>
+      </a>
+
+      <nav class="nav-links-pill" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav-link-item" href="../index.html#work">Work</a>
+        <a class="nav-link-item" href="../index.html#secondary-work">Repositories</a>
+        <a class="nav-link-item" href="../index.html#experience">Experience</a>
+        <a class="nav-link-item" href="../index.html#certifications">Certifications</a>
+        <a class="nav-link-item" href="../index.html#about">About</a>
+        <a class="nav-link-item" href="../index.html#contact">Contact</a>
+        <div class="mobile-drawer-actions">
+          <a class="pill-btn-outline mobile-drawer-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-blue mobile-drawer-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="nav-actions-group">
+        <a class="pill-btn-outline header-resume-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a class="pill-btn-blue header-talk-btn" href="mailto:singhvineetvedant@gmail.com">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <article class="case-study-article">
+      <!-- Hero Header -->
+      <section class="cs-hero section">
+        <div class="container">
+          <div class="cs-breadcrumbs">
+            <a href="../index.html#work">← Back to Selected Work</a>
+            <span class="cs-sep">/</span>
+            <span>CASE STUDY 02</span>
+          </div>
+          <div class="cs-header-grid">
+            <div>
+              <div class="eyebrow"><span class="status-dot"></span> WORKFLOW AUTOMATION & GENERATIVE AI</div>
+              <h1 class="cs-title">Smart Email Automation with Mistral-7B</h1>
+              <p class="cs-subtitle">A practical end-to-end Python pipeline automating lead extraction from scanned documents, LLM-powered tone refinement via OpenRouter, and rate-limited Windows COM Outlook dispatching.</p>
+              <div class="cs-actions">
+                <a class="pill-btn-blue" href="https://github.com/vineetvedant/smart_emai_cold_mail" target="_blank" rel="noopener">
+                  View on GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <span class="cs-badge cs-badge-verified">Verified against repository source</span>
+              </div>
+            </div>
+            <div class="cs-meta-card">
+              <div class="cs-meta-row"><span>Repository:</span><strong>smart_emai_cold_mail</strong></div>
+              <div class="cs-meta-row"><span>Primary Language:</span><strong>Python</strong></div>
+              <div class="cs-meta-row"><span>AI Model:</span><strong>Mistral-7B-Instruct (via OpenRouter)</strong></div>
+              <div class="cs-meta-row"><span>Mail Client API:</span><strong>pywin32 (Outlook Application COM)</strong></div>
+              <div class="cs-meta-row"><span>Extraction Tooling:</span><strong>PyTesseract OCR + Regex</strong></div>
+              <div class="cs-meta-row"><span>Audit Status:</span><strong>Functional Script Pipeline</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Visual -->
+      <section class="cs-media-section">
+        <div class="container">
+          <figure class="cs-figure">
+            <img src="../assets/projects/smart-email-ocr-1.png" alt="Scanned HR contact directory processed by OCR" loading="lazy" style="max-height: 480px; object-fit: contain; background: #fff;" />
+            <figcaption>Authentic project artifact from repository: Scanned document directory parsed through PyTesseract OCR to extract verified email targets.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Content Sections -->
+      <section class="section cs-content-section">
+        <div class="container cs-layout-grid">
+          <aside class="cs-sidebar">
+            <div class="cs-nav-sticky">
+              <span class="cs-side-heading">CONTENTS</span>
+              <ul class="cs-toc">
+                <li><a href="#the-problem">01. The Problem</a></li>
+                <li><a href="#workflow">02. Verified Pipeline Workflow</a></li>
+                <li><a href="#ocr-extraction">03. OCR &amp; Regex Sanitization</a></li>
+                <li><a href="#ai-integration">04. Mistral-7B AI Enhancement</a></li>
+                <li><a href="#dispatch-engine">05. Dispatch Engine &amp; Throttling</a></li>
+                <li><a href="#security-limits">06. Security, ISP Limits &amp; Constraints</a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="cs-body">
+            <!-- Section 1 -->
+            <section id="the-problem" class="cs-block">
+              <h2>01. The Real Problem</h2>
+              <p>During career outreach or enterprise business development, professionals frequently encounter contact lists trapped inside non-selectable image formats (scanned PDF pages, screenshots of tables, and document prints). Manually transcribing dozens of email addresses and drafting tailored messages is repetitive and prone to typographical errors.</p>
+              <p>The goal of this project was to automate the entire funnel in Python:</p>
+              <ul>
+                <li>Parse scanned documents and images into clean tabular CSV contact lists using OCR.</li>
+                <li>Programmatically enhance draft email copy using a modern open-weights instruction model (Mistral-7B) to maintain crisp, professional formatting.</li>
+                <li>Dispatch personalized messages and attachments via a locally authenticated Microsoft Outlook desktop client with audit logging.</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="workflow" class="cs-block">
+              <h2>02. Verified Pipeline Workflow</h2>
+              <p>Inspection of <code>image_to_csv.py</code>, <code>aitesting.py</code>, and <code>test2sendmail.py</code> reveals a 4-stage sequential automation flow:</p>
+              
+              <div class="cs-diagram-box">
+                <div class="cs-diagram-title">PIPELINE ARCHITECTURE</div>
+                <div class="cs-flow-diagram">
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">Step 1: OCR</span>
+                    <h4>Image to Text</h4>
+                    <p>Tesseract OCR + Regex extraction into <code>email.csv</code></p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">Step 2: AI</span>
+                    <h4>Mistral-7B</h4>
+                    <p>OpenRouter API rephrases subject &amp; body</p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">Step 3: Dispatch</span>
+                    <h4>Outlook COM</h4>
+                    <p>Win32 COM API attaches PDF &amp; dispatches</p>
+                  </div>
+                  <div class="cs-flow-arrow">➔</div>
+                  <div class="cs-flow-step">
+                    <span class="cs-step-tag">Step 4: Audit</span>
+                    <h4>Logging</h4>
+                    <p>ISO timestamp &amp; status recorded in CSV</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="ocr-extraction" class="cs-block">
+              <h2>03. OCR &amp; Regex Sanitization</h2>
+              <p>In <code>image_to_csv.py</code>, images are loaded via PIL (Python Imaging Library) and processed through <code>pytesseract.image_to_string()</code>. A regular expression extracts all valid email formats:</p>
+              
+              <div class="cs-code-wrapper">
+                <div class="cs-code-header"><span>image_to_csv.py</span><span>Regex Email Extraction</span></div>
+                <pre><code>def extract_emails(text):
+    """Extract email addresses from text using regex"""
+    email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
+    return re.findall(email_pattern, text)</code></pre>
+              </div>
+
+              <p>In <code>test2sendmail.py</code>, the Pandas reader contains defensive fallback logic to handle CSVs with or without headers, strips surrounding whitespace, and filters out non-email strings before any mail transaction begins.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="ai-integration" class="cs-block">
+              <h2>04. Mistral-7B AI Enhancement</h2>
+              <p>Rather than sending rigid static templates, the script integrates OpenRouter's OpenAI-compatible completions API to invoke <code>mistralai/mistral-7b-instruct:free</code>. The function parses the model output into distinct subject line and markdown body components:</p>
+
+              <div class="cs-code-wrapper">
+                <div class="cs-code-header"><span>test2sendmail.py</span><span>LLM Rewrite Routine</span></div>
+                <pre><code>def enhance_email(subject, body):
+    prompt = (
+        f"Improve the following job application email for clarity, professionalism, and impact. "
+        f"Return a subject line and a body in markdown format. "
+        f"Subject: {subject}\n\nBody:\n{body}"
+    )
+    completion = client.chat.completions.create(
+        model="mistralai/mistral-7b-instruct:free",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    content = completion.choices[0].message.content
+    # Parse subject and body lines from model response
+    lines = content.splitlines()
+    ...
+    return new_subject, new_body</code></pre>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="dispatch-engine" class="cs-block">
+              <h2>05. Dispatch Engine &amp; Throttling</h2>
+              <p>Mail dispatching is executed through the Windows COM automation bridge: <code>win32com.client.Dispatch('outlook.application')</code>. This leverages the local desktop Outlook authentication, bypassing SMTP credential handshakes.</p>
+              <p>Crucially, to prevent local mail-client flooding, the dispatch loop incorporates intentional spacing:</p>
+              <ul>
+                <li><strong>Throttling Delay:</strong> Enforces <code>time.sleep(10)</code> between successive transmissions.</li>
+                <li><strong>Safe Attachment Resolution:</strong> Validates file existence using <code>pathlib.Path(attachment_path).exists()</code> and resolves absolute paths prior to calling <code>mail.Attachments.Add()</code>.</li>
+                <li><strong>Delivery Telemetry:</strong> Records every outcome (either <code>"Sent"</code> or <code>"Failed: &lt;error&gt;"</code>) alongside ISO 8601 timestamps in <code>email_log.csv</code>.</li>
+              </ul>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="security-limits" class="cs-block">
+              <h2>06. Security, Limitations &amp; ISP Constraints</h2>
+              <div class="cs-card-callout">
+                <h4>Authentic Engineering Boundaries</h4>
+                <ul>
+                  <li><strong>No Deliverability Guarantee:</strong> This application interacts solely with the local Outlook client. It does <em>not</em> bypass email service provider spam filters, SPF/DKIM policies, or organizational inbox firewalls.</li>
+                  <li><strong>OS Compatibility:</strong> Because it depends on the Windows COM interface (<code>win32com</code>), this automation runs exclusively on Windows with an installed, authenticated Microsoft Outlook profile.</li>
+                  <li><strong>Security Caution:</strong> In early script iterations, API keys were placed directly in script headers. For production hardening, credentials should strictly be managed via environment variables (e.g. <code>os.getenv("OPENROUTER_API_KEY")</code>).</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Footer navigation -->
+            <div class="cs-bottom-nav">
+              <a href="gold-price-assistant.html" class="pill-btn-outline">← Previous: Gold Price Assistant</a>
+              <a href="railway-accessibility.html" class="pill-btn-blue">Next Case Study: Railway Ticketing Accessibility →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+    <!-- High-Impact Dark Full-Screen Footer (alejandroha.com aesthetic) -->
+  <footer class="site-footer-brutalist section">
+    <div class="footer-ghost-typo" aria-hidden="true">
+      PYTHON · APPLIED AI · BACKEND SYSTEMS
+    </div>
+    <div class="container footer-inner-content">
+      <div class="footer-hero-cta">
+        <div class="footer-pretitle">[ EXPLORE FURTHER ]</div>
+        <h2 class="footer-massive-headline">
+          Building software<br />
+          that <em>does the work.</em>
+        </h2>
+        <div class="footer-action-row">
+          <a class="footer-giant-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk ↗
+          </a>
+          <a class="pill-btn-outline" href="../index.html#work" style="color:#ffffff; border-color:#ffffff; background:transparent;">
+            ← Back to All Projects
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span>© <span id="year">2026</span> Vedant Singh · Small details, big impact.</span>
+        <a class="footer-back-to-top-btn" href="#main">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

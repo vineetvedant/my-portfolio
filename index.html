@@ -1,29 +1,1102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vedant Singh - AI Engineer | HPC Innovator | Problem Solver</title>
-    <meta name="description" content="Portfolio of Vedant Singh - Computer Science graduate specializing in AI, high-performance computing, and industrial automation. Experienced in Python, TensorFlow, AWS, and team leadership." />
-    <meta name="author" content="Vedant Singh" />
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://vineetvedant.github.io/my-portfolio/" />
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs text" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f3f3f3" />
+  <meta name="description" content="Vedant Singh is a software engineer working on Python backend systems, APIs, automation, and applied AI. Explore authentic GitHub projects, case studies, and engineering experience." />
+  <meta property="og:title" content="Vedant Singh — Software Engineer" />
+  <meta property="og:description" content="Python backend, API automation and practical AI systems. Selected engineering work, case studies and public GitHub repositories." />
+  <meta property="og:type" content="website" />
+  <title>Vedant Singh — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Full-Screen Diagonal Blue Wipe Transition Overlay -->
+  <div class="page-wipe-overlay" aria-hidden="true">
+    <div class="page-wipe-layer"></div>
+  </div>
 
-    <meta property="og:title" content="Vedant Singh - AI Engineer | HPC Innovator | Problem Solver" />
-    <meta property="og:description" content="Portfolio of Vedant Singh - Computer Science graduate specializing in AI, high-performance computing, and industrial automation." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-  </head>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Floating Pill Navigation (alejandroha.com aesthetic) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <!-- Brand Pill -->
+      <a class="brand-pill" href="#top" aria-label="Vedant Singh, back to top">
+        <span class="brand-dot"></span>
+        <span class="brand-title">Vedant Singh</span>
+        <span class="brand-tag">SE / AI</span>
+      </a>
+
+      <!-- Center Links Pill -->
+      <nav class="nav-links-pill" id="primaryNav" aria-label="Primary navigation">
+        <a class="nav-link-item is-active" href="#work">Work</a>
+        <a class="nav-link-item" href="#live-projects">Live Tools</a>
+        <a class="nav-link-item" href="#secondary-work">Repositories</a>
+        <a class="nav-link-item" href="#experience">Experience</a>
+        <a class="nav-link-item" href="#certifications">Certifications</a>
+        <a class="nav-link-item" href="#about">About</a>
+        <a class="nav-link-item" href="#contact">Contact</a>
+        <div class="mobile-drawer-actions">
+          <a class="pill-btn-outline mobile-drawer-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-blue mobile-drawer-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Action Group: Floating Pills Top Right -->
+      <div class="nav-actions-group">
+        <a class="pill-btn-outline header-resume-btn" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">
+          Résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a class="pill-btn-blue header-talk-btn" href="mailto:singhvineetvedant@gmail.com">
+          Let's talk <span aria-hidden="true">↗</span>
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Backdrop overlay for mobile menu -->
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <!-- Hero Section (Full-Screen Viewport 100vh) -->
+    <section class="section hero-section" id="top">
+      <!-- Full-Screen Time-Loop Background Reel -->
+      <div class="hero-fullscreen-bg-loop" id="heroPhotoLoop" aria-hidden="true">
+        <div class="hero-loop-slide is-active" style="background-image: url('assets/hero/hero-bg-1.jpg'); background-position: 30% 25%;"></div>
+        <div class="hero-loop-slide" style="background-image: url('assets/hero/hero-bg-2.jpg'); background-position: center 15%;"></div>
+        <div class="hero-loop-slide" style="background-image: url('assets/hero/hero-bg-3.jpg'); background-position: center 20%;"></div>
+        <div class="hero-loop-vignette"></div>
+      </div>
+
+      <div class="container hero-container-inner">
+        <div class="hero-grid">
+          <div class="hero-main">
+            <div class="hero-tag-badge">
+              <span>[ SOFTWARE ENGINEER · DELHI, INDIA ]</span>
+            </div>
+
+            <h1 class="hero-title">
+              Building software<br />
+              that <em>does the work.</em>
+            </h1>
+            <p class="hero-lead">
+              I'm <strong>Vedant Singh</strong>. I work on Python backend systems, APIs, automation pipelines, and applied AI—grounded in verifiable source code, robust data workflows, and real-world utility.
+            </p>
+            <div class="hero-cta-group">
+              <a class="pill-btn-blue" href="#work">
+                Explore featured work <span aria-hidden="true">↓</span>
+              </a>
+              <a class="pill-btn-outline" href="https://github.com/vineetvedant" target="_blank" rel="noopener">
+                GitHub Profile <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Aside / Focus Card -->
+          <aside class="hero-focus-card" aria-label="Engineering focus areas">
+            <div>
+              <div class="focus-card-header">
+                <span>FOCUS / 2026</span>
+                <span style="color: var(--blue); font-weight:800;">[ 03 ]</span>
+              </div>
+              <div class="focus-items-stack">
+                <div class="focus-item">
+                  <span class="focus-item-num">01</span>
+                  <span class="focus-item-text">Backend Engineering</span>
+                </div>
+                <div class="focus-item">
+                  <span class="focus-item-num">02</span>
+                  <span class="focus-item-text">Workflow Automation</span>
+                </div>
+                <div class="focus-item">
+                  <span class="focus-item-num">03</span>
+                  <span class="focus-item-text">Applied AI &amp; RAG</span>
+                </div>
+              </div>
+            </div>
+            <div class="focus-card-footer">
+              Currently at <strong>Wipro</strong> · Repositories verified from
+              <a href="https://github.com/vineetvedant" target="_blank" rel="noopener" style="color:var(--blue); font-weight:700; text-decoration:underline;">github.com/vineetvedant</a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Hero Bottom Ticker -->
+        <div class="hero-ticker-bar">
+          <span>FASTAPI · CHROMADB · MISTRAL-7B · STREAMLIT · COMPUTER VISION</span>
+          <span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 01: Featured Repositories (Horizontal Carousel) -->
+    <section class="section featured-section" id="work">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 01 / SELECTED WORK ]</div>
+          <h2 class="section-title-huge">
+            Work worth<br />
+            <em>looking into.</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            Real code, not just claims. Each featured project is backed by verified GitHub source code, distinct architecture, and an authentic case study.
+          </p>
+        </div>
+
+        <!-- Section Animated Video Cover Showcase (alejandroha.com aesthetic) -->
+        <div class="section-cover-showcase" id="workCover">
+          <div class="section-cover-video-wrapper">
+            <video class="section-cover-video" id="sectionCoverVideo" autoplay loop muted playsinline preload="auto">
+              <source src="assets/videos/section-cover-video.mp4" type="video/mp4" />
+            </video>
+            <div class="section-cover-overlay">
+              <div class="cover-overlay-top">
+                <span class="cover-badge-live">
+                  <span class="badge-dot-live"></span> MOTION REEL
+                </span>
+                <span class="cover-badge-category">[ 01 / SELECTED WORK SHOWCASE ]</span>
+              </div>
+              <div class="cover-overlay-bottom">
+                <div class="cover-info-text">
+                  <span class="cover-eyebrow">ENGINEERING &amp; AI SYSTEMS</span>
+                  <h3 class="cover-title">Autonomous Agents, RAG Pipelines &amp; Production APIs</h3>
+                </div>
+                <div class="cover-controls-wrap">
+                  <button class="cover-sound-btn" id="coverSoundToggle" aria-label="Toggle video sound" title="Toggle sound">
+                    <span class="sound-state-icon">🔇</span>
+                    <span class="sound-state-text">SOUND</span>
+                  </button>
+                  <button class="cover-play-btn" id="coverPlayToggle" aria-label="Toggle video play/pause" title="Play or pause">
+                    <span class="play-state-icon">⏸</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls Bar -->
+        <div class="carousel-controls-bar">
+          <div class="carousel-counter">
+            <span class="carousel-counter-current" id="carouselCurrent">01</span>
+            <span>/</span>
+            <span id="carouselTotal">04</span>
+          </div>
+          <div class="carousel-nav-arrows">
+            <button class="carousel-arrow-btn" id="carouselPrev" aria-label="Previous project" disabled>←</button>
+            <button class="carousel-arrow-btn" id="carouselNext" aria-label="Next project">→</button>
+          </div>
+        </div>
+
+        <!-- Horizontal-Scrolling Carousel Viewport -->
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <!-- Project 1: Gold Price Conversational AI Assistant -->
+            <article class="carousel-card" data-repo="Gold-Price-Conversational-AI-Assistant">
+              <div class="card-media-wrapper">
+                <video class="card-cover-video" autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/videos/project-1-video.mp4" type="video/mp4" />
+                </video>
+                <img src="assets/projects/gold-assistant-1.png" alt="FastAPI Swagger Schema view for Gold Price Conversational Assistant" class="card-fallback-img" loading="lazy" />
+                <span class="card-index-overlay">01 / DUAL-API RAG</span>
+                <span class="card-video-pill"><span class="pill-pulse-dot"></span> VIDEO REEL</span>
+              </div>
+              <div class="card-content-body">
+                <div>
+                  <div class="card-meta-line">
+                    <span class="card-category-tag">AI BACKEND · PERSONAL PROJECT</span>
+                    <span class="card-stars-pill">★ <span class="repo-stars-val">0</span></span>
+                  </div>
+                  <h3 class="card-heading">Gold Price Conversational AI Assistant</h3>
+                  <p class="card-description">
+                    A dual-API architecture decoupling conversational retrieval from transaction execution. Combines ChromaDB vector search over historical commodity records, local Ollama DeepSeek R1 reasoning with chain-of-thought stripping, and thread-safe purchase logging.
+                  </p>
+                  <div class="card-tags-cloud">
+                    <span>FastAPI</span>
+                    <span>ChromaDB</span>
+                    <span>Ollama (DeepSeek R1)</span>
+                    <span>Pandas</span>
+                    <span>RAG</span>
+                  </div>
+                </div>
+                <div class="card-action-pills">
+                  <a class="pill-btn-blue" href="projects/gold-price-assistant.html">Read Case Study ↗</a>
+                  <a class="pill-btn-outline" href="https://github.com/vineetvedant/Gold-Price-Conversational-AI-Assistant" target="_blank" rel="noopener">GitHub Repo ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: Smart Email Automation -->
+            <article class="carousel-card" data-repo="smart_emai_cold_mail">
+              <div class="card-media-wrapper">
+                <video class="card-cover-video" autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/videos/project-2-video.mp4" type="video/mp4" />
+                </video>
+                <img src="assets/projects/smart-email-ocr-1.png" alt="Scanned Document parsed by Tesseract OCR" class="card-fallback-img" loading="lazy" style="background:#ffffff; object-fit:contain;" />
+                <span class="card-index-overlay">02 / WORKFLOW AUTOMATION</span>
+                <span class="card-video-pill"><span class="pill-pulse-dot"></span> VIDEO REEL</span>
+              </div>
+              <div class="card-content-body">
+                <div>
+                  <div class="card-meta-line">
+                    <span class="card-category-tag">GENAI WORKFLOW · OPEN SOURCE</span>
+                    <span class="card-stars-pill">★ <span class="repo-stars-val">1</span></span>
+                  </div>
+                  <h3 class="card-heading">Smart Email Automation with Mistral-7B</h3>
+                  <p class="card-description">
+                    End-to-end Python automation extracting contact leads from scanned document images using Tesseract OCR, enhancing email tone and markdown structure via OpenRouter (Mistral-7B), and dispatching through Microsoft Outlook COM with rate-limiting delays.
+                  </p>
+                  <div class="card-tags-cloud">
+                    <span>Python</span>
+                    <span>Mistral-7B</span>
+                    <span>OpenRouter API</span>
+                    <span>PyWin32</span>
+                    <span>Tesseract OCR</span>
+                  </div>
+                </div>
+                <div class="card-action-pills">
+                  <a class="pill-btn-blue" href="projects/smart-email-automation.html">Read Case Study ↗</a>
+                  <a class="pill-btn-outline" href="https://github.com/vineetvedant/smart_emai_cold_mail" target="_blank" rel="noopener">GitHub Repo ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Accessible Railway Ticketing -->
+            <article class="carousel-card" data-repo="Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-">
+              <div class="card-media-wrapper">
+                <video class="card-cover-video" autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/videos/project-3-video.mp4" type="video/mp4" />
+                </video>
+                <img src="assets/projects/railway-braille.svg" alt="CRIS UTS Ticket Reservation Accessibility Interface" class="card-fallback-img" loading="lazy" />
+                <span class="card-index-overlay">03 / CRIS INTERNSHIP</span>
+                <span class="card-video-pill"><span class="pill-pulse-dot"></span> VIDEO REEL</span>
+              </div>
+              <div class="card-content-body">
+                <div>
+                  <div class="card-meta-line">
+                    <span class="card-category-tag">ACCESSIBILITY · CRIS PROJECT</span>
+                    <span class="card-stars-pill">★ <span class="repo-stars-val">2</span></span>
+                  </div>
+                  <h3 class="card-heading">Accessible Railway Ticketing System</h3>
+                  <p class="card-description">
+                    A passenger assistance prototype developed at CRIS (Centre for Railway Information Systems) converting UTS ticket numbers, origin stations, and destinations into standardized Grade-1 Braille Unicode glyphs for visually impaired rail travelers.
+                  </p>
+                  <div class="card-tags-cloud">
+                    <span>Python</span>
+                    <span>Tkinter GUI</span>
+                    <span>Braille Unicode</span>
+                    <span>Accessibility</span>
+                    <span>CRIS</span>
+                  </div>
+                </div>
+                <div class="card-action-pills">
+                  <a class="pill-btn-blue" href="projects/railway-accessibility.html">Read Case Study ↗</a>
+                  <a class="pill-btn-outline" href="https://github.com/vineetvedant/Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-" target="_blank" rel="noopener">GitHub Repo ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: Predictive Analytics Dashboard -->
+            <article class="carousel-card" data-repo="Data_Visualisation">
+              <div class="card-media-wrapper">
+                <video class="card-cover-video" autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/videos/project-4-video.mp4" type="video/mp4" />
+                </video>
+                <img src="assets/projects/data-vis-dashboard.png" alt="Streamlit Data Visualization Dashboard" class="card-fallback-img" loading="lazy" />
+                <span class="card-index-overlay">04 / APPLIED ML &amp; DATA</span>
+                <span class="card-video-pill"><span class="pill-pulse-dot"></span> VIDEO REEL</span>
+              </div>
+              <div class="card-content-body">
+                <div>
+                  <div class="card-meta-line">
+                    <span class="card-category-tag">DATA APPLICATIONS · OPEN SOURCE</span>
+                    <span class="card-stars-pill">★ <span class="repo-stars-val">1</span></span>
+                  </div>
+                  <h3 class="card-heading">Data Visualisation &amp; Predictive Analytics</h3>
+                  <p class="card-description">
+                    Interactive Streamlit dashboard exploring multidimensional socio-economic intelligence data. Implements 6 dynamic Plotly visual representations and an embedded Scikit-learn Random Forest Regressor predicting event likelihood with real-time parameter tuning.
+                  </p>
+                  <div class="card-tags-cloud">
+                    <span>Streamlit</span>
+                    <span>Plotly Express</span>
+                    <span>Random Forest</span>
+                    <span>Scikit-learn</span>
+                    <span>Pandas</span>
+                  </div>
+                </div>
+                <div class="card-action-pills">
+                  <a class="pill-btn-blue" href="projects/predictive-analytics.html">Read Case Study ↗</a>
+                  <a class="pill-btn-outline" href="https://github.com/vineetvedant/Data_Visualisation" target="_blank" rel="noopener">GitHub Repo ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 01-B: Live Production Deployments & Tools (Bento Grid) -->
+    <section class="section live-projects-section" id="live-projects">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 01-B / PRODUCTION DEPLOYMENTS ]</div>
+          <h2 class="section-title-huge">
+            Live tools<br />
+            <em>&amp; production systems.</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            Active web tools and microservices hosted on live production subdomains at <a href="https://wordtohtml1.0.sshconnect.space" target="_blank" rel="noopener noreferrer" style="color:var(--blue); font-weight:700; text-decoration:underline;">sshconnect.space</a>. Built with strict performance benchmarks, clean code architectures, and instant browser execution.
+          </p>
+        </div>
+
+        <!-- Responsive Bento Grid: Multi-column on desktop, single column on mobile -->
+        <div class="bento-grid">
+          <!-- Flagship Interactive Card: Word to HTML 1.0 (Full Interactive Hyperlink with Invert Hover) -->
+          <a href="https://wordtohtml1.0.sshconnect.space" target="_blank" rel="noopener noreferrer" class="bento-card bento-card--flagship live-card--wordtohtml" aria-label="Open Word to HTML 1.0 live tool in new tab">
+            <div class="bento-card-inner">
+              <div class="bento-card-header">
+                <div class="bento-live-badge">
+                  <span class="live-pulse-dot" aria-hidden="true"></span>
+                  <span class="live-pulse-label">LIVE TOOL 1.0</span>
+                </div>
+                <div class="bento-link-indicator">
+                  <span class="bento-domain-label">wordtohtml1.0.sshconnect.space</span>
+                  <span class="bento-arrow-icon" aria-hidden="true">↗</span>
+                </div>
+              </div>
+
+              <div class="bento-card-main">
+                <div class="bento-category-tag">[ BROWSER DOCUMENT PARSER &amp; COMPILER ]</div>
+                <h3 class="bento-project-title">Word to HTML 1.0</h3>
+                <p class="bento-project-desc">
+                  High-speed, browser-based document compiler and clean HTML parser. Seamlessly ingests Microsoft Word (<code>.docx</code>) binary archives, strips bloated Word XML styling, extracts semantic hierarchy, formats tables natively, and generates production-ready, sanitized HTML with real-time live preview and code export.
+                </p>
+              </div>
+
+              <!-- Interactive Visual Showcase: DOCX to HTML Pipeline Preview -->
+              <div class="bento-interactive-preview" aria-hidden="true">
+                <div class="bento-preview-pill bento-preview-pill--input">
+                  <span class="preview-format-icon">DOCX</span>
+                  <div class="preview-format-details">
+                    <span class="preview-format-name">raw_document.docx</span>
+                    <span class="preview-format-meta">XML ZIP Archive · Fast Parse</span>
+                  </div>
+                </div>
+                <div class="bento-preview-arrow">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                  <span class="preview-transform-text">PARSER PIPELINE</span>
+                </div>
+                <div class="bento-preview-pill bento-preview-pill--output">
+                  <span class="preview-format-icon preview-format-icon--html">&lt;/&gt;</span>
+                  <div class="preview-format-details">
+                    <span class="preview-format-name">clean-semantic.html</span>
+                    <span class="preview-format-meta">W3C Compliant · Zero Bloat</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bento-card-footer">
+                <div class="bento-tech-tags">
+                  <span class="bento-tag">Python Engine</span>
+                  <span class="bento-tag">FastAPI</span>
+                  <span class="bento-tag">DOCX XML AST</span>
+                  <span class="bento-tag">Sanitized HTML5</span>
+                  <span class="bento-tag">Zero Retention</span>
+                </div>
+                <div class="bento-cta-btn">
+                  <span>Launch Live Tool</span>
+                  <span class="bento-btn-arrow" aria-hidden="true">↗</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Bento Card 2: Production Gateway Architecture -->
+          <div class="bento-card bento-card--sidebar">
+            <div class="bento-card-inner">
+              <div class="bento-card-header">
+                <div class="bento-live-badge bento-live-badge--secondary">
+                  <span class="live-pulse-dot live-pulse-dot--blue" aria-hidden="true"></span>
+                  <span class="live-pulse-label">SYSTEM TELEMETRY</span>
+                </div>
+                <span class="bento-mono-stat">EDGE PROXY</span>
+              </div>
+              <div class="bento-card-main">
+                <h4 class="bento-sidebar-title">sshconnect.space Infrastructure</h4>
+                <p class="bento-sidebar-desc">
+                  Reverse-proxied edge architecture with automated TLS termination, Docker container orchestration, and sub-50ms DNS resolution across global CDNs.
+                </p>
+                <div class="bento-telemetry-metrics">
+                  <div class="telemetry-metric-item">
+                    <span class="metric-value">99.98%</span>
+                    <span class="metric-label">Uptime SLA</span>
+                  </div>
+                  <div class="telemetry-metric-item">
+                    <span class="metric-value">&lt;40ms</span>
+                    <span class="metric-label">Edge Latency</span>
+                  </div>
+                  <div class="telemetry-metric-item">
+                    <span class="metric-value">0 KB</span>
+                    <span class="metric-label">Persistence</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card-footer">
+                <span class="bento-mono-tag">[ DOCKER · NGINX · SSL/TLS ]</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento Card 3: Parser Performance & Zero-Retention Security -->
+          <div class="bento-card bento-card--tertiary">
+            <div class="bento-card-inner">
+              <div class="bento-card-header">
+                <div class="bento-category-tag">[ ARCHITECTURE HIGHLIGHT ]</div>
+                <span class="bento-icon-symbol" aria-hidden="true">⚡</span>
+              </div>
+              <div class="bento-card-main">
+                <h4 class="bento-tertiary-title">Zero Data Retention</h4>
+                <p class="bento-tertiary-desc">
+                  Documents are decompiled and converted strictly in volatile RAM memory streams. No client document payloads are ever committed to disk storage, guaranteeing confidentiality.
+                </p>
+              </div>
+              <div class="bento-feature-pills">
+                <span class="bento-micro-pill">In-Memory Streams</span>
+                <span class="bento-micro-pill">Ephemeral Sandboxing</span>
+                <span class="bento-micro-pill">W3C HTML Sanitizer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento Card 4: Live Domain Hub & Deployment Registry -->
+          <div class="bento-card bento-card--quaternary">
+            <div class="bento-card-inner">
+              <div class="bento-card-header">
+                <div class="bento-category-tag">[ LIVE ENVIRONMENT ]</div>
+                <span class="bento-icon-symbol" aria-hidden="true">🌐</span>
+              </div>
+              <div class="bento-card-main">
+                <h4 class="bento-tertiary-title">Production Endpoints</h4>
+                <ul class="bento-endpoint-list">
+                  <li>
+                    <a href="https://wordtohtml1.0.sshconnect.space" target="_blank" rel="noopener noreferrer" class="endpoint-link">
+                      <span class="endpoint-name">wordtohtml1.0.sshconnect.space</span>
+                      <span class="endpoint-status">ONLINE ↗</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://sshconnect.space" target="_blank" rel="noopener noreferrer" class="endpoint-link">
+                      <span class="endpoint-name">sshconnect.space (Root)</span>
+                      <span class="endpoint-status">ACTIVE ↗</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="bento-card-footer">
+                <span class="bento-mono-tag">[ CONTINUOUS DEPLOYMENT ]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 01-C: Curated GitHub Repositories Grid -->
+    <section class="section secondary-section" id="secondary-work">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 01-C / GITHUB REPOSITORY PORTFOLIO ]</div>
+          <h2 class="section-title-huge">
+            Secondary repos<br />
+            <em>&amp; verified prototypes.</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            Curated repositories from <a href="https://github.com/vineetvedant" target="_blank" rel="noopener" style="color:var(--blue); font-weight:700; text-decoration:underline;">@vineetvedant</a>. Featured only where source code implementation is verifiable.
+          </p>
+        </div>
+
+        <div class="secondary-repos-grid">
+          <!-- Secondary Repo 1: TumorTrace -->
+          <article class="repo-card-brutalist" data-repo="TumorTrace">
+            <div>
+              <div class="repo-card-top">
+                <span class="repo-category-label">Computer Vision · Deep Learning</span>
+                <span class="card-stars-pill">★ <span class="repo-stars-val">1</span></span>
+              </div>
+              <h3 class="repo-card-title">TumorTrace — YOLO Brain Tumor Detection</h3>
+              <p class="repo-card-desc">
+                Custom-trained YOLO computer vision model trained on Roboflow MRI scans to detect and localize 5 distinct brain tumor categories (glioma, meningioma, pituitary, space-occupying lesion, no tumor). Includes evaluated confusion matrices and inference outputs.
+              </p>
+              <div class="repo-card-tags">
+                <span>YOLOv8</span>
+                <span>Roboflow</span>
+                <span>PyTorch</span>
+                <span>OpenCV</span>
+                <span>Medical Imaging</span>
+              </div>
+            </div>
+            <div class="repo-card-footer">
+              <span>Updated: <strong class="repo-updated-val">2024-12-01</strong></span>
+              <a class="repo-link-action" href="https://github.com/vineetvedant/TumorTrace" target="_blank" rel="noopener">View Repository ↗</a>
+            </div>
+          </article>
+
+          <!-- Secondary Repo 2: EyesWideCode -->
+          <article class="repo-card-brutalist" data-repo="EyesWideCode">
+            <div>
+              <div class="repo-card-top">
+                <span class="repo-category-label">Computer Vision · Ergonomics</span>
+                <span class="card-stars-pill">★ <span class="repo-stars-val">1</span></span>
+              </div>
+              <h3 class="repo-card-title">EyesWideCode — Emotion Insights &amp; Focus Clock</h3>
+              <p class="repo-card-desc">
+                Real-time webcam application combining OpenCV Haar Cascade facial detection with DeepFace convolutional neural network analysis to predict dominant emotional states and monitor on-screen vs. off-screen user focus time.
+              </p>
+              <div class="repo-card-tags">
+                <span>Python</span>
+                <span>OpenCV</span>
+                <span>DeepFace</span>
+                <span>Haar Cascades</span>
+                <span>Focus Tracker</span>
+              </div>
+            </div>
+            <div class="repo-card-footer">
+              <span>Updated: <strong class="repo-updated-val">2024-12-31</strong></span>
+              <a class="repo-link-action" href="https://github.com/vineetvedant/EyesWideCode" target="_blank" rel="noopener">View Repository ↗</a>
+            </div>
+          </article>
+
+          <!-- Secondary Repo 3: VoiceBook -->
+          <article class="repo-card-brutalist" data-repo="VoiceBook">
+            <div>
+              <div class="repo-card-top">
+                <span class="repo-category-label">Desktop Utility · Accessibility</span>
+                <span class="card-stars-pill">★ <span class="repo-stars-val">1</span></span>
+              </div>
+              <h3 class="repo-card-title">VoiceBook — PDF to Audiobook Converter</h3>
+              <p class="repo-card-desc">
+                Lightweight offline Python desktop utility featuring a Tkinter GUI and PyPDF4 text extraction, allowing users to select PDF documents and listen via pyttsx3 offline text-to-speech with selectable voice gender and speech-rate controls.
+              </p>
+              <div class="repo-card-tags">
+                <span>Python</span>
+                <span>Tkinter</span>
+                <span>PyPDF4</span>
+                <span>pyttsx3</span>
+                <span>Offline TTS</span>
+              </div>
+            </div>
+            <div class="repo-card-footer">
+              <span>Updated: <strong class="repo-updated-val">2024-12-01</strong></span>
+              <a class="repo-link-action" href="https://github.com/vineetvedant/VoiceBook" target="_blank" rel="noopener">View Repository ↗</a>
+            </div>
+          </article>
+
+          <!-- Secondary Repo 4: Word-to-HTML -->
+          <article class="repo-card-brutalist" data-repo="Word-to-HTML">
+            <div>
+              <div class="repo-card-top">
+                <span class="repo-category-label">Web Utility · Cloudflare Pages</span>
+                <span class="card-stars-pill">★ <span class="repo-stars-val">0</span></span>
+              </div>
+              <h3 class="repo-card-title">Word to HTML Converter &amp; Sanitizer</h3>
+              <p class="repo-card-desc">
+                Zero-dependency client-side HTML cleaner and document converter with live split-pane preview, whitespace stripping, and tag filtering options. Fully automated with Cloudflare Pages and Vercel deployment workflows.
+              </p>
+              <div class="repo-card-tags">
+                <span>JavaScript</span>
+                <span>HTML5 / CSS3</span>
+                <span>Cloudflare Pages</span>
+                <span>WYSIWYG</span>
+              </div>
+            </div>
+            <div class="repo-card-footer">
+              <span>Updated: <strong class="repo-updated-val">2026-07-27</strong></span>
+              <a class="repo-link-action" href="https://github.com/vineetvedant/Word-to-HTML" target="_blank" rel="noopener">View Repository ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Audit Alert Box -->
+        <div class="audit-alert-brutalist">
+          <div class="audit-alert-title">
+            <span class="brand-dot"></span>
+            <span>Engineering Credibility &amp; Repository Transparency Note</span>
+          </div>
+          <p class="audit-alert-body">
+            This portfolio is curated for engineering substance rather than raw repository counts. Two repositories from the profile—<code>object-detection-thermal---grayscale---RGB-</code> (Teledyne FLIR experimental dataset documentation) and <code>search-engine</code> (UI mockups)—were audited but excluded from primary code showcases because functional source code was not committed to those repositories. Honest constraints prevent inflating prototype status into commercial claims.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02: Experience Timeline -->
+    <section class="section experience-section" id="experience">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 02 / EXPERIENCE ]</div>
+          <h2 class="section-title-huge">
+            Where I've<br />
+            <em>put it to use.</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            From enterprise backend workflows to computing infrastructure and practical machine learning systems.
+          </p>
+        </div>
+
+        <div class="experience-list">
+          <article class="experience-row">
+            <div class="exp-year">2026 — PRESENT</div>
+            <div class="exp-company-block">
+              <h3>Wipro</h3>
+              <div class="exp-role-title">Associate Analyst · previously GET</div>
+            </div>
+            <div class="exp-details-block">
+              <p>Python backend development, API integration, workflow automation, and engineering support in an enterprise technology environment.</p>
+              <div class="exp-tags"><span>Python</span><span>Backend APIs</span><span>Automation</span></div>
+            </div>
+            <div class="exp-arrow-icon" aria-hidden="true">↗</div>
+          </article>
+
+          <article class="experience-row">
+            <div class="exp-year">2025</div>
+            <div class="exp-company-block">
+              <h3>Altair Engineering</h3>
+              <div class="exp-role-title">HPC Intern</div>
+            </div>
+            <div class="exp-details-block">
+              <p>Worked with HPC environments and performance-oriented engineering workflows, including computing infrastructure and Linux-based systems.</p>
+              <div class="exp-tags"><span>HPC</span><span>Linux</span><span>Infrastructure</span></div>
+            </div>
+            <div class="exp-arrow-icon" aria-hidden="true">↗</div>
+          </article>
+
+          <article class="experience-row">
+            <div class="exp-year">2024 — 2025</div>
+            <div class="exp-company-block">
+              <h3>Proeffico Solutions</h3>
+              <div class="exp-role-title">Machine Learning Engineer</div>
+            </div>
+            <div class="exp-details-block">
+              <p>Developed computer vision systems, Python industrial automation, RAG workflows, and IoT monitoring applications that moved from prototypes into practical deployments.</p>
+              <div class="exp-tags"><span>YOLOv8</span><span>Python</span><span>RAG</span><span>IoT</span></div>
+            </div>
+            <div class="exp-arrow-icon" aria-hidden="true">↗</div>
+          </article>
+
+          <article class="experience-row">
+            <div class="exp-year">2024</div>
+            <div class="exp-company-block">
+              <h3>Tata Motors</h3>
+              <div class="exp-role-title">Engineering Intern</div>
+            </div>
+            <div class="exp-details-block">
+              <p>Explored convolutional neural networks and thermal imaging for human detection in industrial contexts.</p>
+              <div class="exp-tags"><span>Computer Vision</span><span>CNNs</span></div>
+            </div>
+            <div class="exp-arrow-icon" aria-hidden="true">↗</div>
+          </article>
+
+          <article class="experience-row">
+            <div class="exp-year">2023</div>
+            <div class="exp-company-block">
+              <h3>CRIS</h3>
+              <div class="exp-role-title">Summer Intern</div>
+            </div>
+            <div class="exp-details-block">
+              <p>Built an accessibility-focused ticketing concept converting UTS ticket records into Braille representations for visually impaired passengers.</p>
+              <div class="exp-tags"><span>Accessibility</span><span>Python</span><span>Tkinter</span></div>
+            </div>
+            <div class="exp-arrow-icon" aria-hidden="true">↗</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03: Certifications & Research (Kinetic Typography Scatter on Scroll) -->
+    <section class="section cert-section" id="certifications">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 03 / CERTIFICATIONS &amp; RESEARCH ]</div>
+          <h2 class="section-title-huge kinetic-header">
+            Certifications &amp;<br />
+            <em>Research</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            Continuous learning through industry-recognized certifications and academic publications in leading science venues.
+          </p>
+        </div>
+
+        <div class="cert-cards-grid">
+          <!-- Card 1: Cloud Computing & Distributed Systems -->
+          <article class="cert-card-brutalist">
+            <div>
+              <div class="cert-card-header">
+                <div class="cert-icon-squircle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                  </svg>
+                </div>
+                <div class="cert-title-container">
+                  <h3 class="cert-card-title">Cloud Computing &amp; Distributed Systems ↗</h3>
+                  <div class="cert-badge-row">
+                    <span class="cert-org-text">NPTEL</span>
+                    <span class="cert-pill-badge">Course Completion</span>
+                  </div>
+                </div>
+              </div>
+              <p class="cert-card-desc">Advanced concepts in cloud architecture, distributed computing, and scalable system design.</p>
+              <div class="cert-skills-headline">Key Skills Acquired</div>
+              <div class="cert-skills-tags">
+                <span>Cloud Architecture</span>
+                <span>Distributed Systems</span>
+                <span>Scalability</span>
+                <span>System Design</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-verified-label">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                Verified Credential
+              </span>
+              <span>IIT Kharagpur / Swayam</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Introduction to Cybersecurity -->
+          <article class="cert-card-brutalist">
+            <div>
+              <div class="cert-card-header">
+                <div class="cert-icon-squircle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div class="cert-title-container">
+                  <h3 class="cert-card-title">Introduction to Cybersecurity ↗</h3>
+                  <div class="cert-badge-row">
+                    <span class="cert-org-text">Cisco</span>
+                    <span class="cert-pill-badge">Professional Certificate</span>
+                  </div>
+                </div>
+              </div>
+              <p class="cert-card-desc">Comprehensive cybersecurity fundamentals including threat detection, security protocols, and risk management.</p>
+              <div class="cert-skills-headline">Key Skills Acquired</div>
+              <div class="cert-skills-tags">
+                <span>Security Protocols</span>
+                <span>Threat Detection</span>
+                <span>Risk Management</span>
+                <span>Network Security</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-verified-label">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                Verified Credential
+              </span>
+              <span>Cisco Networking Academy</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Introduction to Data Analytics -->
+          <article class="cert-card-brutalist">
+            <div>
+              <div class="cert-card-header">
+                <div class="cert-icon-squircle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                </div>
+                <div class="cert-title-container">
+                  <h3 class="cert-card-title">Introduction to Data Analytics ↗</h3>
+                  <div class="cert-badge-row">
+                    <span class="cert-org-text">IBM (Coursera)</span>
+                    <span class="cert-pill-badge">Professional Certificate</span>
+                  </div>
+                </div>
+              </div>
+              <p class="cert-card-desc">End-to-end data analytics including data collection, cleaning, analysis, and visualization techniques.</p>
+              <div class="cert-skills-headline">Key Skills Acquired</div>
+              <div class="cert-skills-tags">
+                <span>Data Analysis</span>
+                <span>Statistical Methods</span>
+                <span>Data Visualization</span>
+                <span>Python Analytics</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-verified-label">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                Verified Credential
+              </span>
+              <span>IBM Skills Network</span>
+            </div>
+          </article>
+
+          <!-- Card 4: NCC 'C' Certificate - Leadership & Discipline -->
+          <article class="cert-card-brutalist">
+            <div>
+              <div class="cert-card-header">
+                <div class="cert-icon-squircle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="6"/>
+                    <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.204 0l-3.58 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/>
+                  </svg>
+                </div>
+                <div class="cert-title-container">
+                  <h3 class="cert-card-title">NCC 'C' Certificate — Leadership</h3>
+                  <div class="cert-badge-row">
+                    <span class="cert-org-text">National Cadet Corps</span>
+                    <span class="cert-pill-badge">Leadership Credential</span>
+                  </div>
+                </div>
+              </div>
+              <p class="cert-card-desc">Highest level certificate in the NCC, demonstrating leadership, national security knowledge, physical endurance, and discipline.</p>
+              <div class="cert-skills-headline">Key Skills Acquired</div>
+              <div class="cert-skills-tags">
+                <span>Leadership</span>
+                <span>Discipline</span>
+                <span>Team Operations</span>
+                <span>Crisis Management</span>
+              </div>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-verified-label">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                Verified Credential
+              </span>
+              <span>Senior Under Officer (SUO)</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Research Publication Highlight Card -->
+        <div class="research-highlight-card">
+          <div>
+            <div class="section-pretitle" style="margin-bottom:8px;">[ PEER-REVIEWED SCIENTIFIC RESEARCH ]</div>
+            <h3 class="research-title">Smart Drone System Using Deep Learning Techniques</h3>
+            <p class="research-venue">Published in <strong>ICAIN 2025 · Springer LNNS (Lecture Notes in Networks and Systems)</strong> · Scopus Indexed</p>
+          </div>
+          <div class="card-tags-cloud" style="margin:0;">
+            <span>Deep Learning</span>
+            <span>Computer Vision</span>
+            <span>Autonomous Systems</span>
+            <span>YOLOv10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04: About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 04 / THE PERSON BEHIND THE CODE ]</div>
+          <h2 class="section-title-huge">
+            Curiosity,<br />
+            with a bias<br />
+            <em>for building.</em>
+          </h2>
+        </div>
+
+        <div class="about-split-layout">
+          <div class="about-copy-column">
+            <p>
+              I'm Vedant, a software engineer based in Delhi. What interests me isn't collecting technology names—it's understanding systems well enough to make them simpler, more reliable, and useful for the people depending on them.
+            </p>
+            <p>
+              I've worked across backend APIs, machine learning, industrial devices, and high-performance computing. The common thread is engineering software that connects different pieces of a real-world problem.
+            </p>
+            <p>
+              Outside the code, serving as a Senior Under Officer in the National Cadet Corps taught me a lot about discipline, responsibility, and following through.
+            </p>
+          </div>
+
+          <div class="about-credentials-box">
+            <div class="about-cred-label">[ EDUCATION ]</div>
+            <div class="about-cred-text">
+              B.Tech · Computer Science and Engineering
+              <span class="about-cred-sub">SRM Institute of Science and Technology · 2025</span>
+            </div>
+
+            <div class="about-cred-label">[ RESEARCH PUBLICATION ]</div>
+            <div class="about-cred-text">
+              Smart Drone System Using Deep Learning Techniques
+              <span class="about-cred-sub">ICAIN 2025 · Springer LNNS</span>
+            </div>
+
+            <div class="about-cred-label">[ PROFILE / REPOSITORIES ]</div>
+            <div class="about-cred-text" style="margin-bottom:0;">
+              GitHub: <a href="https://github.com/vineetvedant" target="_blank" rel="noopener" style="color:var(--blue); text-decoration:underline;">@vineetvedant</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05: Toolkit Section -->
+    <section class="section toolkit-section" id="toolkit">
+      <div class="container">
+        <div class="section-header-brutalist">
+          <div class="section-pretitle">[ 05 / TOOLKIT ]</div>
+          <h2 class="section-title-huge">
+            Tools I<br />
+            <em>reach for.</em>
+          </h2>
+          <p class="section-subtitle-editorial">
+            Not proficiency percentages—just technologies I've used in engineering work and verified public repositories.
+          </p>
+        </div>
+
+        <div class="toolkit-grid-brutalist">
+          <div class="toolkit-card">
+            <h3 class="toolkit-card-title">Languages &amp; Backend</h3>
+            <p class="toolkit-items-text">Python · C++ · SQL · JavaScript · FastAPI · Uvicorn · REST APIs · SQLite</p>
+          </div>
+
+          <div class="toolkit-card">
+            <h3 class="toolkit-card-title">AI &amp; Data Systems</h3>
+            <p class="toolkit-items-text">RAG · ChromaDB · Ollama (DeepSeek R1) · Mistral-7B · YOLOv8 · Scikit-learn · Pandas · NumPy · DeepFace</p>
+          </div>
+
+          <div class="toolkit-card">
+            <h3 class="toolkit-card-title">Automation &amp; Infra</h3>
+            <p class="toolkit-items-text">Linux · Git &amp; GitHub Actions · Win32 COM · Tesseract OCR · Docker · Terraform · Raspberry Pi</p>
+          </div>
+
+          <div class="toolkit-card">
+            <h3 class="toolkit-card-title">Interfaces &amp; UI</h3>
+            <p class="toolkit-items-text">Streamlit · Plotly Express · Tkinter · HTML5 / Vanilla CSS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- High-Impact Dark Full-Screen Footer (alejandroha.com aesthetic) -->
+  <footer class="site-footer-brutalist section" id="contact">
+    <!-- Massive Floating Background Typography -->
+    <div class="footer-ghost-typo" aria-hidden="true">
+      PYTHON · APPLIED AI · BACKEND SYSTEMS
+    </div>
+
+    <div class="container footer-inner-content">
+      <div class="footer-hero-cta">
+        <div class="footer-pretitle">[ 06 / GET IN TOUCH ]</div>
+        <h2 class="footer-massive-headline">
+          Have something<br />
+          worth <em>building?</em>
+        </h2>
+        <p class="footer-lead-text">
+          I'm interested in software engineering, Python backend development, and applied AI opportunities. If you're working on an interesting technical problem, let's connect.
+        </p>
+        <div class="footer-action-row">
+          <a class="footer-giant-btn" href="mailto:singhvineetvedant@gmail.com">
+            Let's talk <span aria-hidden="true">↗</span>
+          </a>
+          <a class="pill-btn-outline" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener" style="color:#ffffff; border-color:#ffffff; background:transparent;">
+            Explore Résumé Folder ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Columns in Brackets -->
+      <div class="footer-meta-nav-grid">
+        <div>
+          <div class="footer-nav-col-title">[ Socials ]</div>
+          <div class="footer-links-stack">
+            <a class="footer-link-item" href="https://github.com/vineetvedant" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="footer-link-item" href="https://www.linkedin.com/in/vedant-singh-2550b2202" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-nav-col-title">[ Navigation ]</div>
+          <div class="footer-links-stack">
+            <a class="footer-link-item" href="#work">Featured Work</a>
+            <a class="footer-link-item" href="#live-projects">Live Tools</a>
+            <a class="footer-link-item" href="#secondary-work">Repositories</a>
+            <a class="footer-link-item" href="#experience">Experience</a>
+            <a class="footer-link-item" href="#certifications">Certifications</a>
+            <a class="footer-link-item" href="#about">About</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-nav-col-title">[ Contact ]</div>
+          <div class="footer-links-stack">
+            <a class="footer-link-item" href="mailto:singhvineetvedant@gmail.com">singhvineetvedant@gmail.com</a>
+            <span class="footer-link-item" style="cursor:default;">Delhi, India</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-nav-col-title">[ Codebase ]</div>
+          <div class="footer-links-stack">
+            <a class="footer-link-item" href="https://github.com/vineetvedant" target="_blank" rel="noopener">Explore all projects ↗</a>
+            <a class="footer-link-item" href="https://drive.google.com/drive/folders/14rNZ_D5y9wB7CdtefBWi-kn0mF7DUnfV" target="_blank" rel="noopener">Official Documents ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <span>© <span id="year">2026</span> Vedant Singh · Small details, big impact.</span>
+        <a class="footer-back-to-top-btn" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Delayed Slide-In Live Tool Notification Toast -->
+  <aside class="live-tool-toast" id="liveToolToast" role="dialog" aria-live="polite" aria-label="Live Project Notification">
+    <div class="live-toast-frame">
+      <div class="live-toast-header">
+        <div class="live-toast-badge">
+          <span class="live-toast-pulse" aria-hidden="true"></span>
+          <span class="live-toast-badge-text">LIVE PRODUCTION TOOL</span>
+        </div>
+        <button class="live-toast-dismiss-btn" id="closeToastBtn" aria-label="Dismiss notification" title="Dismiss notification">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="live-toast-body">
+        <div class="live-toast-title-row">
+          <h3 class="live-toast-title">Word to HTML 1.0</h3>
+          <span class="live-toast-domain">wordtohtml1.0.sshconnect.space</span>
+        </div>
+        <p class="live-toast-description">
+          A new live tool is deployed. Instantly convert Word (<code>.docx</code>) documents into clean, semantic HTML with zero bloat and real-time preview.
+        </p>
+      </div>
+
+      <div class="live-toast-footer">
+        <a class="live-toast-cta-btn" href="https://wordtohtml1.0.sshconnect.space" target="_blank" rel="noopener noreferrer">
+          <span>Try Word to HTML Converter</span>
+          <span class="live-toast-cta-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Preloaded Sound Asset for Slide-in Notification -->
+  <audio id="toastNotificationSound" preload="auto" src="assets/audio/mixkit-select-click-1109.wav"></audio>
+
+  <script src="script.js"></script>
+</body>
 </html>
