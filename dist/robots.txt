@@ -1,23 +1,51 @@
+# ==============================================================================
+# ROBOTS.TXT — VEDANT SINGH PORTFOLIO (https://www.sshconnect.space/)
+# Optimized for Web Indexing, Generative Engine Optimization (GEO), & Agentic AI
+# Compliant with RFC 9309, Cloudflare Content-Signal & IETF AIPREF Standards
+# ==============================================================================
+
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
-# Dedicated AI search engine crawler directives for Generative Engine Optimization (GEO)
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
+# --- Search Engine Primary Crawlers ---
+User-agent: Googlebot
+User-agent: Googlebot-Image
 User-agent: Bingbot
+User-agent: Applebot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
+# --- AI Search Engines & Conversational Answer Citations (GEO) ---
+# OpenAI (ChatGPT Search Indexing & User-Triggered Browsing)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Anthropic (Claude Search Citability & User Browsing)
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Perplexity AI (Index & Answer Generation)
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Google Gemini & Search Generative Experience
+User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+# Canonical XML Sitemap
 Sitemap: https://www.sshconnect.space/sitemap.xml
