@@ -456,18 +456,40 @@ function initLiveToolToast() {
   // Performance: Preload audio upfront for zero latency / buffering delay
   const popupAudio = new Audio(SOUND_FILE_PATH);
   popupAudio.preload = 'auto';
-  popupAudio.volume = 0.85;
+  popupAudio.volume = 0.9;
 
-  // Instruct browser to begin background buffering immediately without blocking main thread
+  // Instruct browser to begin background buffering immediately
   try {
     popupAudio.load();
   } catch (_) {}
 
   let soundAlreadyPlayed = false;
 
-  // Function to trigger playback simultaneously with CSS class
+  // Pre-unlock audio on ANY first user gesture on the page (Chrome/Safari requirement)
+  let isUnlocked = false;
+  const unlockAudio = () => {
+    if (isUnlocked) return;
+    isUnlocked = true;
+    popupAudio.play()
+      .then(() => {
+        popupAudio.pause();
+        popupAudio.currentTime = 0;
+      })
+      .catch(() => {});
+
+    ['click', 'pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+      document.removeEventListener(evt, unlockAudio, true);
+    });
+  };
+
+  ['click', 'pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+    document.addEventListener(evt, unlockAudio, { capture: true, passive: true });
+  });
+
+  // Function to trigger audio playback simultaneously with CSS visibility class
   function triggerAudio() {
     if (soundAlreadyPlayed) return;
+
     try {
       popupAudio.currentTime = 0;
       const playPromise = popupAudio.play();
@@ -478,55 +500,44 @@ function initLiveToolToast() {
             soundAlreadyPlayed = true;
           })
           .catch((error) => {
-            // Error Handling: Silently handle NotAllowedError (browser autoplay policy)
+            // Error Handling: Silently handle NotAllowedError if blocked by autoplay policy
             if (error.name === 'NotAllowedError') {
-              // Graceful interaction fallback: If user interacts while popup is visible, play sound
-              const playOnFirstInteraction = () => {
+              // Graceful interaction fallback: play sound the split-second user interacts while popup is visible
+              const playOnInteraction = () => {
                 if (!soundAlreadyPlayed && toast.classList.contains('is-visible')) {
                   popupAudio.currentTime = 0;
                   popupAudio.play()
                     .then(() => { soundAlreadyPlayed = true; })
                     .catch(() => {});
                 }
-                ['click', 'touchstart', 'keydown', 'scroll'].forEach((evt) => {
-                  window.removeEventListener(evt, playOnFirstInteraction);
+                ['click', 'pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+                  document.removeEventListener(evt, playOnInteraction, true);
                 });
               };
 
-              ['click', 'touchstart', 'keydown', 'scroll'].forEach((evt) => {
-                window.addEventListener(evt, playOnFirstInteraction, { passive: true, once: true });
+              ['click', 'pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+                document.addEventListener(evt, playOnInteraction, { capture: true, once: true });
               });
-              return;
             }
-            // Silently ignore other playback errors (abort, interruption)
           });
       }
     } catch (_) {}
   }
 
-  // Session storage check so it doesn't repeatedly annoy visitor within same session
-  const STORAGE_KEY = 'wordtohtml_popup_seen_v3';
-
   // Event Synchronization: setTimeout block synchronizing visual class & audio trigger
-  const DELAY_MS = 3500;
+  const DELAY_MS = 2500; // Trigger after 2.5 seconds on page
 
   const showPopupSynchronized = () => {
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-    sessionStorage.setItem(STORAGE_KEY, 'true');
-
     // 1. Visual animation trigger: add CSS class to make popup slide in
+    toast.classList.remove('is-dismissed');
     toast.classList.add('is-visible');
 
     // 2. Audio playback trigger: perfectly synchronized inside this exact same block
     triggerAudio();
   };
 
-  // Trigger delayed popup after page is loaded
-  if (document.readyState === 'complete') {
-    setTimeout(showPopupSynchronized, DELAY_MS);
-  } else {
-    window.addEventListener('load', () => setTimeout(showPopupSynchronized, DELAY_MS));
-  }
+  // Launch timer immediately upon initialization (no window.load delay or sessionStorage lock)
+  setTimeout(showPopupSynchronized, DELAY_MS);
 
   // Dismiss handler
   if (closeBtn) {
@@ -539,92 +550,6 @@ function initLiveToolToast() {
   }
 }
 
-// 10. Site Entry Sound — plays on load; shows "Click to Enter" overlay if autoplay blocked
-function initSiteEntrySound() {
-  const overlay = document.getElementById('siteEntryOverlay');
-  const audioEl = document.getElementById('siteEntrySound');
-  if (!audioEl) return;
-
-  const ENTRY_KEY = 'site_entry_sound_played';
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  let ctx = null;
-  let decodedBuffer = null;
-
-  function getCtx() {
-    if (!ctx && AudioCtx) ctx = new AudioCtx();
-    return ctx;
-  }
-
-  // Fetch + decode the WAV immediately for zero-lag playback
-  function preload() {
-    const c = getCtx();
-    if (!c) return;
-    fetch('assets/audio/mixkit-ending-wind-swoosh-1482.wav')
-      .then(r => r.arrayBuffer())
-      .then(buf => c.decodeAudioData(buf))
-      .then(decoded => { decodedBuffer = decoded; })
-      .catch(() => {});
-  }
-
-  function playSound() {
-    const c = getCtx();
-    if (c && decodedBuffer) {
-      try {
-        if (c.state === 'suspended') c.resume();
-        const src = c.createBufferSource();
-        src.buffer = decodedBuffer;
-        const gain = c.createGain();
-        gain.gain.value = 0.75;
-        src.connect(gain);
-        gain.connect(c.destination);
-        src.start(0);
-        return Promise.resolve();
-      } catch (e) {}
-    }
-    // Fallback: HTML audio element
-    audioEl.currentTime = 0;
-    audioEl.volume = 0.75;
-    return audioEl.play();
-  }
-
-  function dismissOverlay() {
-    if (!overlay) return;
-    overlay.classList.remove('is-visible');
-    overlay.classList.add('is-exiting');
-    setTimeout(() => { overlay.style.display = 'none'; }, 520);
-  }
-
-  preload();
-
-  const tryAutoplay = () => {
-    if (sessionStorage.getItem(ENTRY_KEY)) return;
-    sessionStorage.setItem(ENTRY_KEY, 'true');
-
-    playSound()
-      .then(() => {
-        dismissOverlay();
-      })
-      .catch(() => {
-        // Autoplay blocked — show brutalist "Click to Enter" overlay
-        if (overlay) {
-          overlay.classList.add('is-visible');
-          const enter = () => {
-            overlay.removeEventListener('click', enter);
-            playSound().catch(() => {});
-            dismissOverlay();
-          };
-          overlay.addEventListener('click', enter);
-        }
-      });
-  };
-
-  if (document.readyState === 'complete') {
-    tryAutoplay();
-  } else {
-    window.addEventListener('load', tryAutoplay);
-  }
-}
-
 // Initialization on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
@@ -634,7 +559,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionVideoControls();
   initHeroBackgroundLoop();
   initGitHubIntegration();
-  initSiteEntrySound();
   initLiveToolToast();
 });
 
