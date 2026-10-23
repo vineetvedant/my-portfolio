@@ -33,7 +33,9 @@ const itemsToCopy = [
   'projects',
   '_headers',
   'mixkit-select-click-1109.wav',
-  'mixkit-ending-wind-swoosh-1482.wav'
+  'mixkit-ending-wind-swoosh-1482.wav',
+  'llms.txt',
+  'llms-full.txt'
 ];
 
 for (const item of itemsToCopy) {

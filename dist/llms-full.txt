@@ -1,0 +1,73 @@
+# Complete Engineering Profile & Technical Dossier: Vedant Singh
+Canonical URL: https://www.sshconnect.space/
+Entity Name: Vedant Singh
+Contact Email: singhvineetvedant@gmail.com
+GitHub: https://github.com/vineetvedant
+LinkedIn: https://www.linkedin.com/in/vedant-singh-2550b2202
+
+## 1. Professional Profile Summary
+Vedant Singh is a Software Engineer based in Delhi, India. He builds scalable Python backend services, Generative AI applications (RAG pipelines, local LLM integration), and automation infrastructure. His work emphasizes verifiable source code, robust data workflows, and measurable engineering outcomes over superficial metrics.
+
+## 2. Technical Capabilities & Architecture Patterns
+
+### Python Backend & REST APIs
+- **Frameworks**: FastAPI, Uvicorn, ASGI
+- **Data Persistence**: SQLite, ChromaDB vector database, Pandas/NumPy structured pipelines
+- **Patterns**: Idempotent transactional settlement, rate-limited job dispatching, asynchronous request handling, in-memory stream processing (DOCX XML AST manipulation without disk persistence)
+
+### Generative AI & Retrieval-Augmented Generation (RAG)
+- **Vector Retrieval**: ChromaDB with `all-MiniLM-L6-v2` embeddings, cosine distance thresholding
+- **Inference Engines**: Local inference via Ollama (`deepseek-r1:1.5b`), cloud API integration via OpenRouter (`mistralai/mistral-7b-instruct`)
+- **Pipeline Architecture**: Dual-API decoupling separating conversational natural-language querying from transactional execution logic
+
+### Computer Vision & Deep Learning
+- **Object Detection & Segmentation**: YOLOv8, YOLOv10 (drone autonomy), Haar Cascades
+- **Facial Analysis**: DeepFace CNN for dominant emotion classification and screen focus monitoring
+- **Medical Imaging**: YOLOv8 multi-class brain tumor classification across 5 MRI scan categories (TumorTrace)
+
+### Systems, Infrastructure & Automation
+- **Enterprise Automation**: Windows COM automation (`pywin32`) for Outlook dispatching, Tesseract OCR for document parsing
+- **Infrastructure**: Linux system administration, Docker container orchestration, Git & GitHub Actions CI/CD, Terraform
+- **High-Performance Computing (HPC)**: Workload management, cluster administration, and performance profiling (Altair Engineering)
+
+## 3. Detailed Case Studies
+
+### Case Study 1: Gold Price Conversational AI Assistant
+- **Live URL**: https://www.sshconnect.space/projects/gold-price-assistant.html
+- **Repository**: https://github.com/vineetvedant/Gold-Price-Conversational-AI-Assistant
+- **Problem**: Natural language interfaces in retail/e-commerce often fail at transactional integrity, hallucinating prices or double-charging.
+- **Solution**: A dual-API architecture. The Conversational API queries ChromaDB vector embeddings and prompts Ollama DeepSeek R1 for context-grounded reasoning. Once a user confirms a purchase, control passes to an independent Settlement API enforcing transactional idempotency and SQLite persistence.
+
+### Case Study 2: Smart Email Automation with Mistral-7B
+- **Live URL**: https://www.sshconnect.space/projects/smart-email-automation.html
+- **Repository**: https://github.com/vineetvedant/smart_emai_cold_mail
+- **Problem**: Extracting unstructured contact data from incoming scanned attachments and composing contextual, individualized responses is labor-intensive.
+- **Solution**: Multi-stage automation pipeline. PyTesseract OCR extracts raw text from PDF attachments; Mistral-7B via OpenRouter cleans and personalizes the message; PyWin32 COM generates rate-limited Outlook drafts.
+
+### Case Study 3: Accessible Railway Ticketing System
+- **Live URL**: https://www.sshconnect.space/projects/railway-accessibility.html
+- **Repository**: https://github.com/vineetvedant/Empowering-Accessibility-A-GUI-Based-Ticket-Reservation-System-for-the-Visually-Impaired-with-Real-
+- **Problem**: Railway ticket booking systems (CRIS UTS) lack immediate tactile feedback for visually impaired travelers.
+- **Solution**: Prototype converting alphanumeric PNRs, coach allocations, and seat numbers into Grade-1 Braille Unicode glyphs in real-time within an accessible Tkinter interface.
+
+### Case Study 4: Data Visualisation & Predictive Analytics Dashboard
+- **Live URL**: https://www.sshconnect.space/projects/predictive-analytics.html
+- **Repository**: https://github.com/vineetvedant/Data_Visualisation
+- **Problem**: Raw multidimensional socio-economic survey data is opaque without interactive exploration and predictive estimation.
+- **Solution**: Streamlit dashboard integrating 6 interactive Plotly Express charts with an embedded Scikit-learn Random Forest Regressor for live event likelihood scoring.
+
+## 4. Professional Experience History
+- **Associate Analyst (previously GET)**, Wipro (2026 — Present): Python backend systems, API integration, and workflow automation in enterprise environments.
+- **HPC Intern**, Altair Engineering (2025): Computing infrastructure, Linux cluster workflows, and HPC optimization.
+- **Machine Learning Engineer**, Proeffico Solutions (2024 — 2025): Computer vision systems, RAG workflows, industrial automation, and IoT telemetry.
+- **Engineering Intern**, Tata Motors (2024): Convolutional neural networks and thermal imaging for human presence detection.
+- **Summer Intern**, Centre for Railway Information Systems (CRIS) (2023): Braille accessibility interface prototype for UTS ticketing.
+
+## 5. Education, Publications & Certifications
+- **Education**: B.Tech in Computer Science and Engineering, SRM Institute of Science and Technology (Graduated 2025).
+- **Publication**: "Smart Drone System Using Deep Learning Techniques", Published in ICAIN 2025, Springer LNNS (Lecture Notes in Networks and Systems), Scopus Indexed.
+- **Certifications**:
+  - Cloud Computing & Distributed Systems (NPTEL / IIT Kharagpur Swayam)
+  - Introduction to Cybersecurity (Cisco Networking Academy)
+  - Introduction to Data Analytics (IBM / Coursera)
+  - NCC 'C' Certificate, Senior Under Officer (SUO), National Cadet Corps
