@@ -444,109 +444,88 @@ function initHeroBackgroundLoop() {
   }, 3500);
 }
 
-// 9. Delayed Live Tool Slide-In Notification Popup with Sound
+// 9. Delayed Live Tool Slide-In Notification Popup with UI Sound Effect
 function initLiveToolToast() {
   const toast = document.getElementById('liveToolToast');
   const closeBtn = document.getElementById('closeToastBtn');
   if (!toast) return;
 
-  // ── Audio unlock: create AudioContext once, resume it on first user gesture ──
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  let audioCtx = null;
-  let audioBuffer = null;
-  let ctxUnlocked = false;
+  // Sound Asset Path
+  const SOUND_FILE_PATH = 'assets/audio/mixkit-select-click-1109.wav';
 
-  function getCtx() {
-    if (!audioCtx && AudioCtx) audioCtx = new AudioCtx();
-    return audioCtx;
+  // Performance: Preload audio upfront for zero latency / buffering delay
+  const popupAudio = new Audio(SOUND_FILE_PATH);
+  popupAudio.preload = 'auto';
+  popupAudio.volume = 0.85;
+
+  // Instruct browser to begin background buffering immediately without blocking main thread
+  try {
+    popupAudio.load();
+  } catch (_) {}
+
+  let soundAlreadyPlayed = false;
+
+  // Function to trigger playback simultaneously with CSS class
+  function triggerAudio() {
+    if (soundAlreadyPlayed) return;
+    try {
+      popupAudio.currentTime = 0;
+      const playPromise = popupAudio.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            soundAlreadyPlayed = true;
+          })
+          .catch((error) => {
+            // Error Handling: Silently handle NotAllowedError (browser autoplay policy)
+            if (error.name === 'NotAllowedError') {
+              // Graceful interaction fallback: If user interacts while popup is visible, play sound
+              const playOnFirstInteraction = () => {
+                if (!soundAlreadyPlayed && toast.classList.contains('is-visible')) {
+                  popupAudio.currentTime = 0;
+                  popupAudio.play()
+                    .then(() => { soundAlreadyPlayed = true; })
+                    .catch(() => {});
+                }
+                ['click', 'touchstart', 'keydown', 'scroll'].forEach((evt) => {
+                  window.removeEventListener(evt, playOnFirstInteraction);
+                });
+              };
+
+              ['click', 'touchstart', 'keydown', 'scroll'].forEach((evt) => {
+                window.addEventListener(evt, playOnFirstInteraction, { passive: true, once: true });
+              });
+              return;
+            }
+            // Silently ignore other playback errors (abort, interruption)
+          });
+      }
+    } catch (_) {}
   }
 
-  // Pre-fetch and decode the WAV as soon as possible
-  function preloadAudio() {
-    const ctx = getCtx();
-    if (!ctx) return;
-    fetch('assets/audio/mixkit-select-click-1109.wav')
-      .then(r => r.arrayBuffer())
-      .then(buf => ctx.decodeAudioData(buf))
-      .then(decoded => { audioBuffer = decoded; })
-      .catch(() => {});
-  }
+  // Session storage check so it doesn't repeatedly annoy visitor within same session
+  const STORAGE_KEY = 'wordtohtml_popup_seen_v3';
 
-  // Unlock AudioContext on first user gesture (required by Chrome/Safari)
-  function unlockCtx() {
-    if (ctxUnlocked) return;
-    ctxUnlocked = true;
-    const ctx = getCtx();
-    if (ctx && ctx.state === 'suspended') {
-      ctx.resume().catch(() => {});
-    }
-    // Play a silent buffer to fully unlock on Safari
-    if (ctx) {
-      const buf = ctx.createBuffer(1, 1, 22050);
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
-      src.connect(ctx.destination);
-      src.start(0);
-    }
-    ['click','touchstart','keydown','scroll','mousemove'].forEach(e =>
-      document.removeEventListener(e, unlockCtx)
-    );
-  }
+  // Event Synchronization: setTimeout block synchronizing visual class & audio trigger
+  const DELAY_MS = 3500;
 
-  ['click','touchstart','keydown','scroll','mousemove'].forEach(e =>
-    document.addEventListener(e, unlockCtx, { passive: true })
-  );
-
-  function playToastSound() {
-    const ctx = getCtx();
-    if (ctx && audioBuffer) {
-      // Best path: pre-decoded buffer ready to go
-      try {
-        if (ctx.state === 'suspended') ctx.resume();
-        const src = ctx.createBufferSource();
-        src.buffer = audioBuffer;
-        const gain = ctx.createGain();
-        gain.gain.value = 0.85;
-        src.connect(gain);
-        gain.connect(ctx.destination);
-        src.start(0);
-        return;
-      } catch (e) {}
-    }
-    // Fallback: plain HTML <audio> element
-    const el = document.getElementById('toastNotificationSound');
-    if (el) {
-      el.currentTime = 0;
-      el.volume = 0.85;
-      el.play().catch(() => {
-        // Last resort: create fresh Audio object
-        const a = new Audio('assets/audio/mixkit-select-click-1109.wav');
-        a.volume = 0.85;
-        a.play().catch(() => {});
-      });
-    }
-  }
-
-  preloadAudio();
-
-  const STORAGE_KEY = 'wordtohtml_popup_seen_v2';
-
-  const triggerToast = () => {
+  const showPopupSynchronized = () => {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     sessionStorage.setItem(STORAGE_KEY, 'true');
 
-    // Show popup
+    // 1. Visual animation trigger: add CSS class to make popup slide in
     toast.classList.add('is-visible');
 
-    // Play sound — works if user already interacted; else fires on next gesture
-    playToastSound();
+    // 2. Audio playback trigger: perfectly synchronized inside this exact same block
+    triggerAudio();
   };
 
-  // Fire 3.5 s after page fully loads
+  // Trigger delayed popup after page is loaded
   if (document.readyState === 'complete') {
-    setTimeout(triggerToast, 3500);
+    setTimeout(showPopupSynchronized, DELAY_MS);
   } else {
-    window.addEventListener('load', () => setTimeout(triggerToast, 3500));
+    window.addEventListener('load', () => setTimeout(showPopupSynchronized, DELAY_MS));
   }
 
   // Dismiss handler

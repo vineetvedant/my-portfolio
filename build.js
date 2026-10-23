@@ -31,7 +31,9 @@ const itemsToCopy = [
   'github-data.json',
   'assets',
   'projects',
-  '_headers'
+  '_headers',
+  'mixkit-select-click-1109.wav',
+  'mixkit-ending-wind-swoosh-1482.wav'
 ];
 
 for (const item of itemsToCopy) {
