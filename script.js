@@ -444,106 +444,118 @@ function initHeroBackgroundLoop() {
   }, 3500);
 }
 
-// 9. Delayed Live Tool Slide-In Notification Popup with Sound & SessionStorage
+// 9. Delayed Live Tool Slide-In Notification Popup with Sound
 function initLiveToolToast() {
   const toast = document.getElementById('liveToolToast');
   const closeBtn = document.getElementById('closeToastBtn');
-  const audio = document.getElementById('toastNotificationSound');
   if (!toast) return;
 
-  const STORAGE_KEY = 'wordtohtml_popup_seen';
+  // ── Audio unlock: create AudioContext once, resume it on first user gesture ──
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let audioCtx = null;
+  let audioBuffer = null;
+  let ctxUnlocked = false;
 
-  // Check if popup already fired in current user session
-  if (sessionStorage.getItem(STORAGE_KEY)) {
-    return;
+  function getCtx() {
+    if (!audioCtx && AudioCtx) audioCtx = new AudioCtx();
+    return audioCtx;
   }
 
-  let pendingSound = false;
+  // Pre-fetch and decode the WAV as soon as possible
+  function preloadAudio() {
+    const ctx = getCtx();
+    if (!ctx) return;
+    fetch('assets/audio/mixkit-select-click-1109.wav')
+      .then(r => r.arrayBuffer())
+      .then(buf => ctx.decodeAudioData(buf))
+      .then(decoded => { audioBuffer = decoded; })
+      .catch(() => {});
+  }
 
-  // Robust sound player: tries AudioContext first, falls back to <audio> element
+  // Unlock AudioContext on first user gesture (required by Chrome/Safari)
+  function unlockCtx() {
+    if (ctxUnlocked) return;
+    ctxUnlocked = true;
+    const ctx = getCtx();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
+    // Play a silent buffer to fully unlock on Safari
+    if (ctx) {
+      const buf = ctx.createBuffer(1, 1, 22050);
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      src.connect(ctx.destination);
+      src.start(0);
+    }
+    ['click','touchstart','keydown','scroll','mousemove'].forEach(e =>
+      document.removeEventListener(e, unlockCtx)
+    );
+  }
+
+  ['click','touchstart','keydown','scroll','mousemove'].forEach(e =>
+    document.addEventListener(e, unlockCtx, { passive: true })
+  );
+
   function playToastSound() {
-    if (!audio) return;
-    try {
-      // Resume or create AudioContext to bypass autoplay restrictions
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) {
-        const ctx = new AudioCtx();
-        fetch(audio.src)
-          .then(r => r.arrayBuffer())
-          .then(buf => ctx.decodeAudioData(buf))
-          .then(decoded => {
-            const src = ctx.createBufferSource();
-            src.buffer = decoded;
-            const gain = ctx.createGain();
-            gain.gain.value = 0.85;
-            src.connect(gain);
-            gain.connect(ctx.destination);
-            src.start(0);
-          })
-          .catch(() => {
-            // Fallback to plain <audio>
-            audio.currentTime = 0;
-            audio.volume = 0.85;
-            audio.play().catch(() => {});
-          });
-      } else {
-        audio.currentTime = 0;
-        audio.volume = 0.85;
-        audio.play().catch(() => {});
-      }
-    } catch (e) {
-      audio.currentTime = 0;
-      audio.volume = 0.85;
-      audio.play().catch(() => {});
+    const ctx = getCtx();
+    if (ctx && audioBuffer) {
+      // Best path: pre-decoded buffer ready to go
+      try {
+        if (ctx.state === 'suspended') ctx.resume();
+        const src = ctx.createBufferSource();
+        src.buffer = audioBuffer;
+        const gain = ctx.createGain();
+        gain.gain.value = 0.85;
+        src.connect(gain);
+        gain.connect(ctx.destination);
+        src.start(0);
+        return;
+      } catch (e) {}
+    }
+    // Fallback: plain HTML <audio> element
+    const el = document.getElementById('toastNotificationSound');
+    if (el) {
+      el.currentTime = 0;
+      el.volume = 0.85;
+      el.play().catch(() => {
+        // Last resort: create fresh Audio object
+        const a = new Audio('assets/audio/mixkit-select-click-1109.wav');
+        a.volume = 0.85;
+        a.play().catch(() => {});
+      });
     }
   }
 
-  // Play on first user interaction if autoplay was blocked
-  function playOnInteraction() {
-    if (!pendingSound) return;
-    pendingSound = false;
-    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt =>
-      document.removeEventListener(evt, playOnInteraction, { once: true })
-    );
-    playToastSound();
-  }
+  preloadAudio();
+
+  const STORAGE_KEY = 'wordtohtml_popup_seen_v2';
 
   const triggerToast = () => {
-    // Prevent double execution
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     sessionStorage.setItem(STORAGE_KEY, 'true');
 
-    // Try playing sound immediately; queue fallback if blocked
-    pendingSound = true;
-    ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt =>
-      document.addEventListener(evt, playOnInteraction, { once: true, passive: true })
-    );
-    playToastSound();
-    // Mark sound as played after 2s regardless
-    setTimeout(() => { pendingSound = false; }, 2000);
-
-    // Trigger smooth CSS transform slide-in
+    // Show popup
     toast.classList.add('is-visible');
+
+    // Play sound — works if user already interacted; else fires on next gesture
+    playToastSound();
   };
 
-  // Trigger exactly 3.5 seconds (3500ms) after window.onload
+  // Fire 3.5 s after page fully loads
   if (document.readyState === 'complete') {
     setTimeout(triggerToast, 3500);
   } else {
-    window.addEventListener('load', () => {
-      setTimeout(triggerToast, 3500);
-    });
+    window.addEventListener('load', () => setTimeout(triggerToast, 3500));
   }
 
-  // Dismiss button handler
+  // Dismiss handler
   if (closeBtn) {
     closeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toast.classList.remove('is-visible');
       toast.classList.add('is-dismissed');
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, 500);
+      setTimeout(() => { toast.style.display = 'none'; }, 500);
     });
   }
 }
