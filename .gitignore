@@ -13,6 +13,11 @@ scratch/
 __pycache__/
 *.pyc
 
+# Build outputs & dependencies
+dist/
+node_modules/
+.vercel/
+
 # IDE configs
 .vscode/
 .idea/
