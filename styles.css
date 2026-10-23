@@ -3795,3 +3795,122 @@ body.nav-locked {
     min-height: 44px;
   }
 }
+
+/* ==========================================================================
+   SITE ENTRY OVERLAY — Autoplay Fallback / Click-to-Enter Screen
+   Brutalist aesthetic: off-white canvas, stark black, electric blue accent
+   ========================================================================== */
+
+.site-entry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Hidden by default — JS reveals it only if autoplay is blocked */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.site-entry-overlay.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.site-entry-overlay.is-exiting {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-entry-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem;
+  border: 2.5px solid var(--text);
+  background: var(--bg-card);
+  user-select: none;
+  position: relative;
+  max-width: 480px;
+  width: calc(100% - 3rem);
+}
+
+/* Top-left corner accent */
+.site-entry-inner::before {
+  content: '';
+  position: absolute;
+  top: -2.5px;
+  left: -2.5px;
+  width: 20px;
+  height: 20px;
+  background: var(--blue);
+}
+
+/* Bottom-right corner accent */
+.site-entry-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -2.5px;
+  right: -2.5px;
+  width: 20px;
+  height: 20px;
+  background: var(--blue);
+}
+
+.site-entry-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+}
+
+.site-entry-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 14vw, 7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0.25rem 0;
+}
+
+.site-entry-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Animated pulsing cursor dot */
+.site-entry-cursor {
+  width: 10px;
+  height: 10px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  animation: entry-pulse 1s ease-in-out infinite;
+}
+
+@keyframes entry-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.6); opacity: 0.5; }
+}
+
+/* Mobile tweak */
+@media (max-width: 480px) {
+  .site-entry-inner {
+    padding: 2rem 1.5rem;
+  }
+}

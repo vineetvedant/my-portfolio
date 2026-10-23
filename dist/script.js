@@ -560,6 +560,92 @@ function initLiveToolToast() {
   }
 }
 
+// 10. Site Entry Sound — plays on load; shows "Click to Enter" overlay if autoplay blocked
+function initSiteEntrySound() {
+  const overlay = document.getElementById('siteEntryOverlay');
+  const audioEl = document.getElementById('siteEntrySound');
+  if (!audioEl) return;
+
+  const ENTRY_KEY = 'site_entry_sound_played';
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let ctx = null;
+  let decodedBuffer = null;
+
+  function getCtx() {
+    if (!ctx && AudioCtx) ctx = new AudioCtx();
+    return ctx;
+  }
+
+  // Fetch + decode the WAV immediately for zero-lag playback
+  function preload() {
+    const c = getCtx();
+    if (!c) return;
+    fetch('assets/audio/mixkit-ending-wind-swoosh-1482.wav')
+      .then(r => r.arrayBuffer())
+      .then(buf => c.decodeAudioData(buf))
+      .then(decoded => { decodedBuffer = decoded; })
+      .catch(() => {});
+  }
+
+  function playSound() {
+    const c = getCtx();
+    if (c && decodedBuffer) {
+      try {
+        if (c.state === 'suspended') c.resume();
+        const src = c.createBufferSource();
+        src.buffer = decodedBuffer;
+        const gain = c.createGain();
+        gain.gain.value = 0.75;
+        src.connect(gain);
+        gain.connect(c.destination);
+        src.start(0);
+        return Promise.resolve();
+      } catch (e) {}
+    }
+    // Fallback: HTML audio element
+    audioEl.currentTime = 0;
+    audioEl.volume = 0.75;
+    return audioEl.play();
+  }
+
+  function dismissOverlay() {
+    if (!overlay) return;
+    overlay.classList.remove('is-visible');
+    overlay.classList.add('is-exiting');
+    setTimeout(() => { overlay.style.display = 'none'; }, 520);
+  }
+
+  preload();
+
+  const tryAutoplay = () => {
+    if (sessionStorage.getItem(ENTRY_KEY)) return;
+    sessionStorage.setItem(ENTRY_KEY, 'true');
+
+    playSound()
+      .then(() => {
+        dismissOverlay();
+      })
+      .catch(() => {
+        // Autoplay blocked — show brutalist "Click to Enter" overlay
+        if (overlay) {
+          overlay.classList.add('is-visible');
+          const enter = () => {
+            overlay.removeEventListener('click', enter);
+            playSound().catch(() => {});
+            dismissOverlay();
+          };
+          overlay.addEventListener('click', enter);
+        }
+      });
+  };
+
+  if (document.readyState === 'complete') {
+    tryAutoplay();
+  } else {
+    window.addEventListener('load', tryAutoplay);
+  }
+}
+
 // Initialization on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
@@ -569,8 +655,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionVideoControls();
   initHeroBackgroundLoop();
   initGitHubIntegration();
+  initSiteEntrySound();
   initLiveToolToast();
 });
+
 
 
 
