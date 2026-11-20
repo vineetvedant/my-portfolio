@@ -56,14 +56,24 @@ Vedant Singh is a Software Engineer based in Delhi, India. He builds scalable Py
 - **Problem**: Raw multidimensional socio-economic survey data is opaque without interactive exploration and predictive estimation.
 - **Solution**: Streamlit dashboard integrating 6 interactive Plotly Express charts with an embedded Scikit-learn Random Forest Regressor for live event likelihood scoring.
 
-## 4. Professional Experience History
+## 4. Live Production Deployments & Web Applications
+- **Voice Studio — Text to Speech & Image to Voice**:
+  - **Live URL**: https://voice.sshconnect.space/
+  - **Repository**: https://github.com/vineetvedant/Text-and-image-to-speech
+  - **Capabilities**: Real-time client-side text-to-speech synthesis and image OCR text extraction to voice with a 60 FPS synchronized kinetic teleprompter, 15+ international language accents, acoustic spectrum visualizer, and strict zero-cloud data retention.
+- **Word to HTML 1.0**:
+  - **Live URL**: https://wordtohtml1.0.sshconnect.space/
+  - **Repository**: https://github.com/vineetvedant/Word-to-HTML
+  - **Capabilities**: Zero-dependency browser document compiler converting Microsoft Word (.docx) binary archives into clean, semantic W3C-compliant HTML with zero bloat and real-time preview.
+
+## 5. Professional Experience History
 - **Associate Analyst (previously GET)**, Wipro (2026 — Present): Python backend systems, API integration, and workflow automation in enterprise environments.
 - **HPC Intern**, Altair Engineering (2025): Computing infrastructure, Linux cluster workflows, and HPC optimization.
 - **Machine Learning Engineer**, Proeffico Solutions (2024 — 2025): Computer vision systems, RAG workflows, industrial automation, and IoT telemetry.
 - **Engineering Intern**, Tata Motors (2024): Convolutional neural networks and thermal imaging for human presence detection.
 - **Summer Intern**, Centre for Railway Information Systems (CRIS) (2023): Braille accessibility interface prototype for UTS ticketing.
 
-## 5. Education, Publications & Certifications
+## 6. Education, Publications & Certifications
 - **Education**: B.Tech in Computer Science and Engineering, SRM Institute of Science and Technology (Graduated 2025).
 - **Publication**: "Smart Drone System Using Deep Learning Techniques", Published in ICAIN 2025, Springer LNNS (Lecture Notes in Networks and Systems), Scopus Indexed.
 - **Certifications**:

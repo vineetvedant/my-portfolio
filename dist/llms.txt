@@ -27,6 +27,7 @@
 - [Data Visualisation & Predictive Analytics Dashboard](https://www.sshconnect.space/projects/predictive-analytics.html): Interactive Streamlit intelligence dashboard featuring 6 dynamic Plotly visual representations and an embedded Scikit-learn Random Forest Regressor. (Python, Streamlit, Plotly, Scikit-learn).
 
 ## Live Production Deployments
+- [Voice Studio](https://voice.sshconnect.space/): Real-time client-side text-to-speech synthesis and image OCR text extraction to voice with a synchronized 60 FPS kinetic teleprompter and zero cloud data retention. Source code: [GitHub](https://github.com/vineetvedant/Text-and-image-to-speech).
 - [Word to HTML 1.0](https://wordtohtml1.0.sshconnect.space/): Zero-dependency browser document compiler converting Microsoft Word (.docx) files into clean, semantic W3C-compliant HTML with zero data retention.
 
 ## Verified Experience

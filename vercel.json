@@ -19,6 +19,21 @@
       "permanent": false
     },
     {
+      "source": "/voice",
+      "destination": "https://voice.sshconnect.space",
+      "permanent": false
+    },
+    {
+      "source": "/voicestudio",
+      "destination": "https://voice.sshconnect.space",
+      "permanent": false
+    },
+    {
+      "source": "/tts",
+      "destination": "https://voice.sshconnect.space",
+      "permanent": false
+    },
+    {
       "source": "/.well-known/llms.txt",
       "destination": "/llms.txt",
       "permanent": true

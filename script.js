@@ -548,6 +548,47 @@ function initLiveToolToast() {
       setTimeout(() => { toast.style.display = 'none'; }, 500);
     });
   }
+
+  // Toast Tool Switcher Tabs (Voice Studio <-> Word to HTML)
+  const tabVoice = document.getElementById('toastTabVoice');
+  const tabWord = document.getElementById('toastTabWord');
+  const contentVoice = document.getElementById('toastVoiceContent');
+  const contentWord = document.getElementById('toastWordContent');
+
+  if (tabVoice && tabWord && contentVoice && contentWord) {
+    const activateTab = (activeTab, inactiveTab, showEl, hideEl) => {
+      activeTab.classList.add('is-active');
+      activeTab.setAttribute('aria-selected', 'true');
+      inactiveTab.classList.remove('is-active');
+      inactiveTab.setAttribute('aria-selected', 'false');
+      showEl.style.display = 'block';
+      hideEl.style.display = 'none';
+    };
+
+    tabVoice.addEventListener('click', (e) => {
+      e.stopPropagation();
+      activateTab(tabVoice, tabWord, contentVoice, contentWord);
+    });
+
+    tabWord.addEventListener('click', (e) => {
+      e.stopPropagation();
+      activateTab(tabWord, tabVoice, contentWord, contentVoice);
+    });
+  }
+}
+
+// 10. Interactive Full-Card Navigation for Flagship Live Projects
+function initLiveCardNavigation() {
+  document.querySelectorAll('.bento-card--flagship[data-live-url]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Allow independent link clicks (e.g. GitHub Repo link or specific button)
+      if (e.target.closest('a')) return;
+      const liveUrl = card.getAttribute('data-live-url');
+      if (liveUrl) {
+        window.open(liveUrl, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
 }
 
 // Initialization on DOM Ready
@@ -560,6 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroBackgroundLoop();
   initGitHubIntegration();
   initLiveToolToast();
+  initLiveCardNavigation();
 });
 
 

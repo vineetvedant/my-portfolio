@@ -155,6 +155,25 @@
       "stars": 0,
       "updated_at": "2026-07-27",
       "status": "Web App"
+    },
+    {
+      "id": "text-and-image-to-speech",
+      "repo_name": "Text-and-image-to-speech",
+      "title": "Voice Studio — Text and Image to Speech",
+      "description": "High-performance client-side text-to-speech synthesis and image OCR text extraction to voice with a 60 FPS kinetic teleprompter and zero cloud data retention.",
+      "language": "JavaScript",
+      "confirmed_tech": [
+        "Web Speech API",
+        "Tesseract OCR",
+        "Web Audio API",
+        "React",
+        "Tailwind CSS"
+      ],
+      "html_url": "https://github.com/vineetvedant/Text-and-image-to-speech",
+      "stars": 0,
+      "updated_at": "2026-11-19",
+      "status": "Production Live Tool",
+      "live_url": "https://voice.sshconnect.space/"
     }
   ]
 }

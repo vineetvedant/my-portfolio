@@ -1644,9 +1644,9 @@ body.nav-locked {
   gap: 22px;
 }
 
-/* --- FLAGSHIP CARD: Word to HTML 1.0 (Interactive Hyperlink) --- */
+/* --- FLAGSHIP CARDS: Voice Studio & Word to HTML 1.0 --- */
 .bento-card--flagship {
-  grid-column: span 8;
+  grid-column: span 6;
   border: 2px solid var(--border-strong);
   text-decoration: none;
   color: var(--text);
@@ -1742,6 +1742,35 @@ body.nav-locked {
   transition: color 0.3s ease;
 }
 
+.bento-header-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bento-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  transition: all 0.25s ease;
+}
+
+.bento-github-link:hover {
+  background: #050505;
+  color: #ffffff;
+  border-color: #050505;
+}
+
 .bento-domain-label {
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1768,10 +1797,10 @@ body.nav-locked {
   transition: color 0.3s ease;
 }
 
-/* Oversized typography for Word to HTML 1.0 */
+/* Oversized typography for Flagship Live Cards */
 .bento-project-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-size: clamp(1.85rem, 2.7vw, 2.75rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -1837,6 +1866,35 @@ body.nav-locked {
 
 .preview-format-icon--html {
   background: var(--blue);
+}
+
+.preview-format-icon--voice {
+  background: var(--blue);
+}
+
+.voice-wave-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+}
+
+.voice-wave-bars .wave-bar {
+  width: 3px;
+  background: var(--blue);
+  border-radius: 2px;
+  animation: waveAnim 1.2s ease-in-out infinite alternate;
+}
+
+.voice-wave-bars .wave-bar:nth-child(1) { height: 8px; animation-delay: 0.1s; }
+.voice-wave-bars .wave-bar:nth-child(2) { height: 17px; animation-delay: 0.3s; }
+.voice-wave-bars .wave-bar:nth-child(3) { height: 22px; animation-delay: 0.15s; }
+.voice-wave-bars .wave-bar:nth-child(4) { height: 14px; animation-delay: 0.4s; }
+.voice-wave-bars .wave-bar:nth-child(5) { height: 9px; animation-delay: 0.25s; }
+
+@keyframes waveAnim {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.1); }
 }
 
 .preview-format-details {
@@ -1912,6 +1970,13 @@ body.nav-locked {
   transition: all 0.3s ease;
 }
 
+.bento-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .bento-cta-btn {
   display: inline-flex;
   align-items: center;
@@ -1925,7 +1990,20 @@ body.nav-locked {
   font-weight: 700;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-cta-btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border-strong);
+}
+
+.bento-cta-btn--ghost:hover {
+  background: #050505;
+  color: #ffffff;
+  border-color: #050505;
 }
 
 .bento-btn-arrow {
@@ -1938,7 +2016,8 @@ body.nav-locked {
    FLAGSHIP HOVER INVERSION: SOLID PRIMARY BLUE BACKGROUND + WHITE TEXT
    Strictly adhering to user requirements
    ========================================================================== */
-.live-card--wordtohtml:hover {
+.live-card--wordtohtml:hover,
+.live-card--voicestudio:hover {
   background: var(--blue) !important;
   color: #ffffff !important;
   border-color: var(--blue) !important;
@@ -1947,70 +2026,124 @@ body.nav-locked {
 }
 
 .live-card--wordtohtml:hover .bento-project-title,
+.live-card--voicestudio:hover .bento-project-title,
 .live-card--wordtohtml:hover .bento-project-desc,
+.live-card--voicestudio:hover .bento-project-desc,
 .live-card--wordtohtml:hover .bento-category-tag,
+.live-card--voicestudio:hover .bento-category-tag,
 .live-card--wordtohtml:hover .bento-link-indicator,
+.live-card--voicestudio:hover .bento-link-indicator,
 .live-card--wordtohtml:hover .bento-domain-label,
+.live-card--voicestudio:hover .bento-domain-label,
 .live-card--wordtohtml:hover .bento-arrow-icon,
+.live-card--voicestudio:hover .bento-arrow-icon,
 .live-card--wordtohtml:hover .preview-format-name,
+.live-card--voicestudio:hover .preview-format-name,
 .live-card--wordtohtml:hover .preview-format-meta,
+.live-card--voicestudio:hover .preview-format-meta,
 .live-card--wordtohtml:hover .preview-transform-text,
+.live-card--voicestudio:hover .preview-transform-text,
 .live-card--wordtohtml:hover .bento-live-badge,
-.live-card--wordtohtml:hover .live-pulse-label {
+.live-card--voicestudio:hover .bento-live-badge,
+.live-card--wordtohtml:hover .live-pulse-label,
+.live-card--voicestudio:hover .live-pulse-label {
   color: #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .bento-project-desc code {
+.live-card--wordtohtml:hover .bento-github-link,
+.live-card--voicestudio:hover .bento-github-link {
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.live-card--wordtohtml:hover .bento-github-link:hover,
+.live-card--voicestudio:hover .bento-github-link:hover {
+  background: #ffffff !important;
+  color: var(--blue) !important;
+  border-color: #ffffff !important;
+}
+
+.live-card--wordtohtml:hover .bento-project-desc code,
+.live-card--voicestudio:hover .bento-project-desc code {
   background: rgba(255, 255, 255, 0.2) !important;
   color: #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .bento-card-footer {
+.live-card--wordtohtml:hover .bento-card-footer,
+.live-card--voicestudio:hover .bento-card-footer {
   border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
-.live-card--wordtohtml:hover .bento-live-badge {
+.live-card--wordtohtml:hover .bento-live-badge,
+.live-card--voicestudio:hover .bento-live-badge {
   background: rgba(255, 255, 255, 0.2) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
-.live-card--wordtohtml:hover .live-pulse-dot {
+.live-card--wordtohtml:hover .live-pulse-dot,
+.live-card--voicestudio:hover .live-pulse-dot {
   background: #ffffff !important;
   box-shadow: 0 0 10px #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .bento-interactive-preview {
+.live-card--wordtohtml:hover .bento-interactive-preview,
+.live-card--voicestudio:hover .bento-interactive-preview {
   background: rgba(0, 0, 0, 0.22) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.live-card--wordtohtml:hover .bento-preview-pill {
+.live-card--wordtohtml:hover .bento-preview-pill,
+.live-card--voicestudio:hover .bento-preview-pill {
   background: rgba(255, 255, 255, 0.14) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   color: #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .preview-format-icon {
+.live-card--wordtohtml:hover .preview-format-icon,
+.live-card--voicestudio:hover .preview-format-icon {
   background: #ffffff !important;
   color: var(--blue) !important;
 }
 
-.live-card--wordtohtml:hover .preview-format-icon--html {
+.live-card--wordtohtml:hover .preview-format-icon--html,
+.live-card--voicestudio:hover .preview-format-icon--voice {
   background: #ffffff !important;
   color: var(--blue) !important;
 }
 
-.live-card--wordtohtml:hover .bento-preview-arrow {
+.live-card--voicestudio:hover .voice-wave-bars .wave-bar {
+  background: #ffffff !important;
+}
+
+.live-card--wordtohtml:hover .bento-preview-arrow,
+.live-card--voicestudio:hover .bento-preview-arrow {
   color: #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .bento-tag {
+.live-card--wordtohtml:hover .bento-tag,
+.live-card--voicestudio:hover .bento-tag {
   background: rgba(255, 255, 255, 0.16) !important;
   border-color: rgba(255, 255, 255, 0.35) !important;
   color: #ffffff !important;
 }
 
-.live-card--wordtohtml:hover .bento-cta-btn {
+.live-card--wordtohtml:hover .bento-cta-btn,
+.live-card--voicestudio:hover .bento-cta-btn {
+  background: #ffffff !important;
+  color: var(--blue) !important;
+  border-color: #ffffff !important;
+}
+
+.live-card--wordtohtml:hover .bento-cta-btn--ghost,
+.live-card--voicestudio:hover .bento-cta-btn--ghost {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.live-card--wordtohtml:hover .bento-cta-btn--ghost:hover,
+.live-card--voicestudio:hover .bento-cta-btn--ghost:hover {
   background: #ffffff !important;
   color: var(--blue) !important;
   border-color: #ffffff !important;
@@ -2092,7 +2225,7 @@ body.nav-locked {
 
 /* --- BENTO CARD 3 & 4: Tertiary & Quaternary --- */
 .bento-card--tertiary {
-  grid-column: span 6;
+  grid-column: span 4;
 }
 
 .bento-card--tertiary:hover {
@@ -2139,7 +2272,7 @@ body.nav-locked {
 }
 
 .bento-card--quaternary {
-  grid-column: span 6;
+  grid-column: span 4;
 }
 
 .bento-card--quaternary:hover {
@@ -2280,6 +2413,85 @@ body.nav-locked {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+/* Live Toast Tabs & Multi-Tool Support */
+.live-toast-tabs {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.live-toast-tab {
+  flex: 1;
+  background: transparent;
+  color: #9ca3af;
+  border: none;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.live-toast-tab.is-active {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.live-toast-tab:hover:not(.is-active) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.toast-new-pill {
+  background: #10b981;
+  color: #050505;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.live-toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.live-toast-btn-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.live-toast-btn-group .live-toast-cta-btn {
+  flex: 1;
+  padding: 11px 12px;
+  font-size: 12.5px;
+  text-align: center;
+}
+
+.live-toast-cta-btn--secondary {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.live-toast-cta-btn--secondary:hover {
+  background: #ffffff;
+  color: #050505;
+  border-color: #ffffff;
 }
 
 .live-toast-title-row {
